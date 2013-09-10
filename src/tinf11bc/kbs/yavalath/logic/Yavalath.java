@@ -88,47 +88,35 @@ public class Yavalath {
 	}
 	
 	private static int checkGameState(int[][] board, int playerNumber) {
-		int[] x = {0,0};
-		int[] y	= {0,0};
 		
 		for(int j = 0; j < 9; j++){
 			for(int i = 0; i < 9; i++){
 				if(board[j][i] > 0){
-					if(x[0] != board[j][i]){
-						if(x[1] == 3)
-							return 10+playerNumber;
-						x[0] = board[j][i];
-						x[1] = 1;
+					if(	board[j][i] == board[j][i+1] &&
+						board[j][i] == board[j][i+2] &&
+						board[j][i] == board[j][i+3] && i < 6){
+								return playerNumber;
 					}else{
-						x[1]++;
-						if(x[1] >= 4)
-							return x[0];
+						if(	board[j][i] == board[j][i+1] &&
+							board[j][i] == board[j][i+2] && i < 7){
+									return playerNumber+10;
+						}
 					}
-				}else{
-					x[1]=0;
 				}
-				
-				
-				
 				if(board[i][j] > 0){
-					if(y[0] != board[i][j]){
-						if(y[1] == 3)
-							return 10+playerNumber;
-						y[0] = board[i][j];
-						y[1] = 1;
+					if(	board[i][j] == board[i+1][j] &&
+						board[i][j] == board[i+2][j] &&
+						board[i][j] == board[i+3][j] && i < 6){
+								return playerNumber;
 					}else{
-						y[1]++;
-						if(y[1] >= 4)
-							return x[0];
+						if(	board[i][j] == board[i+1][j] &&
+							board[i][j] == board[i+2][j] && i < 7){
+									return playerNumber+10;
+						}
 					}
-				}else{
-					x[1]=0;
 				}
-			}
-			
+			}	
 		}
-		
-		
 		return 0;
 	}
 
