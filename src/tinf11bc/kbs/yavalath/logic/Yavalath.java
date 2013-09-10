@@ -91,29 +91,33 @@ public class Yavalath {
 		
 		for(int j = 0; j < 9; j++){
 			for(int i = 0; i < 9; i++){
-				if(board[j][i] > 0){
-					if(	board[j][i] == board[j][i+1] &&
-						board[j][i] == board[j][i+2] &&
-						board[j][i] == board[j][i+3] && i < 6){
-								return playerNumber;
-					}else{
+				try{
+					if(board[j][i] > 0){
 						if(	board[j][i] == board[j][i+1] &&
-							board[j][i] == board[j][i+2] && i < 7){
-									return playerNumber+10;
+							board[j][i] == board[j][i+2] &&
+							board[j][i] == board[j][i+3] && i < 6){
+									return playerNumber;
+						}else{
+							if(	board[j][i] == board[j][i+1] &&
+								board[j][i] == board[j][i+2] && i < 7){
+										return playerNumber+10;
+							}
 						}
 					}
-				}
-				if(board[i][j] > 0){
-					if(	board[i][j] == board[i+1][j] &&
-						board[i][j] == board[i+2][j] &&
-						board[i][j] == board[i+3][j] && i < 6){
-								return playerNumber;
-					}else{
+					if(board[i][j] > 0){
 						if(	board[i][j] == board[i+1][j] &&
-							board[i][j] == board[i+2][j] && i < 7){
-									return playerNumber+10;
+							board[i][j] == board[i+2][j] &&
+							board[i][j] == board[i+3][j] && i < 6){
+									return playerNumber;
+						}else{
+							if(	board[i][j] == board[i+1][j] &&
+								board[i][j] == board[i+2][j] && i < 7){
+										return playerNumber+10;
+							}
 						}
 					}
+				}catch(Exception e){
+					continue;
 				}
 			}
 			int t = 0,r = j;
