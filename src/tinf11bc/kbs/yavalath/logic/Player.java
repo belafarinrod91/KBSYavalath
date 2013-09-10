@@ -40,7 +40,7 @@ int playerNumber;
 		return move;
 	}
 	
-	private int forcedMove(int[][]board){
+	protected int forcedMove(int[][]board){
 		int[] x = {0,0};
 		int[] y	= {0,0};
 		
