@@ -116,6 +116,33 @@ public class Yavalath {
 					}
 				}
 			}	
+		int t = 0,r = j;
+		if(r >= 4 && r <= 12){	
+			if(r > 8){
+				t = r - 8;
+				r = 8;
+			}else{
+				t = 0;
+			}
+			try{
+				for(; t < r ; t++){
+					if(board[r][t] > 0){
+						if(	board[t][r] == board[t+1][r-1] &&
+							board[t][r] == board[t+2][r-2] &&
+							board[t][r] == board[t+3][r-3]){
+									return playerNumber;
+						}else{
+							if(	board[t][r] == board[t+1][r-1] &&
+								board[t][r] == board[t+2][r-2]){
+										return playerNumber+10;
+							}
+						}
+					}
+				}
+			}finally{
+				continue;
+			}
+		}
 		}
 		return 0;
 	}
