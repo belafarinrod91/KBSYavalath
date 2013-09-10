@@ -60,8 +60,7 @@ int playerNumber;
 						}else{
 							x[0] =0;
 						}
-					}
-						
+					}	
 				}else{
 					x[1]=0;
 				}

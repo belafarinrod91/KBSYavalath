@@ -108,6 +108,8 @@ public class Yavalath {
 					x[1]=0;
 				}
 				
+				
+				
 				if(board[i][j] > 0){
 					if(y[0] != board[i][j]){
 						if(y[1] == 3)
