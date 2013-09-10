@@ -72,7 +72,7 @@ public class Yavalath {
 			for(int j = 0; j < 9; j++){
 				System.out.print(board[i][j]+" ");
 			}	
-			System.out.println();
+			System.out.println("GameState: "+gameState);
 		}
 	}
 	
@@ -141,7 +141,7 @@ public class Yavalath {
 			//					-how many players? (2/3)
 			//					-player/AI 
 			
-			int[] players = {1,2,2};
+			int[] players = {1,2,0};
 			game(players);
 			
 		}

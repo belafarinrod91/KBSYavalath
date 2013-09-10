@@ -30,7 +30,7 @@ int playerNumber;
 	    
 		String eingabe = null;
 		try {
-			System.out.println("mache zug:");
+			System.out.println("Player "+playerNumber+" mache zug:");
 			eingabe = br.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,12 +50,12 @@ int playerNumber;
 					if(x[0] != board[j][i]){
 						x[0] = board[j][i];
 						x[1] = 1;
-						if(x[0] == board[j][i+2] && x[0] == board[j][i+3])
+						if(i+3 < 9 && board[j][i+1] == 0 && x[0] == board[j][i+2] && x[0] == board[j][i+3])
 							return j*10+i+1;
 					}else{
 						if(x[0] == board[j][i]){
 							x[1]++;
-							if(x[0] == board[j][i+2])
+							if(i+2 < 9 && board[j][i+1] == 0 && x[0] == board[j][i+2])
 								return j*10+i+1;
 						}else{
 							x[0] =0;
@@ -70,13 +70,13 @@ int playerNumber;
 					if(y[0] != board[i][j]){
 						y[0] = board[i][j];
 						y[1] = 1;
-						if(x[0] == board[i][j+2] && x[0] == board[i][j+3])
-							return i*10+j+1;
+						if(i+3 < 9 && board[i+1][j] == 0 && y[0] == board[i+2][j] && y[0] == board[i+3][j])
+							return (i+1)*10+j;
 					}else{
 						if(y[0] == board[i][j]){
 							y[1]++;
-							if(y[0] == board[i][j+2])
-								return i*10+j+1;
+							if(i+2 < 9 && board[i+1][j] == 0 && y[0] == board[i+2][j])
+								return (i+1)*10+j;
 						}else{
 							y[0] =0;
 						}
