@@ -9,4 +9,8 @@ package tinf11bc.kbs.yavalath.logic;
  */
 public class AI extends Player {
 
+	public AI(int playerNumber) {
+		super(playerNumber);
+	}
+
 }

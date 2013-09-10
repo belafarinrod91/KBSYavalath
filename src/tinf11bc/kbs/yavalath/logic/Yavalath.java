@@ -38,11 +38,11 @@ public class Yavalath {
 		for(int n = 0; n <=2; n++){
 			switch(newPlayers[n]){
 			case(1):
-				player[n] = new Player();
+				player[n] = new Player(n+1);
 				numberOfPlayers++;
 				break;
 			case(2):
-				player[n] = new AI();
+				player[n] = new AI(n+1);
 				numberOfPlayers++;
 				break;
 			default:
@@ -53,7 +53,7 @@ public class Yavalath {
 		drawBoard(board);
 		while(gameState == 0){
 			for(int i = 0; i < numberOfPlayers;i++){
-				if(gameState-10 == numberOfPlayers)
+				if(gameState-10 == i)
 					continue;
 				
 				addStone(i+1,player[i].makeMove(board));
