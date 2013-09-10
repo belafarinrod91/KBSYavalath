@@ -72,8 +72,9 @@ public class Yavalath {
 			for(int j = 0; j < 9; j++){
 				System.out.print(board[i][j]+" ");
 			}	
-			System.out.println("GameState: "+gameState);
+			System.out.println();
 		}
+		System.out.println("GameState: "+gameState);
 	}
 	
 	private static void addStone(int playerNumber,int position) throws YavalathException{		
@@ -92,7 +93,7 @@ public class Yavalath {
 		
 		for(int j = 0; j < 9; j++){
 			for(int i = 0; i < 9; i++){
-				if(board[j][i] >= 0){
+				if(board[j][i] > 0){
 					if(x[0] != board[j][i]){
 						if(x[1] == 3)
 							return 10+playerNumber;
@@ -107,10 +108,10 @@ public class Yavalath {
 					x[1]=0;
 				}
 				
-				if(board[i][j] >= 0){
+				if(board[i][j] > 0){
 					if(y[0] != board[i][j]){
 						if(y[1] == 3)
-							return -1;
+							return 10+playerNumber;
 						y[0] = board[i][j];
 						y[1] = 1;
 					}else{
