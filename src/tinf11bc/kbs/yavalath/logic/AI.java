@@ -6,7 +6,7 @@ package tinf11bc.kbs.yavalath.logic;
 import java.util.Random;
 
 /**
- * @author Chris
+ * @author Stephan
  *
  */
 public class AI extends Player {
@@ -30,7 +30,7 @@ public class AI extends Player {
 	public int makeMove(int[][] board) throws YavalathException{
 		int move = forcedMove(board);
 		if(move != 0){
-			System.out.println("Forced: " + move);
+			System.out.println("AI Forced Move: " + move);
 			return move;
 		}
 		
@@ -38,7 +38,7 @@ public class AI extends Player {
 			move = randomMove(board);
 		} while(board[move/10][move%10] != 0);
 		
-		System.out.println(move);
+		System.out.println("AI Move: " + move);
 		
 		return move;
 	}

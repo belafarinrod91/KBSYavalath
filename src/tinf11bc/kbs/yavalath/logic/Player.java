@@ -8,16 +8,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * @author Chris
+ * @author Chris, Stephan
  *
  */
 
 public class Player {
 
-int playerNumber;
+	private int playerNumber;
 	
 	public Player(int playerNumber){
 		this.playerNumber = playerNumber;
+	}
+	
+	public int getPlayerNumber() {
+		return playerNumber;
 	}
 	
 	public int makeMove(int[][] board) throws YavalathException{

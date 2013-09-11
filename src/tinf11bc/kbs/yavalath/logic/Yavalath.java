@@ -6,7 +6,7 @@ import tinf11bc.kbs.yavalath.logic.YavalathException;
 import tinf11bc.kbs.yavalath.gui.GuiFactory;
 
 /**
- * @author Chris
+ * @author Chris, Stephan
  *
  */
 public class Yavalath {
@@ -30,6 +30,7 @@ public class Yavalath {
 
 		Player player[] = new Player[3];
 		int numberOfPlayers = 0;
+		int numberOfMoves = 0;
 		gameState = 0; //0: playing; 1: Player 1 won; 2: Player 2 won; 3: Player 3 won;	
 					   //10: draw; 11:Player 1 out; 12: Player 2 out; 13: Player 3 out; 	
 		
@@ -53,18 +54,49 @@ public class Yavalath {
 		drawBoard(board);
 		while(gameState == 0){
 			for(int i = 0; i < numberOfPlayers;i++){
-				if(gameState-10 == i)
-					continue;
 				
-				addStone(i+1,player[i].makeMove(board));
+				System.out.println("GameState: " + gameState + "\nNumber of Moves: " + numberOfMoves + "\nPlayer's Turn: " + player[i].getPlayerNumber());
 				
-				gameState = checkGameState(board, i+1);
+				addStone(player[i].getPlayerNumber(), player[i].makeMove(board));
+				numberOfMoves++;
+				
+				gameState = checkGameState(board, player[i].getPlayerNumber());
+				
 				drawBoard(board);
-				if(gameState != 0 && gameState <=10)
+				
+				if(numberOfMoves == 61){
+					gameState = 10;
+					System.out.println("It's a draw!");
 					break;
+				}
+				
+				if(gameState > 10) {
+					numberOfPlayers--;
+					if(numberOfPlayers == 1) {
+						if(gameState - 10 == player[0].getPlayerNumber()) {
+							gameState = player[1].getPlayerNumber();
+						}
+						else {
+							gameState = player[0].getPlayerNumber();
+						}
+						break;
+					}
+					else {
+						for(int j = 1; j < 3; j++) {
+							if(player[j].getPlayerNumber() > gameState - 10) {
+								player[j-1] = player[j];
+							}
+						}
+						System.out.println("Player " + (gameState - 10) + " is out!");
+						gameState = 0;
+						i--;
+					}
+				}
 			}
 		}
-		System.out.println(gameState);
+		if(gameState != 10){
+			System.out.println("Player " + gameState + " won!");
+		}
 	}
 	
 	private static void drawBoard(int[][] board){
@@ -74,7 +106,6 @@ public class Yavalath {
 			}	
 			System.out.println();
 		}
-		System.out.println("GameState: "+gameState);
 	}
 	
 	private static void addStone(int playerNumber,int position) throws YavalathException{		
@@ -89,11 +120,11 @@ public class Yavalath {
 	}
 	
 	private static int checkGameState(int[][] board, int playerNumber) throws YavalathException {
-		
+				
 		for(int j = 0; j < 9; j++){
 			for(int i = 0; i < 7; i++){
 				try{
-					if(board[j][i] > 0){
+					if(board[j][i] == playerNumber){						
 						if(	i < 6 && board[j][i] == board[j][i+1] &&
 							board[j][i] == board[j][i+2] &&
 							board[j][i] == board[j][i+3]){
@@ -105,7 +136,7 @@ public class Yavalath {
 							}
 						}
 					}
-					if(board[i][j] > 0){
+					if(board[i][j] == playerNumber){
 						if(	i < 6 && board[i][j] == board[i+1][j] &&
 							board[i][j] == board[i+2][j] &&
 							board[i][j] == board[i+3][j]){
@@ -166,8 +197,9 @@ public class Yavalath {
 			//					-how many players? (2/3)
 			//					-player/AI 
 			
-			int[] players = {2,2,0};
+			int[] players = {2,2,2};
 			game(players);
+			playing = false;
 		}
 	}
 
