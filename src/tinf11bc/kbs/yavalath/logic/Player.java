@@ -52,13 +52,13 @@ public class Player {
 			for(int i = 0; i < 6; i++){
 				if(board[j][i] > 0){
 					x = board[j][i];
-					if(board[j][i+1] == 0 && x == board[j][i+2] && x == board[j][i+3])
+					if(board[j][i+1] == 0 && board[j][i+2] == x && board[j][i+3] == x)
 						return j*10+i+1;
-					if(board[j][i+1] == x && board[j][i+2] == 0 && x == board[j][i+3])
+					if(board[j][i+1] == x && board[j][i+2] == 0 && board[j][i+3] == x)
 						return j*10+i+2;
 					
 					y = board[i][j];
-					if( board[i+1][j] == 0 && board[i+2][j] == y && board[i+3][j] == y)
+					if(board[i+1][j] == 0 && board[i+2][j] == y && board[i+3][j] == y)
 						return (i+1)*10+j;
 					if(board[i+1][j] == y && board[i+2][j] == 0 && board[i+3][j] == y)
 						return (i+2)*10+j;

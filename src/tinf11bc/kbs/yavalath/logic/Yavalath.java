@@ -60,7 +60,14 @@ public class Yavalath {
 		board = setUpBoard();
 		drawBoard(board);
 		
-		playGame(board, player);
+		int result = playGame(board, player);
+		
+		if(result == 10) {
+			System.out.println("It's a draw!");
+		}
+		else {
+			System.out.println("Player " + result + " won!");
+		}
 	}
 	
 	public static int playGame(int[][] board, Player[] player) throws YavalathException {
@@ -79,7 +86,6 @@ public class Yavalath {
 				
 				if(numberOfMoves == 61){
 					gameState = 10;
-					System.out.println("It's a draw!");
 					return gameState;
 				}
 				
@@ -92,7 +98,6 @@ public class Yavalath {
 						else {
 							gameState = player[0].getPlayerNumber();
 						}
-						System.out.println("Player " + gameState + " won!");
 						return gameState;
 					}
 					else {
@@ -135,8 +140,8 @@ public class Yavalath {
 	
 	private static int checkGameState(int[][] board, int playerNumber, int position) throws YavalathException {
 		
-		int x = position%10;
-		int y = position/10;
+		int x = position/10;
+		int y = position%10;
 		for(int i = 0; i+2 < 9; i++){
 				try{
 					if(board[x][i] == playerNumber){						
@@ -146,7 +151,7 @@ public class Yavalath {
 								return playerNumber;
 						}else{
 							if(board[x][i] == board[x][i+1] &&
-								board[x][i] == board[x][i+2] && i+3 < 9){
+								board[x][i] == board[x][i+2]){
 								return playerNumber+10;
 							}
 						}
@@ -158,7 +163,7 @@ public class Yavalath {
 								return playerNumber;
 						}else{
 							if(board[i][y] == board[i+1][y] &&
-								board[i][y] == board[i+2][y] && i+3 < 9){
+								board[i][y] == board[i+2][y]){
 								return playerNumber+10;
 							}
 						}
