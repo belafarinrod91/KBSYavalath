@@ -26,8 +26,8 @@ public class Player {
 	
 	public int makeMove(int[][] board) throws YavalathException{
 		int move = forcedMove(board);
-		if(move != 0)
-			return move;
+//		if(move != 0)
+//			return move;
 		
 	    InputStreamReader isr = new InputStreamReader(System.in);
 	    BufferedReader br = new BufferedReader(isr);
@@ -64,35 +64,25 @@ public class Player {
 						return (i+2)*10+j;
 				}
 			}
-			/* NOT WORKING YET
-			
-			int t = 0,r = j;
-			if(r >= 4 && r <= 12){	
-				if(r > 8){
-					t = r - 8;
-					r = 8;
-				}else{
-					t = 0;
-				}
-				try{
-					for(; t < 8 ; t++,r--){
-						if(board[t][r] > 0){
-							if(board[t][r] == board[t+1][r-1] &&
-								board[t][r] == board[t+3][r-3])
-									return (t+2)*10+r-2;
-							if(board[t][r] == board[t+2][r-2] &&
-								board[t][r] == board[t+3][r-3])
-									return (t+1)*10+r-1;
-						}
-					}
-				}catch(Exception e){
-					System.err.println("Error in forcedMove detection (diagonal)!");
-					throw new YavalathException();
-				}
+			int t = 0,r = j+4;
+			if(r > 8){
+				t = r - 8;
+				r = 8;
 			}
-			*/
+			try{
+				for(; t < 8 && r-2 >= 0; t++,r--){
+					if(r-3 >=0 && board[t][r] > 0){
+						if(board[t+1][r-1] == 0 && board[t][r] == board[t+2][r-2] && board[t][r] == board[t+3][r-3])
+							return (t+1)*10+(r-1);
+						if(board[t+2][r-2] == 0 && board[t][r] == board[t+1][r-1] && board[t][r] == board[t+3][r-3])
+							return (t+2)*10+(r-2);
+					}
+				}
+			}catch(Exception e){
+				System.err.println("Error in Win/Lose detection (diagonal)!");
+				throw new YavalathException();
+			}
 		}
-		
 		return 0;
 		
 	}
