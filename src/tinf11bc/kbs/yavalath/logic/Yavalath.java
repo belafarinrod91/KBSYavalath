@@ -60,7 +60,7 @@ public class Yavalath {
 		board = setUpBoard();
 		drawBoard(board);
 		
-		int result = playGame(board, player);
+		int result = playGame(board, player, numberOfPlayers, numberOfMoves);
 		
 		if(result == 10) {
 			System.out.println("It's a draw!");
@@ -70,9 +70,11 @@ public class Yavalath {
 		}
 	}
 	
-	public static int playGame(int[][] board, Player[] player) throws YavalathException {
+	public static int playGame(int[][] board, Player[] player, int numberOfPlayers, int numberOfMoves) throws YavalathException {
 		int gameState = 0; 	//0: playing; 1: Player 1 won; 2: Player 2 won; 3: Player 3 won;	
 		   					//10: draw; 11:Player 1 out; 12: Player 2 out; 13: Player 3 out; 
+		
+		
 		
 		while(gameState == 0){
 			for(int i = 0; i < numberOfPlayers;i++){
@@ -199,13 +201,14 @@ public class Yavalath {
 			return 0;
 	}
 
+	//to be updated
 	public static int playRandomGame(int[][]board) throws YavalathException {
 		Player[] randomAI = new Player[3];
 		for(int n = 0; n < numberOfPlayers; n++) {
 			randomAI[n] = new RandomAI(player[n].getPlayerNumber());
 		}
 		int movesBackup = numberOfMoves;
-		int result = Yavalath.playGame(board, randomAI);
+		int result = Yavalath.playGame(board, randomAI, numberOfPlayers, numberOfMoves);
 		numberOfMoves = movesBackup;
 		return result;
 	}

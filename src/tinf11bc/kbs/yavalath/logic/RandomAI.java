@@ -5,6 +5,8 @@ package tinf11bc.kbs.yavalath.logic;
 
 import java.util.Random;
 
+import tinf11bc.kbs.yavalath.util.Board;
+
 /**
  * @author Stephan
  *
@@ -12,16 +14,6 @@ import java.util.Random;
 public class RandomAI extends Player {
 
 	private Random rand = new Random(System.nanoTime());
-	
-	private int[] tiles = {4,5,6,7,8,
-						13,14,15,16,17,18,
-					  22,23,24,25,26,27,28,
-					 31,32,33,34,35,36,37,38,
-					40,41,42,43,44,45,46,47,48,
-					 50,51,52,53,54,55,56,57,
-					  60,61,62,63,64,65,66,
-					   70,71,72,73,74,75,
-						 80,81,82,83,84};
 	
 	public RandomAI(int playerNumber) {
 		super(playerNumber);
@@ -45,13 +37,7 @@ public class RandomAI extends Player {
 	}
 	
 	private int randomMove(int[][] board){
-		return tiles[rand.nextInt(61)];
+		return Board.tiles[rand.nextInt(61)];
 	}
-	
-	/*
-	public int playRandomGame(int[][] board) throws YavalathException {
-		return Yavalath.playGame(board, Yavalath.getNumberOfPlayer(), player);
-	}
-	*/
 	
 }
