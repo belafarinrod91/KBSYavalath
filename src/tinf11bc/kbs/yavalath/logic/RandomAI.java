@@ -9,9 +9,10 @@ import java.util.Random;
  * @author Stephan
  *
  */
-public class AI extends Player {
+public class RandomAI extends Player {
 
 	private Random rand = new Random(System.nanoTime());
+	
 	private int[] tiles = {4,5,6,7,8,
 						13,14,15,16,17,18,
 					  22,23,24,25,26,27,28,
@@ -22,7 +23,7 @@ public class AI extends Player {
 					   70,71,72,73,74,75,
 						 80,81,82,83,84};
 	
-	public AI(int playerNumber) {
+	public RandomAI(int playerNumber) {
 		super(playerNumber);
 	}
 
@@ -46,5 +47,11 @@ public class AI extends Player {
 	private int randomMove(int[][] board){
 		return tiles[rand.nextInt(61)];
 	}
+	
+	/*
+	public int playRandomGame(int[][] board) throws YavalathException {
+		return Yavalath.playGame(board, Yavalath.getNumberOfPlayer(), player);
+	}
+	*/
 	
 }
