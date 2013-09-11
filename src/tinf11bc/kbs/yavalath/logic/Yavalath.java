@@ -117,8 +117,6 @@ public class Yavalath {
 		if(board[position/10][position%10] == 0){
 			board[position/10][position%10] = playerNumber;
 		}else{
-			System.err.println("NOOOOOOOOOO!");
-			System.err.println(position);
 			throw new YavalathException();
 		}
 		 return checkGameState(board, playerNumber, position);	
@@ -128,7 +126,6 @@ public class Yavalath {
 				
 		int x = position%10;
 		int y = position/10;
-		System.out.println(x+"/"+y);
 		for(int i = 0; i+2 < 9; i++){
 				try{
 					if(board[x][i] == playerNumber){						
@@ -156,7 +153,6 @@ public class Yavalath {
 						}
 					}
 				}catch(Exception e){
-					System.out.println("x: "+x+";i: "+i);
 					System.err.println("Error in Win/Lose detection (h/v)!");
 					throw new YavalathException();
 				}
