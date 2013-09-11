@@ -10,10 +10,8 @@ import tinf11bc.kbs.yavalath.gui.GuiFactory;
  *
  */
 public class Yavalath {
-	static int[][] board = null;
-	static int gameState = 0;
 			
-	static int[][] setUp(){
+	static int[][] setUpBoard(){
 		int[][] board = {{ -1, -1, -1, -1, 0, 0, 0, 0, 0},
 			 	            { -1, -1, -1, 0, 0, 0, 0, 0, 0},
 				               { -1, -1, 0, 0, 0, 0, 0, 0, 0},
@@ -26,15 +24,13 @@ public class Yavalath {
 		return board;
 	}
 	
-	public static void game(int[] newPlayers) throws YavalathException{
+	public static void newGame(int[] newPlayers) throws YavalathException{
 
-		Player player[] = new Player[3];
-		int numberOfPlayers = 0;
+		Player[] player = new Player[3];
+		int numberOfPlayers = 0;	
 		int numberOfMoves = 0;
-		gameState = 0; //0: playing; 1: Player 1 won; 2: Player 2 won; 3: Player 3 won;	
-					   //10: draw; 11:Player 1 out; 12: Player 2 out; 13: Player 3 out; 	
 		
-		board = setUp();
+		int[][] board = setUpBoard();
 		
 		for(int n = 0; n <=2; n++){
 			switch(newPlayers[n]){
@@ -52,12 +48,20 @@ public class Yavalath {
 		}
 
 		drawBoard(board);
+		
+		playGame(board, numberOfPlayers, player, numberOfMoves);
+	}
+	
+	public static void playGame(int[][] board, int numberOfPlayers, Player[] player, int numberOfMoves) throws YavalathException {
+		int gameState = 0; //0: playing; 1: Player 1 won; 2: Player 2 won; 3: Player 3 won;	
+		   //10: draw; 11:Player 1 out; 12: Player 2 out; 13: Player 3 out; 
+		
 		while(gameState == 0){
 			for(int i = 0; i < numberOfPlayers;i++){
 				
 				System.out.println("GameState: " + gameState + "\nNumber of Moves: " + numberOfMoves + "\nPlayer's Turn: " + player[i].getPlayerNumber());
 				
-				addStone(player[i].getPlayerNumber(), player[i].makeMove(board));
+				addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
 				numberOfMoves++;
 				
 				gameState = checkGameState(board, player[i].getPlayerNumber());
@@ -108,7 +112,7 @@ public class Yavalath {
 		}
 	}
 	
-	private static void addStone(int playerNumber,int position) throws YavalathException{		
+	private static void addStone(int[][] board, int playerNumber,int position) throws YavalathException{		
 		if(board[position/10][position%10] == 0){
 			board[position/10][position%10] = playerNumber;
 		}else{
@@ -191,9 +195,9 @@ public class Yavalath {
 			//					-how many players? (2/3)
 			//					-player/AI 
 			
-			int[] players = {2,2,2};
-			game(players);
-			playing = false;
+			int[] players = {2,2,2};	// Player: 1
+										// AI: 2
+			newGame(players);
 		}
 	}
 
