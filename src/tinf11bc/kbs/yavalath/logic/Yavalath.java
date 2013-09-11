@@ -82,44 +82,48 @@ public class Yavalath {
 			board[position/10][position%10] = playerNumber;
 		}else{
 			System.err.println("NOOOOOOOOOO!");
+			System.err.println(position);
 			throw new YavalathException();
 		}
 			
 	}
 	
-	private static int checkGameState(int[][] board, int playerNumber) {
+	private static int checkGameState(int[][] board, int playerNumber) throws YavalathException {
 		
 		for(int j = 0; j < 9; j++){
-			for(int i = 0; i < 9; i++){
+			for(int i = 0; i < 7; i++){
 				try{
 					if(board[j][i] > 0){
-						if(	board[j][i] == board[j][i+1] &&
+						if(	i < 6 && board[j][i] == board[j][i+1] &&
 							board[j][i] == board[j][i+2] &&
-							board[j][i] == board[j][i+3] && i < 6){
+							board[j][i] == board[j][i+3]){
 									return playerNumber;
 						}else{
-							if(	board[j][i] == board[j][i+1] &&
-								board[j][i] == board[j][i+2] && i < 7){
+							if(board[j][i] == board[j][i+1] &&
+								board[j][i] == board[j][i+2]){
 										return playerNumber+10;
 							}
 						}
 					}
 					if(board[i][j] > 0){
-						if(	board[i][j] == board[i+1][j] &&
+						if(	i < 6 && board[i][j] == board[i+1][j] &&
 							board[i][j] == board[i+2][j] &&
-							board[i][j] == board[i+3][j] && i < 6){
+							board[i][j] == board[i+3][j]){
 									return playerNumber;
 						}else{
-							if(	board[i][j] == board[i+1][j] &&
-								board[i][j] == board[i+2][j] && i < 7){
+							if(board[i][j] == board[i+1][j] &&
+								board[i][j] == board[i+2][j]){
 										return playerNumber+10;
 							}
 						}
 					}
 				}catch(Exception e){
-					continue;
+					System.err.println("Error in Win/Lose detection (h/v)!");
+					throw new YavalathException();
 				}
 			}
+			/* NOT WORKING YET
+
 			int t = 0,r = j;
 			if(r >= 4 && r <= 12){	
 				if(r > 8){
@@ -141,9 +145,11 @@ public class Yavalath {
 						}
 					}
 				}catch(Exception e){
-					continue;
+					System.err.println("Error in Win/Lose detection (diagonal)!");
+					throw new YavalathException();
 				}
 			}
+			*/
 		}
 		return 0;
 	}
@@ -160,9 +166,8 @@ public class Yavalath {
 			//					-how many players? (2/3)
 			//					-player/AI 
 			
-			int[] players = {1,2,0};
+			int[] players = {2,2,0};
 			game(players);
-			
 		}
 	}
 

@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class AI extends Player {
 
-	private Random rand = new Random();
+	private Random rand = new Random(System.nanoTime());
 	private int[] tiles = {4,5,6,7,8,
 						13,14,15,16,17,18,
 					  22,23,24,25,26,27,28,
@@ -27,9 +27,10 @@ public class AI extends Player {
 	}
 
 	@Override
-	public int makeMove(int[][] board){
+	public int makeMove(int[][] board) throws YavalathException{
 		int move = forcedMove(board);
 		if(move != 0){
+			System.out.println("Forced: " + move);
 			return move;
 		}
 		
