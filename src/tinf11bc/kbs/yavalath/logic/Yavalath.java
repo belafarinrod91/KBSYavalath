@@ -1,5 +1,7 @@
 package tinf11bc.kbs.yavalath.logic;
 
+import javax.crypto.spec.PSource;
+
 import tinf11bc.kbs.yavalath.logic.AI;
 import tinf11bc.kbs.yavalath.logic.Player;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
@@ -61,10 +63,9 @@ public class Yavalath {
 				
 				System.out.println("GameState: " + gameState + "\nNumber of Moves: " + numberOfMoves + "\nPlayer's Turn: " + player[i].getPlayerNumber());
 				
-				addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
+				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
 				numberOfMoves++;
-				
-				gameState = checkGameState(board, player[i].getPlayerNumber());
+
 				
 				drawBoard(board);
 				
@@ -112,7 +113,7 @@ public class Yavalath {
 		}
 	}
 	
-	private static void addStone(int[][] board, int playerNumber,int position) throws YavalathException{		
+	private static int addStone(int[][] board, int playerNumber,int position) throws YavalathException{		
 		if(board[position/10][position%10] == 0){
 			board[position/10][position%10] = playerNumber;
 		}else{
@@ -120,45 +121,48 @@ public class Yavalath {
 			System.err.println(position);
 			throw new YavalathException();
 		}
-			
+		 return checkGameState(board, playerNumber, position);	
 	}
 	
-	private static int checkGameState(int[][] board, int playerNumber) throws YavalathException {
+	private static int checkGameState(int[][] board, int playerNumber, int position) throws YavalathException {
 				
-		for(int j = 0; j < 9; j++){
-			for(int i = 0; i < 7; i++){
+		int x = position%10;
+		int y = position/10;
+		System.out.println(x+"/"+y);
+		for(int i = 0; i+2 < 9; i++){
 				try{
-					if(board[j][i] == playerNumber){						
-						if(	i < 6 && board[j][i] == board[j][i+1] &&
-							board[j][i] == board[j][i+2] &&
-							board[j][i] == board[j][i+3]){
-									return playerNumber;
+					if(board[x][i] == playerNumber){						
+						if(	i < 6 && board[x][i] == board[x][i+1] &&
+							board[x][i] == board[x][i+2] &&
+							board[x][i] == board[x][i+3]){
+								return playerNumber;
 						}else{
-							if(board[j][i] == board[j][i+1] &&
-								board[j][i] == board[j][i+2]){
-										return playerNumber+10;
+							if(board[x][i] == board[x][i+1] &&
+								board[x][i] == board[x][i+2] && i+3 < 9){
+								return playerNumber+10;
 							}
 						}
 					}
-					if(board[i][j] == playerNumber){
-						if(	i < 6 && board[i][j] == board[i+1][j] &&
-							board[i][j] == board[i+2][j] &&
-							board[i][j] == board[i+3][j]){
-									return playerNumber;
+					if(board[i][y] == playerNumber){
+						if(	i < 6 && board[i][y] == board[i+1][y] &&
+							board[i][y] == board[i+2][y] &&
+							board[i][y] == board[i+3][y]){
+								return playerNumber;
 						}else{
-							if(board[i][j] == board[i+1][j] &&
-								board[i][j] == board[i+2][j]){
-										return playerNumber+10;
+							if(board[i][y] == board[i+1][y] &&
+								board[i][y] == board[i+2][y] && i+3 < 9){
+								return playerNumber+10;
 							}
 						}
 					}
 				}catch(Exception e){
+					System.out.println("x: "+x+";i: "+i);
 					System.err.println("Error in Win/Lose detection (h/v)!");
 					throw new YavalathException();
 				}
 			}
 			
-			int t = 0,r = j+4;
+			int t = 0,r = x+y;
 			if(r > 8){
 				t = r - 8;
 				r = 8;
@@ -168,10 +172,11 @@ public class Yavalath {
 					if(r-3 <= 0 && t+3 <= 8 && board[t][r] > 0){
 						if(	board[t][r] == board[t+1][r-1] &&
 							board[t][r] == board[t+2][r-2]){
-							if(r-3>=0 && board[t][r] == board[t+3][r-3])
+							if(r-3>=0 && board[t][r] == board[t+3][r-3]){
 								return playerNumber;
-							else
+							}else{
 								return playerNumber+10;
+							}
 						}
 					}
 				}
@@ -179,8 +184,7 @@ public class Yavalath {
 				System.err.println("Error in Win/Lose detection (diagonal)!");
 				throw new YavalathException();
 			}
-		}
-		return 0;
+			return 0;
 	}
 
 
@@ -194,10 +198,10 @@ public class Yavalath {
 			//menu with choosing:
 			//					-how many players? (2/3)
 			//					-player/AI 
+			int[] players = {2,2,2};
 			
-			int[] players = {2,2,2};	// Player: 1
-										// AI: 2
 			newGame(players);
+			playing = false;
 		}
 	}
 
