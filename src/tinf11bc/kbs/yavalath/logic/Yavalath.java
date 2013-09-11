@@ -161,7 +161,7 @@ public class Yavalath {
 			}
 			try{
 				for(; t < 8 && r-2 >= 0; t++,r--){
-					if(board[t][r] > 0){
+					if(r-3 <= 0 && t+3 <= 8 && board[t][r] > 0){
 						if(	board[t][r] == board[t+1][r-1] &&
 							board[t][r] == board[t+2][r-2]){
 							if(r-3>=0 && board[t][r] == board[t+3][r-3])
@@ -191,7 +191,7 @@ public class Yavalath {
 			//					-how many players? (2/3)
 			//					-player/AI 
 			
-			int[] players = {1,2,0};
+			int[] players = {2,2,2};
 			game(players);
 			playing = false;
 		}

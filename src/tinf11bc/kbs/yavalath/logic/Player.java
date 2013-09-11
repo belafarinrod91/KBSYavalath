@@ -47,7 +47,7 @@ public class Player {
 	protected int forcedMove(int[][]board) throws YavalathException{
 		int x = 0;
 		int y = 0;
-		
+		int z = 0;
 		for(int j = 0; j < 9; j++){
 			for(int i = 0; i < 6; i++){
 				if(board[j][i] > 0){
@@ -71,10 +71,11 @@ public class Player {
 			}
 			try{
 				for(; t < 8 && r-2 >= 0; t++,r--){
-					if(r-3 >=0 && board[t][r] > 0){
-						if(board[t+1][r-1] == 0 && board[t][r] == board[t+2][r-2] && board[t][r] == board[t+3][r-3])
+					if(r-3 >=0 && t+3 < 8 && board[t][r] > 0){
+						z = board[t][r];
+						if(board[t+1][r-1] == 0 && z == board[t+2][r-2] && z == board[t+3][r-3])
 							return (t+1)*10+(r-1);
-						if(board[t+2][r-2] == 0 && board[t][r] == board[t+1][r-1] && board[t][r] == board[t+3][r-3])
+						if(board[t+2][r-2] == 0 && z == board[t+1][r-1] && z == board[t+3][r-3])
 							return (t+2)*10+(r-2);
 					}
 				}
