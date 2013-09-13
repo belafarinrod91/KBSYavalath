@@ -2,7 +2,7 @@ package tinf11bc.kbs.yavalath.uct;
 
 import tinf11bc.kbs.yavalath.logic.Player;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
-import tinf11bc.kbs.yavalath.util.Board;
+import tinf11bc.kbs.yavalath.util.GameState;
 
 public class UCTAI {
     
@@ -36,7 +36,7 @@ public class UCTAI {
     // expand children in Node
     private void createChildren(Node parent) {
       Node last = parent;
-      for(int move : Board.tiles) {
+      for(int move : GameState.tiles) {
     	  if(currBoard[move/10][move%10] == 0) {
     		  Node node = new Node(move);
               if (last == parent) {

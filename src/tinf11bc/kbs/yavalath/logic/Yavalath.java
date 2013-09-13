@@ -8,6 +8,8 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 import tinf11bc.kbs.yavalath.logic.RandomAI;
 import tinf11bc.kbs.yavalath.logic.Player;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
+import tinf11bc.kbs.yavalath.util.GameState;
+import tinf11bc.kbs.yavalath.util.GameState.State;
 import tinf11bc.kbs.yavalath.gui.GuiFactory;
 
 /**
@@ -16,115 +18,122 @@ import tinf11bc.kbs.yavalath.gui.GuiFactory;
  */
 public class Yavalath {
 	
-	private static int[][] board;
-	private static Player[] player = new Player[3];
-	private static Integer numberOfMoves;
-	private static Integer numberOfPlayers;	
+//	private static int[][] board;
+//	private static Player[] player = new Player[3];
+//	private static Integer numberOfMoves;
+//	private static Integer numberOfPlayers;	
 	
 	private static boolean debug = false;
 	
-	static int[][] setUpBoard(){
-		int[][] board = {{ -1, -1, -1, -1, 0, 0, 0, 0, 0},
-			 	            { -1, -1, -1, 0, 0, 0, 0, 0, 0},
-				               { -1, -1, 0, 0, 0, 0, 0, 0, 0},
-				                  { -1, 0, 0, 0, 0, 0, 0, 0, 0},
-				                     { 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				                      { 0, 0, 0, 0, 0, 0, 0, 0, -1},
-				                        { 0, 0, 0, 0, 0, 0, 0, -1, -1},
-				                          { 0, 0, 0, 0, 0, 0, -1, -1, -1},
-				                            { 0, 0, 0, 0, 0, -1, -1, -1, -1}};
-		return board;
-	}
+//	static int[][] setUpBoard(){
+//		int[][] cleanboard = {{ -1, -1, -1, -1, 0, 0, 0, 0, 0},
+//			 	            { -1, -1, -1, 0, 0, 0, 0, 0, 0},
+//				               { -1, -1, 0, 0, 0, 0, 0, 0, 0},
+//				                  { -1, 0, 0, 0, 0, 0, 0, 0, 0},
+//				                     { 0, 0, 0, 0, 0, 0, 0, 0, 0},
+//				                      { 0, 0, 0, 0, 0, 0, 0, 0, -1},
+//				                        { 0, 0, 0, 0, 0, 0, 0, -1, -1},
+//				                          { 0, 0, 0, 0, 0, 0, -1, -1, -1},
+//				                            { 0, 0, 0, 0, 0, -1, -1, -1, -1}};
+//		return board;
+//	}
+//	
+//	public static int getNumberOfPlayer() {
+//		return numberOfPlayers;
+//	}
+//	
+//	public static int getNumberOfMoves() {
+//		return numberOfMoves;
+//	}
 	
-	public static int getNumberOfPlayer() {
-		return numberOfPlayers;
-	}
-	
-	public static int getNumberOfMoves() {
-		return numberOfMoves;
-	}
-	
-	public static int newGame(int[] newPlayers) throws YavalathException{
+	public static State newGame(int[] newPlayers) throws YavalathException{
 
-		numberOfPlayers = 0;	
-		numberOfMoves = 0;
+		GameState gameState = new GameState(newPlayers);
 		
-		for(int n = 0; n < 3; n++){
-			switch(newPlayers[n]){
-			case(1):
-				player[n] = new Player(n+1);
-				numberOfPlayers++;
-				break;
-			case(2):
-				player[n] = new RandomAI(n+1);
-				numberOfPlayers++;
-				break;
-			default:
-				break;
-			}
-		}
-
-		board = setUpBoard();
-		drawBoard(board);
+//		numberOfPlayers = 0;	
+//		numberOfMoves = 0;
+//		
+//		for(int n = 0; n < 3; n++){
+//			switch(newPlayers[n]){
+//			case(1):
+//				player[n] = new Player(n+1);
+//				numberOfPlayers++;
+//				break;
+//			case(2):
+//				player[n] = new RandomAI(n+1);
+//				numberOfPlayers++;
+//				break;
+//			default:
+//				break;
+//			}
+//		}
+//
+//		board = setUpBoard();
+//		drawBoard(gameState.getBoard());
 		
-		int result = playGame(board, player, numberOfPlayers, numberOfMoves);
+		gameState = playGame(gameState);
 		
 		if(debug){
-			if(result == 10) {
+			if(gameState.getState() == State.DRAW) {
 				System.out.println("It's a draw!");
 			}
 			else {
-				System.out.println("Player " + result + " won!");
+				System.out.println("Player " + gameState.getState() + " won!");
 			}
 		}
-		return result;
+		return gameState.getState();
 	}
 	
-	public static int playGame(int[][] board, Player[] player, int numberOfPlayers, int numberOfMoves) throws YavalathException {
-		int gameState = 0; 	//0: playing; 1: Player 1 won; 2: Player 2 won; 3: Player 3 won;	
-		   					//10: draw; 11:Player 1 out; 12: Player 2 out; 13: Player 3 out; 
+	public static GameState playGame(GameState gameState) throws YavalathException {
+//		int gameState = 0; 	//0: playing; 1: Player 1 won; 2: Player 2 won; 3: Player 3 won;	
+//		   					//10: draw; 11:Player 1 out; 12: Player 2 out; 13: Player 3 out; 
 		
 		
 		
-		while(gameState == 0){
-			for(int i = 0; i < numberOfPlayers;i++){
+		while(gameState.getState() == State.PLAYING){
+			for(int i = 0; i < gameState.getNumberOfPlayers();i++){
 				
 				if(debug)
-					System.out.println("GameState: " + gameState + "\nNumber of Moves: " + numberOfMoves + "\nPlayer's Turn: " + player[i].getPlayerNumber());
+					System.out.println("GameState: " + gameState.getState() + 
+							"\nNumber of Moves: " + gameState.getNumberOfMoves() + 
+							"\nPlayer's Turn: " + gameState.getPlayingPlayer());
 				
-				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
-				numberOfMoves++;
+//				
+//				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
+//				numberOfMoves++;
+				gameState.playMove();
 				
-				drawBoard(board);
+				if(debug)
+					drawBoard(gameState.getBoard());
 				
-				if(numberOfMoves == 61){
-					gameState = 10;
-					return gameState;
-				}
+//				if(numberOfMoves == 61){
+//					gameState = 10;
+//					return gameState;
+//				}
 				
-				if(gameState > 10) {
-					numberOfPlayers--;
-					if(numberOfPlayers == 1) {
-						if(gameState - 10 == player[0].getPlayerNumber()) {
-							gameState = player[1].getPlayerNumber();
-						}
-						else {
-							gameState = player[0].getPlayerNumber();
-						}
-						return gameState;
-					}
-					else {
-						for(int j = 1; j < 3; j++) {
-							if(player[j].getPlayerNumber() > gameState - 10) {
-								player[j-1] = player[j];
-							}
-						}
-						if(debug)
-							System.out.println("Player " + (gameState - 10) + " is out!");
-						gameState = 0;
-						i--;
-					}
-				}
+//				if(gameState > 10) {
+//					numberOfPlayers--;
+//					if(numberOfPlayers == 1) {
+//						if(gameState - 10 == player[0].getPlayerNumber()) {
+//							gameState = player[1].getPlayerNumber();
+//						}
+//						else {
+//							gameState = player[0].getPlayerNumber();
+//						}
+//						return gameState;
+//					}
+//					else {
+//						for(int j = 1; j < 3; j++) {
+//							if(player[j].getPlayerNumber() > gameState - 10) {
+//								player[j-1] = player[j];
+//							}
+//						}
+//						if(debug)
+//							System.out.println("Player " + (gameState - 10) + " is out!");
+//						gameState = 0;
+//						i--;
+//					}
+//				}
 			}
 		}
 		return gameState;
@@ -216,16 +225,16 @@ public class Yavalath {
 	}
 
 	//to be updated
-	public static int playRandomGame(int[][]board) throws YavalathException {
-		Player[] randomAI = new Player[3];
-		for(int n = 0; n < numberOfPlayers; n++) {
-			randomAI[n] = new RandomAI(player[n].getPlayerNumber());
-		}
-		int movesBackup = numberOfMoves;
-		int result = Yavalath.playGame(board, randomAI, numberOfPlayers, numberOfMoves);
-		numberOfMoves = movesBackup;
-		return result;
-	}
+//	public static int playRandomGame(int[][]board) throws YavalathException {
+//		Player[] randomAI = new Player[3];
+//		for(int n = 0; n < numberOfPlayers; n++) {
+//			randomAI[n] = new RandomAI(player[n].getPlayerNumber());
+//		}
+//		int movesBackup = numberOfMoves;
+//		int result = Yavalath.playGame(board, randomAI, numberOfPlayers, numberOfMoves);
+//		numberOfMoves = movesBackup;
+//		return result;
+//	}
 
 	public static boolean getDebug(){
 		return debug;
@@ -238,8 +247,9 @@ public class Yavalath {
 	public static void main(String[] args) throws YavalathException {
 		boolean playing = true;
 		for(double g = 0; g < 1;g++){
-			int i = 10000000;
-			int[] games = new int[i];
+			int i = 100;
+			debug = true;
+			GameState.State[] games = new GameState.State[i];
 			int percent = 0;
 			long time = System.nanoTime();;
 			
@@ -269,16 +279,16 @@ public class Yavalath {
 			int d = 0, p1 = 0, p2 = 0, p3 = 0;
 			for(int c = 0; c < games.length; c++){
 				switch(games[c]){
-					case(10):
+					case DRAW:
 						d++;
 						break;
-					case(1):
+					case PLAYER1WIN:
 						p1++;
 						break;
-					case(2):
+					case PLAYER2WIN:
 						p2++;
 						break;
-					case(3):
+					case PLAYER3WIN:
 						p3++;
 						break;
 				}

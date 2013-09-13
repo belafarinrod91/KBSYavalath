@@ -5,7 +5,7 @@ package tinf11bc.kbs.yavalath.logic;
 
 import java.util.Random;
 
-import tinf11bc.kbs.yavalath.util.Board;
+import tinf11bc.kbs.yavalath.util.GameState;
 
 /**
  * @author Stephan
@@ -40,7 +40,7 @@ public class RandomAI extends Player {
 	}
 	
 	private int randomMove(int[][] board){
-		return Board.tiles[rand.nextInt(61)];
+		return GameState.tiles[rand.nextInt(61)];
 	}
 	
 }
