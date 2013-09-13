@@ -237,10 +237,10 @@ public class Yavalath {
 	 */
 	public static void main(String[] args) throws YavalathException {
 		boolean playing = true;
-		for(double g = 0; g < 10;g++){
+		for(double g = 0; g < 1;g++){
 			int i = 10000000;
 			int[] games = new int[i];
-			
+			int percent = 0;
 			long time = System.nanoTime();;
 			
 			for(int t = 0;t < i; t++){
@@ -251,7 +251,20 @@ public class Yavalath {
 				int[] players = {2,2,2};	// Player: 1
 											// RandomAI: 2
 				games[t] = newGame(players);
-				
+				if(percent != (t*100)/i){
+					percent = (t*100)/i;
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println();
+					System.out.println(percent+"%");
+				}
+
 			}
 			int d = 0, p1 = 0, p2 = 0, p3 = 0;
 			for(int c = 0; c < games.length; c++){
