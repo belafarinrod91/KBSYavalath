@@ -21,9 +21,11 @@ public class RandomAI extends Player {
 
 	@Override
 	public int makeMove(int[][] board) throws YavalathException{
+		
 		int move = forcedMove(board);
 		if(move != 0){
-			System.out.println("AI Forced Move: " + move);
+			if(Yavalath.getDebug())
+				System.out.println("AI Forced Move: " + move);
 			return move;
 		}
 		
@@ -31,7 +33,8 @@ public class RandomAI extends Player {
 			move = randomMove(board);
 		} while(board[move/10][move%10] != 0);
 		
-		System.out.println("AI Move: " + move);
+		if(Yavalath.getDebug())
+			System.out.println("AI Move: " + move);
 		
 		return move;
 	}

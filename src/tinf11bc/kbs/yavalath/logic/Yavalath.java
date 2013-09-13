@@ -1,5 +1,10 @@
 package tinf11bc.kbs.yavalath.logic;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
+
 import tinf11bc.kbs.yavalath.logic.RandomAI;
 import tinf11bc.kbs.yavalath.logic.Player;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
@@ -15,6 +20,8 @@ public class Yavalath {
 	private static Player[] player = new Player[3];
 	private static Integer numberOfMoves;
 	private static Integer numberOfPlayers;	
+	
+	private static boolean debug = false;
 	
 	static int[][] setUpBoard(){
 		int[][] board = {{ -1, -1, -1, -1, 0, 0, 0, 0, 0},
@@ -37,7 +44,7 @@ public class Yavalath {
 		return numberOfMoves;
 	}
 	
-	public static void newGame(int[] newPlayers) throws YavalathException{
+	public static int newGame(int[] newPlayers) throws YavalathException{
 
 		numberOfPlayers = 0;	
 		numberOfMoves = 0;
@@ -62,12 +69,15 @@ public class Yavalath {
 		
 		int result = playGame(board, player, numberOfPlayers, numberOfMoves);
 		
-		if(result == 10) {
-			System.out.println("It's a draw!");
+		if(debug){
+			if(result == 10) {
+				System.out.println("It's a draw!");
+			}
+			else {
+				System.out.println("Player " + result + " won!");
+			}
 		}
-		else {
-			System.out.println("Player " + result + " won!");
-		}
+		return result;
 	}
 	
 	public static int playGame(int[][] board, Player[] player, int numberOfPlayers, int numberOfMoves) throws YavalathException {
@@ -79,7 +89,8 @@ public class Yavalath {
 		while(gameState == 0){
 			for(int i = 0; i < numberOfPlayers;i++){
 				
-				System.out.println("GameState: " + gameState + "\nNumber of Moves: " + numberOfMoves + "\nPlayer's Turn: " + player[i].getPlayerNumber());
+				if(debug)
+					System.out.println("GameState: " + gameState + "\nNumber of Moves: " + numberOfMoves + "\nPlayer's Turn: " + player[i].getPlayerNumber());
 				
 				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
 				numberOfMoves++;
@@ -108,7 +119,8 @@ public class Yavalath {
 								player[j-1] = player[j];
 							}
 						}
-						System.out.println("Player " + (gameState - 10) + " is out!");
+						if(debug)
+							System.out.println("Player " + (gameState - 10) + " is out!");
 						gameState = 0;
 						i--;
 					}
@@ -119,6 +131,8 @@ public class Yavalath {
 	}
 	
 	private static void drawBoard(int[][] board){
+		if(!debug)
+			return;
 		for(int i = 0; i < 9; i++){
 			for(int j = 0; j < 9; j++){
 				if(board[i][j] == -1) {
@@ -213,21 +227,56 @@ public class Yavalath {
 		return result;
 	}
 
+	public static boolean getDebug(){
+		return debug;
+	}
+	
 	/**
 	 * @param args
 	 * @throws YavalathException 
 	 */
 	public static void main(String[] args) throws YavalathException {
 		boolean playing = true;
-		while(playing  == true){
-			//menu with choosing:
-			//					-how many players? (2/3)
-			//					-player/AI 
+		for(double g = 0; g < 10;g++){
+			int i = 10000000;
+			int[] games = new int[i];
 			
-			int[] players = {2,2,2};	// Player: 1
-										// AI: 2
-			newGame(players);
-			playing = false;
+			long time = System.nanoTime();;
+			
+			for(int t = 0;t < i; t++){
+				//menu with choosing:
+				//					-how many players? (2/3)
+				//					-player/AI 
+				
+				int[] players = {2,2,2};	// Player: 1
+											// RandomAI: 2
+				games[t] = newGame(players);
+				
+			}
+			int d = 0, p1 = 0, p2 = 0, p3 = 0;
+			for(int c = 0; c < games.length; c++){
+				switch(games[c]){
+					case(10):
+						d++;
+						break;
+					case(1):
+						p1++;
+						break;
+					case(2):
+						p2++;
+						break;
+					case(3):
+						p3++;
+						break;
+				}
+			}
+			
+			time = System.nanoTime() -time ;
+			time /= 1000000000;
+			System.out.println("----- i = "+i+" ------ "+time/60+":"+time%60+" Min--------");
+			i = i/100;
+			System.out.println(d+"/"+p1+"/"+p2+"/"+p3);
+			System.out.println(d/i+"%/"+p1/i+"%/"+p2/i+"%/"+p3/i+"%");
 		}
 	}
 

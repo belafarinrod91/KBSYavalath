@@ -34,7 +34,8 @@ public class Player {
 	    
 		String eingabe = null;
 		try {
-			System.out.println("Player "+playerNumber+" mache zug:");
+			if(Yavalath.getDebug())
+				System.out.println("Player "+playerNumber+" mache zug:");
 			eingabe = br.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
