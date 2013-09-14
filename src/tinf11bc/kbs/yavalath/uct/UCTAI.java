@@ -65,50 +65,54 @@ public class UCTAI extends Player{
     }
     
     // expand children in Node
-    private void createChildren(Node parent) {
+    private void createChildren(Node parent) throws YavalathException {
       int childPlayerID = tempGameState.getPlayingPlayer();
       Node last = parent;
-      for(int move : GameState.tiles) {
-    	  if(tempGameState.getBoard()[move/10][move%10] == 0) {
-    		  Node node = new Node(childPlayerID, move);
-              if (last == parent) {
-            	  last.child = node;
-              }
-              else {
-            	  last.sibling = node;
-              }
-              last = node;
-    	  }
+      int forced = forcedMove(tempGameState.getBoard());
+      if(forced != 0) {
+    	  last.child = new Node(childPlayerID, forced);
+      }
+      else{
+	      for(int move : GameState.tiles) {
+	    	  if(tempGameState.getBoard()[move/10][move%10] == 0) {
+	    		  Node node = new Node(childPlayerID, move);
+	              if (last == parent) {
+	            	  last.child = node;
+	              }
+	              else {
+	            	  last.sibling = node;
+	              }
+	              last = node;
+	    	  }
+	      }
       }
     }
     
  // return 0=lose 1=win for current player to move
     private int playSimulation(Node n) throws YavalathException {
         int randomresult = stateID();
-        if(randomresult != -1) {
-        	return randomresult;
-        }
-        
-        if (n.child == null && n.visits < 10) { // 10 simulations until children are expanded (saves memory)
-        	randomresult = playRandomGame();
-        }
-        else {
-            if (n.child == null) {
-            	createChildren(n);
-            }
-
-            Node next = UCTSelect(n); // select a move
-            if (next == null) {
-            	randomresult = 0; //DRAW
-            	//System.err.println("Error in UCT Algorithm!");
-            	//throw new YavalathException();
+        if(randomresult == -1) {
+        	if (n.child == null && n.visits < 10) { // 10 simulations until children are expanded (saves memory)
+            	randomresult = playRandomGame();
             }
             else {
-            	tempGameState.playMove(next.move);
-                randomresult = playSimulation(next);
+                if (n.child == null) {
+                	createChildren(n);
+                }
+
+                Node next = UCTSelect(n); // select a move
+                if (next == null) {
+                	randomresult = 0; //DRAW
+                	//System.err.println("Error in UCT Algorithm!");
+                	//throw new YavalathException();
+                }
+                else {
+                	tempGameState.playMove(next.move);
+                    randomresult = playSimulation(next);
+                }
             }
         }
-
+        
         n.update(randomresult); //update node (Node-wins are associated with moves in the Nodes)
         return randomresult;
     }

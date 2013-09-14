@@ -260,7 +260,7 @@ public class Yavalath {
 				//					-how many players? (2/3)
 				//					-player/AI 
 				
-				int[] players = {3,3,3};	// Player: 1
+				int[] players = {3,3,0};	// Player: 1
 											// RandomAI: 2
 											// UCTAI: 3
 				games[t] = newGame(players);
