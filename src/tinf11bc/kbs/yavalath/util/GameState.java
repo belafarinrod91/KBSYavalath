@@ -73,7 +73,7 @@ public class GameState {
 			throw new YavalathException();
 		}
 		checkGameState(position);
-		playingPlayer %= numberOfPlayers;
+		playingPlayer %= 3; // numberOfPlayers ersetzt mit 3, numberOfPLayers überhaupt nötig?
 		playingPlayer++;
 	}
 	

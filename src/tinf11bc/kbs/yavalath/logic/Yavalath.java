@@ -91,8 +91,7 @@ public class Yavalath {
 		
 		
 		while(gameState.getState() == State.PLAYING){
-			for(int i = 0; i < gameState.getNumberOfPlayers();i++){
-				
+							
 				if(debug)
 					System.out.println("GameState: " + gameState.getState() + 
 							"\nNumber of Moves: " + gameState.getNumberOfMoves() + 
@@ -135,7 +134,6 @@ public class Yavalath {
 //					}
 //				}
 			}
-		}
 		return gameState;
 	}
 	
