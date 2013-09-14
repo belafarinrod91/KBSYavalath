@@ -103,11 +103,11 @@ public class Yavalath {
 //				
 //				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
 //				numberOfMoves++;
-				if(debug || !(gameState.getPlayer()[gameState.getNextPlayer()] instanceof UCTAI) && !(gameState.getPlayer()[gameState.getPlayingPlayer()] instanceof RandomAI))
+				
+				if(debug || !(gameState.getPlayer()[gameState.getPlayingPlayer()-1] instanceof RandomAI))
 					drawBoard(gameState.getBoard());
-				
 				gameState.playMove(-1);
-				
+
 				if(debug)
 					drawBoard(gameState.getBoard());
 				

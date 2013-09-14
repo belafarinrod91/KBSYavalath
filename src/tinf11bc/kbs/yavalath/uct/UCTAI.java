@@ -26,7 +26,7 @@ public class UCTAI extends Player{
     public int makeMove(GameState gameState) throws YavalathException {
     	int move = forcedMove(gameState.getBoard());
     	if(move != 0){
-    		System.out.println("UCTAI Move: " + move);
+    		System.out.println("UCTAI Forced Move: " + move);
 			return move;
     	}
     	move = UCTSearch(numberOfSimulations, gameState);
@@ -53,14 +53,20 @@ public class UCTAI extends Player{
         	tempGameState = new GameState(this.gameState);
             playSimulation(root);
         }
-
+        
+        Node out = root.child;
+        while(out != null) {
+            System.out.println(out.move + ", " + out.visits + ", " + out.wins + ", " + (double)out.wins/out.visits);
+            out = out.sibling;
+        }
         Node bestChild = getBestChild(root);
+        System.out.println("Win Chance: " + (double) bestChild.wins / bestChild.visits);
         return bestChild.move;
     }
     
     // expand children in Node
     private void createChildren(Node parent) {
-      int childPlayerID = tempGameState.getNextPlayer();
+      int childPlayerID = tempGameState.getPlayingPlayer();
       Node last = parent;
       for(int move : GameState.tiles) {
     	  if(tempGameState.getBoard()[move/10][move%10] == 0) {
@@ -80,7 +86,7 @@ public class UCTAI extends Player{
     private int playSimulation(Node n) throws YavalathException {
         int randomresult = -1;
         if (n.child == null && n.visits < 10) { // 10 simulations until children are expanded (saves memory)
-            randomresult = playRandomGame(n.playerID);
+        	randomresult = playRandomGame();
         }
         else {
             if (n.child == null) {
@@ -145,7 +151,7 @@ public class UCTAI extends Player{
     }
     
     // return 0=lose 1=win for current player to move
-    int playRandomGame(int playerID) throws YavalathException {
+    int playRandomGame() throws YavalathException {
 		Yavalath.playGame(tempGameState);
 		switch(tempGameState.getState()){
 			case DRAW:

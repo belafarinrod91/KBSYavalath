@@ -59,7 +59,8 @@ public class Player {
 						return j*10+i+1;
 					if(board[j][i+1] == x && board[j][i+2] == 0 && board[j][i+3] == x)
 						return j*10+i+2;
-					
+				}
+				if(board[i][j] > 0){
 					y = board[i][j];
 					if(board[i+1][j] == 0 && board[i+2][j] == y && board[i+3][j] == y)
 						return (i+1)*10+j;

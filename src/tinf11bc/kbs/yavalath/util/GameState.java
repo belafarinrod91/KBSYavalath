@@ -92,17 +92,21 @@ public class GameState{
 		if(position == -1) {
 			position = player[playingPlayer-1].makeMove(this);
 		}
-		
 		if(board[position/10][position%10] == 0){
 			board[position/10][position%10] = playingPlayer;
 		}else{
 			throw new YavalathException();
 		}
+		numberOfMoves++;
 		checkGameState(position);
 		playingPlayer = getNextPlayer();
 	}
 	
-	private int checkGameState(int position) throws YavalathException {
+	private void checkGameState(int position) throws YavalathException {
+		if(numberOfMoves == 61) {
+			state = State.DRAW;
+			return;
+		}
 		
 		int x = position/10;
 		int y = position%10;
@@ -165,7 +169,6 @@ public class GameState{
 				System.err.println("Error in Win/Lose detection (diagonal)!");
 				throw new YavalathException();
 			}
-			return 0;
 	}
 	
 	private void changeState(boolean out) throws YavalathException{
