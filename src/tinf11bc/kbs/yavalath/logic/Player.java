@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import tinf11bc.kbs.yavalath.util.GameState;
+
 /**
  * @author Chris, Stephan
  *
@@ -24,8 +26,8 @@ public class Player {
 		return playerNumber;
 	}
 	
-	public int makeMove(int[][] board) throws YavalathException{
-		int move = forcedMove(board);
+	public int makeMove(GameState gameState) throws YavalathException {
+		int move = forcedMove(gameState.getBoard());
 //		if(move != 0)
 //			return move;
 		

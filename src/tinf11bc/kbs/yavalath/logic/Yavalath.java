@@ -8,6 +8,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 import tinf11bc.kbs.yavalath.logic.RandomAI;
 import tinf11bc.kbs.yavalath.logic.Player;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
+import tinf11bc.kbs.yavalath.uct.UCTAI;
 import tinf11bc.kbs.yavalath.util.GameState;
 import tinf11bc.kbs.yavalath.util.GameState.State;
 import tinf11bc.kbs.yavalath.gui.GuiFactory;
@@ -24,6 +25,7 @@ public class Yavalath {
 //	private static Integer numberOfPlayers;	
 	
 	private static boolean debug = false;
+	public static int numberOfSimulations = 100000;
 	
 //	static int[][] setUpBoard(){
 //		int[][] cleanboard = {{ -1, -1, -1, -1, 0, 0, 0, 0, 0},
@@ -46,7 +48,7 @@ public class Yavalath {
 //		return numberOfMoves;
 //	}
 	
-	public static State newGame(int[] newPlayers) throws YavalathException{
+	public static State newGame(int[] newPlayers) throws YavalathException {
 
 		GameState gameState = new GameState(newPlayers);
 		
@@ -101,6 +103,9 @@ public class Yavalath {
 //				
 //				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
 //				numberOfMoves++;
+				if(debug || !(gameState.getPlayer()[gameState.getNextPlayer()] instanceof UCTAI) && !(gameState.getPlayer()[gameState.getPlayingPlayer()] instanceof RandomAI))
+					drawBoard(gameState.getBoard());
+				
 				gameState.playMove(-1);
 				
 				if(debug)
@@ -139,8 +144,6 @@ public class Yavalath {
 	}
 	
 	private static void drawBoard(int[][] board){
-		if(!debug)
-			return;
 		for(int i = 0; i < 9; i++){
 			for(int j = 0; j < 9; j++){
 				if(board[i][j] == -1) {
@@ -247,7 +250,7 @@ public class Yavalath {
 		boolean playing = true;
 		for(double g = 0; g < 1;g++){
 			int i = 1;
-			debug = true;
+			debug = false;
 			GameState.State[] games = new GameState.State[i];
 			int percent = 0;
 			long time = System.nanoTime();;
@@ -257,8 +260,9 @@ public class Yavalath {
 				//					-how many players? (2/3)
 				//					-player/AI 
 				
-				int[] players = {2,2,2};	// Player: 1
+				int[] players = {1,3,0};	// Player: 1
 											// RandomAI: 2
+											// UCTAI: 3
 				games[t] = newGame(players);
 				if(percent != (t*100)/i){
 					percent = (t*100)/i;

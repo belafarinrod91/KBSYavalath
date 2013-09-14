@@ -6,30 +6,51 @@ import tinf11bc.kbs.yavalath.logic.Yavalath;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
 import tinf11bc.kbs.yavalath.util.GameState;
 
-public class UCTAI {
+public class UCTAI extends Player{
     
 	private GameState gameState;
 	private GameState tempGameState;
 	
     private Node root = null;
     private static final double UCTK = 0.44; // 0.44 = sqrt(1/5)
+    private int numberOfSimulations;
     // Larger values give uniform search
     // Smaller values give very selective search
 
+    public UCTAI(int playerNumber, int numsim) {
+    	super(playerNumber);
+    	numberOfSimulations = numsim;
+    }
+    
+    @Override
+    public int makeMove(GameState gameState) throws YavalathException {
+    	int move = forcedMove(gameState.getBoard());
+    	if(move != 0){
+    		System.out.println("UCTAI Move: " + move);
+			return move;
+    	}
+    	move = UCTSearch(numberOfSimulations, gameState);
+    	System.out.println("UCTAI Move: " + move);
+    	return move;
+    }
+    
 	// generate a move, using the uct algorithm
     public int UCTSearch(int numsim, GameState gameState) throws YavalathException {
-        root = new Node(gameState.getPlayingPlayer(), -1); //init uct tree
-        createChildren(root);
-        this.gameState = gameState;
+    	this.gameState = new GameState(gameState);
+    	if(this.gameState.getPlayingPlayer() != this.getPlayerNumber()) {
+    		throw new YavalathException("UCTAI Error");
+    	}
+        root = new Node(this.gameState.getPlayingPlayer(), -1); //init uct tree
         Player[] player = new Player[3];
         for(int n = 0; n < 3; n++){
         	player[n] = new RandomAI(n + 1);
         }
-        
         this.gameState.changePlayer(player);
-
+        tempGameState = new GameState(this.gameState);
+        createChildren(root);
+        
         for (int i=0; i<numsim; i++) {
-        	tempGameState = this.gameState;
+        	tempGameState = new GameState(this.gameState);
             playSimulation(root);
         }
 
@@ -42,7 +63,7 @@ public class UCTAI {
       int childPlayerID = tempGameState.getNextPlayer();
       Node last = parent;
       for(int move : GameState.tiles) {
-    	  if(gameState.getBoard()[move/10][move%10] == 0) {
+    	  if(tempGameState.getBoard()[move/10][move%10] == 0) {
     		  Node node = new Node(childPlayerID, move);
               if (last == parent) {
             	  last.child = node;

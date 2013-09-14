@@ -1,15 +1,18 @@
 package tinf11bc.kbs.yavalath.util;
 
+import java.util.Arrays;
+
 import tinf11bc.kbs.yavalath.logic.Player;
 import tinf11bc.kbs.yavalath.logic.RandomAI;
 import tinf11bc.kbs.yavalath.logic.Yavalath;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
+import tinf11bc.kbs.yavalath.uct.UCTAI;
 
-public class GameState {
+public class GameState{
 	
 	private int[][] board;
 
-	private static Player[] player = new Player[3];
+	private Player[] player = new Player[3];
 	private int numberOfMoves;		// <= 61
 	private int numberOfPlayers; 	// 2 OR 3
 	private int playingPlayer; 		// 1, 2, 3
@@ -40,6 +43,19 @@ public class GameState {
 	   70,71,72,73,74,75,
 		 80,81,82,83,84};
 	
+	
+	public GameState(GameState gameState) {
+		board = new int[gameState.getBoard().length][];
+		for(int i = 0; i < gameState.getBoard().length; i++) {
+			board[i] = Arrays.copyOf(gameState.getBoard()[i], gameState.getBoard()[i].length);
+		}
+		player = Arrays.copyOf(gameState.player, gameState.player.length);
+		numberOfMoves = gameState.numberOfMoves;
+		numberOfPlayers = gameState.numberOfPlayers;
+		playingPlayer = gameState.playingPlayer;
+		state = gameState.state;
+	}
+	
 	public GameState(int[] newPlayers){
 		board = cleanboard;
 		numberOfPlayers = 0;	
@@ -57,6 +73,10 @@ public class GameState {
 				player[n] = new RandomAI(n+1);
 				numberOfPlayers++;
 				break;
+			case(3):
+				player[n] = new UCTAI(n+1, Yavalath.numberOfSimulations);
+				numberOfPlayers++;
+				break;
 			default:
 				break;
 			}
@@ -68,9 +88,9 @@ public class GameState {
 	}
 	
 
-	public void playMove(int position) throws YavalathException{
+	public void playMove(int position) throws YavalathException {
 		if(position == -1) {
-			position = player[playingPlayer-1].makeMove(board);
+			position = player[playingPlayer-1].makeMove(this);
 		}
 		
 		if(board[position/10][position%10] == 0){
@@ -80,7 +100,6 @@ public class GameState {
 		}
 		checkGameState(position);
 		playingPlayer = getNextPlayer();
-		System.out.println("Next Player: " + playingPlayer);
 	}
 	
 	private int checkGameState(int position) throws YavalathException {
@@ -94,22 +113,25 @@ public class GameState {
 							board[x][i] == board[x][i+2] &&
 							board[x][i] == board[x][i+3]){
 								changeState(false);
-						}else{
-							if(board[x][i] == board[x][i+1] &&
+								break;
+						}
+						else if(board[x][i] == board[x][i+1] &&
 								board[x][i] == board[x][i+2]){
-								changeState(true);;
-							}
+								changeState(true);
+								break;
 						}
 					}
-					if(board[i][y] == playingPlayer){
+					else if(board[i][y] == playingPlayer){
 						if(	i < 6 && board[i][y] == board[i+1][y] &&
 							board[i][y] == board[i+2][y] &&
 							board[i][y] == board[i+3][y]){
 							changeState(false);
+							break;
 						}else{
 							if(board[i][y] == board[i+1][y] &&
 								board[i][y] == board[i+2][y]){
-								changeState(true);;
+								changeState(true);
+								break;
 							}
 						}
 					}
@@ -131,8 +153,10 @@ public class GameState {
 							board[t][r] == board[t+2][r-2]){
 							if(r-3>=0 && board[t][r] == board[t+3][r-3]){
 								changeState(false);
+								break;
 							}else{
 								changeState(true);
+								break;
 							}
 						}
 					}
@@ -145,7 +169,6 @@ public class GameState {
 	}
 	
 	private void changeState(boolean out) throws YavalathException{
-		
 		if(out){
 			if(state == State.PLAYING){
 				if(numberOfPlayers == 2){
@@ -204,7 +227,7 @@ public class GameState {
 					}
 					break;
 				default:
-					throw new YavalathException("Change State Error!");
+					//throw new YavalathException("Change State Error!");
 				}
 			}
 			
@@ -263,7 +286,7 @@ public class GameState {
 		return board;
 	}
 
-	public static Player[] getPlayer() {
+	public Player[] getPlayer() {
 		return player;
 	}
 
