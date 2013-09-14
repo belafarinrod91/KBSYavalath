@@ -110,10 +110,11 @@ public class GameState{
 		
 		int x = position/10;
 		int y = position%10;
-		for(int i = 0; i+2 < 9; i++){
+		for(int i = 0; i < 7; i++){
 				try{
 					if(board[x][i] == playingPlayer){						
-						if(	i < 6 && board[x][i] == board[x][i+1] &&
+						if(	i < 6 && 
+							board[x][i] == board[x][i+1] &&
 							board[x][i] == board[x][i+2] &&
 							board[x][i] == board[x][i+3]){
 								changeState(false);
@@ -125,18 +126,17 @@ public class GameState{
 								break;
 						}
 					}
-					else if(board[i][y] == playingPlayer){
-						if(	i < 6 && board[i][y] == board[i+1][y] &&
+					if(board[i][y] == playingPlayer){
+						if(	i < 6 && 
+							board[i][y] == board[i+1][y] &&
 							board[i][y] == board[i+2][y] &&
 							board[i][y] == board[i+3][y]){
 							changeState(false);
 							break;
-						}else{
-							if(board[i][y] == board[i+1][y] &&
-								board[i][y] == board[i+2][y]){
+						}else if(board[i][y] == board[i+1][y] &&
+								 board[i][y] == board[i+2][y]){
 								changeState(true);
 								break;
-							}
 						}
 					}
 				}catch(Exception e){
@@ -151,17 +151,19 @@ public class GameState{
 				r = 8;
 			}
 			try{
-				for(; t < 8 && r-2 >= 0; t++,r--){
-					if(r-3 <= 0 && t+3 <= 8 && board[t][r] > 0){
-						if(	board[t][r] == board[t+1][r-1] &&
-							board[t][r] == board[t+2][r-2]){
-							if(r-3>=0 && board[t][r] == board[t+3][r-3]){
-								changeState(false);
-								break;
-							}else{
-								changeState(true);
-								break;
-							}
+				for(; t+2 <= 8 && r-2 >= 0; t++,r--){
+					if(board[t][r] == playingPlayer){
+						if(	r-3 >= 0 && t+3 <= 8 && 
+							board[t][r] == board[t+1][r-1] &&
+							board[t][r] == board[t+2][r-2] &&
+							board[t][r] == board[t+3][r-3]){
+							changeState(false);
+							break;
+						}
+						else if( board[t][r] == board[t+1][r-1] &&
+								 board[t][r] == board[t+2][r-2]){
+							changeState(true);
+							break;
 						}
 					}
 				}

@@ -169,7 +169,7 @@ public class Yavalath {
 		
 		int x = position/10;
 		int y = position%10;
-		for(int i = 0; i+2 < 9; i++){
+		for(int i = 0; i < 7; i++){
 				try{
 					if(board[x][i] == playerNumber){						
 						if(	i < 6 && board[x][i] == board[x][i+1] &&
@@ -260,7 +260,7 @@ public class Yavalath {
 				//					-how many players? (2/3)
 				//					-player/AI 
 				
-				int[] players = {1,3,0};	// Player: 1
+				int[] players = {3,3,0};	// Player: 1
 											// RandomAI: 2
 											// UCTAI: 3
 				games[t] = newGame(players);
