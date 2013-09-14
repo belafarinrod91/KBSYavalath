@@ -63,9 +63,15 @@ public class GameState {
 		}
 	}
 	
+	public void changePlayer(Player[] player) {
+		this.player = player;
+	}
+	
 
-	public void playMove() throws YavalathException{
-		int position = player[playingPlayer-1].makeMove(board);
+	public void playMove(int position) throws YavalathException{
+		if(position == -1) {
+			position = player[playingPlayer-1].makeMove(board);
+		}
 		
 		if(board[position/10][position%10] == 0){
 			board[position/10][position%10] = playingPlayer;
@@ -73,8 +79,8 @@ public class GameState {
 			throw new YavalathException();
 		}
 		checkGameState(position);
-		playingPlayer %= 3; // numberOfPlayers ersetzt mit 3, numberOfPLayers überhaupt nötig?
-		playingPlayer++;
+		playingPlayer = getNextPlayer();
+		System.out.println("Next Player: " + playingPlayer);
 	}
 	
 	private int checkGameState(int position) throws YavalathException {
@@ -218,6 +224,41 @@ public class GameState {
 
 	}
 
+	public int getNextPlayer() {
+		switch(state){
+			case PLAYING:
+				if(numberOfPlayers == 2) {
+					return ((playingPlayer % 2) + 1);
+				}
+				else {
+					return ((playingPlayer % 3) + 1);
+				}
+			case PLAYER1OUT:
+				if(playingPlayer == 2) {
+					return 3;
+				}
+				else {
+					return 2;
+				}
+			case PLAYER2OUT:
+				if(playingPlayer == 1) {
+					return 3;
+				}
+				else {
+					return 1;
+				}
+			case PLAYER3OUT:
+				if(playingPlayer == 1) {
+					return 2;
+				}
+				else {
+					return 1;
+				}
+			default:
+				return -1;
+		}
+	}
+	
 	public int[][] getBoard() {
 		return board;
 	}

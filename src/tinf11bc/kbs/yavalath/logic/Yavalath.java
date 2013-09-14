@@ -90,7 +90,8 @@ public class Yavalath {
 		
 		
 		
-		while(gameState.getState() == State.PLAYING){
+		while(gameState.getPlayingPlayer() != -1) {
+		//while(gameState.getState() == State.PLAYING || (gameState.getNumberOfPlayers() == 2 && (gameState.getState() == State.PLAYER1OUT || gameState.getState() == State.PLAYER2OUT || gameState.getState() == State.PLAYER3OUT))){
 							
 				if(debug)
 					System.out.println("GameState: " + gameState.getState() + 
@@ -100,7 +101,7 @@ public class Yavalath {
 //				
 //				gameState = addStone(board, player[i].getPlayerNumber(), player[i].makeMove(board));
 //				numberOfMoves++;
-				gameState.playMove();
+				gameState.playMove(-1);
 				
 				if(debug)
 					drawBoard(gameState.getBoard());
@@ -245,7 +246,7 @@ public class Yavalath {
 	public static void main(String[] args) throws YavalathException {
 		boolean playing = true;
 		for(double g = 0; g < 1;g++){
-			int i = 100;
+			int i = 1;
 			debug = true;
 			GameState.State[] games = new GameState.State[i];
 			int percent = 0;

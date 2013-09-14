@@ -11,13 +11,16 @@ public class Node {
     public Node child;
     public Node sibling;
 
-    public Node(int move) {
+    public Node(int playerID, int move) {
+      this.playerID = playerID;
       this.move = move;
     }
 
-    public void update(int val) {
-      visits++;
-      wins+=val;
+    public void update(int res) {
+    	if(res == playerID){
+    		wins++;
+    	}
+    	visits++;
     }
 
     public double getWinRate() {
