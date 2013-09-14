@@ -84,7 +84,11 @@ public class UCTAI extends Player{
     
  // return 0=lose 1=win for current player to move
     private int playSimulation(Node n) throws YavalathException {
-        int randomresult = -1;
+        int randomresult = stateID();
+        if(randomresult != -1) {
+        	return randomresult;
+        }
+        
         if (n.child == null && n.visits < 10) { // 10 simulations until children are expanded (saves memory)
         	randomresult = playRandomGame();
         }
@@ -95,13 +99,14 @@ public class UCTAI extends Player{
 
             Node next = UCTSelect(n); // select a move
             if (next == null) {
-            	System.err.println("Error in UCT Algorithm!");
-            	throw new YavalathException();
+            	randomresult = 0; //DRAW
+            	//System.err.println("Error in UCT Algorithm!");
+            	//throw new YavalathException();
             }
-            
-            tempGameState.playMove(next.move);
-
-            randomresult = playSimulation(next);
+            else {
+            	tempGameState.playMove(next.move);
+                randomresult = playSimulation(next);
+            }
         }
 
         n.update(randomresult); //update node (Node-wins are associated with moves in the Nodes)
@@ -150,10 +155,19 @@ public class UCTAI extends Player{
         return res;
     }
     
-    // return 0=lose 1=win for current player to move
-    int playRandomGame() throws YavalathException {
+    private int playRandomGame() throws YavalathException {
 		Yavalath.playGame(tempGameState);
-		switch(tempGameState.getState()){
+		int res = stateID();
+		if(res != -1) {
+			return res;
+		}
+		else {
+			throw new YavalathException("Play Random Game Error!");
+		}
+    }
+    
+    private int stateID() throws YavalathException {
+    	switch(tempGameState.getState()){
 			case DRAW:
 				return 0;
 		    case PLAYER1WIN:
@@ -163,8 +177,9 @@ public class UCTAI extends Player{
 		    case PLAYER3WIN:
 		    	return 3;
 		    default:
-		  	  throw new YavalathException("Play Random Game Error!");
-		}
+		  	  return -1;
+    	}
+
     }
     
 }
