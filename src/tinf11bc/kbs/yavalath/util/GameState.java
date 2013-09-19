@@ -152,6 +152,10 @@ public class GameState{
 			}
 			try{
 				for(; t+2 <= 8 && r-2 >= 0; t++,r--){
+//					System.out.println("("+t+"/"+r+") ("+
+//										(t+1)+"/"+(r-1)+") ("+
+//										(t+2)+"/"+(r-2)+") ("+
+//										(t+3)+"/"+(r-3)+")");
 					if(board[t][r] == playingPlayer){
 						if(	r-3 >= 0 && t+3 <= 8 && 
 							board[t][r] == board[t+1][r-1] &&

@@ -53,9 +53,13 @@ public class Yavalath {
 	
 	private static void drawBoard(int[][] board){
 		for(int i = 0; i < 9; i++){
+			if(i >= 5 ){
+				for(int b = 0; b <= i-5;b++)
+					System.out.print(" ");
+			}
 			for(int j = 0; j < 9; j++){
 				if(board[i][j] == -1) {
-					System.out.print("  ");
+					System.out.print(" ");
 				}else{
 					System.out.print(board[i][j]+" ");
 				}
@@ -81,7 +85,7 @@ public class Yavalath {
 		//					-how many players? (2/3)
 		//					-player/AI 
 			
-		int[] players = {3,2,0};	// Player: 1
+		int[] players = {1,1,0};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
 		int numberOfGames = 1000;	
