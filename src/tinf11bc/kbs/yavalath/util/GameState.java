@@ -232,7 +232,7 @@ public class GameState{
 					}
 					break;
 				default:
-					throw new YavalathException("Change State Error!");
+					break;
 				}
 			}
 			

@@ -73,9 +73,7 @@ public class Yavalath {
 	 * @throws YavalathException 
 	 */
 	public static void main(String[] args) throws YavalathException {
-		int i = 1;
 		debug = false;
-		GameState.State[] games = new GameState.State[i];
 		int percent = 0;
 		long time = System.nanoTime();;
 
@@ -83,15 +81,17 @@ public class Yavalath {
 		//					-how many players? (2/3)
 		//					-player/AI 
 			
-		int[] players = {3,3,0};	// Player: 1
+		int[] players = {3,2,0};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
-			
-		for(int t = 0;t < i; t++){
+		int numberOfGames = 1000;	
 
+		GameState.State[] games = new GameState.State[numberOfGames];
+		
+		for(int t = 0;t < numberOfGames; t++){
 			games[t] = newGame(players);
-			if(percent != (t*100)/i){
-				percent = (t*100)/i;
+			if(percent != (t*100)/numberOfGames){
+				percent = (t*100)/numberOfGames;
 				System.out.println();
 				System.out.println();
 				System.out.println();
@@ -126,9 +126,13 @@ public class Yavalath {
 		
 		time = System.nanoTime() -time ;
 		time /= 1000000000;
-		System.out.println("----- i = "+i+" ------ "+time/60+":"+time%60+" Min--------");
-		i = i/100;
+		System.out.println("----- i = "+numberOfGames+" ------ "+time/60+":"+time%60+" Min--------");
+//		numberOfGames = numberOfGames/100;
+//		numberOfGames = (numberOfGames == 0) ? 100 : numberOfGames; 
 		System.out.println(d+"/"+p1+"/"+p2+"/"+p3);
-		System.out.println(d/i+"%/"+p1/i+"%/"+p2/i+"%/"+p3/i+"%");
+		System.out.println((d*100)/numberOfGames+"%/"
+							+(p1*100)/numberOfGames+"%/"
+							+(p2*100)/numberOfGames+"%/"
+							+(p3*100)/numberOfGames+"%");
 	}
 }
