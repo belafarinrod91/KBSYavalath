@@ -131,8 +131,6 @@ public class Yavalath {
 		time = System.nanoTime() -time ;
 		time /= 1000000000;
 		System.out.println("----- i = "+numberOfGames+" ------ "+time/60+":"+time%60+" Min--------");
-//		numberOfGames = numberOfGames/100;
-//		numberOfGames = (numberOfGames == 0) ? 100 : numberOfGames; 
 		System.out.println(d+"/"+p1+"/"+p2+"/"+p3);
 		System.out.println((d*100)/numberOfGames+"%/"
 							+(p1*100)/numberOfGames+"%/"
