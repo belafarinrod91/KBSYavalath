@@ -1,9 +1,9 @@
-package tinf11bc.kbs.yavalath.uct;
+package tinf11bc.kbs.yavalath.logic.player.uct;
 
-import tinf11bc.kbs.yavalath.logic.Player;
-import tinf11bc.kbs.yavalath.logic.RandomAI;
 import tinf11bc.kbs.yavalath.logic.Yavalath;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
+import tinf11bc.kbs.yavalath.logic.player.Player;
+import tinf11bc.kbs.yavalath.logic.player.RandomAI;
 import tinf11bc.kbs.yavalath.util.GameState;
 
 public class UCTAI extends Player{

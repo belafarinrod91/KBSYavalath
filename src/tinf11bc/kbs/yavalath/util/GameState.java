@@ -2,11 +2,11 @@ package tinf11bc.kbs.yavalath.util;
 
 import java.util.Arrays;
 
-import tinf11bc.kbs.yavalath.logic.Player;
-import tinf11bc.kbs.yavalath.logic.RandomAI;
 import tinf11bc.kbs.yavalath.logic.Yavalath;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
-import tinf11bc.kbs.yavalath.uct.UCTAI;
+import tinf11bc.kbs.yavalath.logic.player.Player;
+import tinf11bc.kbs.yavalath.logic.player.RandomAI;
+import tinf11bc.kbs.yavalath.logic.player.uct.UCTAI;
 
 public class GameState{
 	
@@ -232,7 +232,7 @@ public class GameState{
 					}
 					break;
 				default:
-					//throw new YavalathException("Change State Error!");
+					throw new YavalathException("Change State Error!");
 				}
 			}
 			

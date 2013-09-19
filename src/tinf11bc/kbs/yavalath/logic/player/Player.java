@@ -1,12 +1,14 @@
 /**
  * 
  */
-package tinf11bc.kbs.yavalath.logic;
+package tinf11bc.kbs.yavalath.logic.player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import tinf11bc.kbs.yavalath.logic.Yavalath;
+import tinf11bc.kbs.yavalath.logic.YavalathException;
 import tinf11bc.kbs.yavalath.util.GameState;
 
 /**

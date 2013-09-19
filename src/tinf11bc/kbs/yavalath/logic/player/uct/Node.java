@@ -1,4 +1,4 @@
-package tinf11bc.kbs.yavalath.uct;
+package tinf11bc.kbs.yavalath.logic.player.uct;
 
 public class Node {
     public int wins=0;
