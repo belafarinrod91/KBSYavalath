@@ -94,7 +94,7 @@ public class Yavalath {
 		//					-how many players? (2/3)
 		//					-player/AI 
 			
-		int[] players = {1,2,2};	// Player: 1
+		int[] players = {1,2,3};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
 		int numberOfGames = 1;	

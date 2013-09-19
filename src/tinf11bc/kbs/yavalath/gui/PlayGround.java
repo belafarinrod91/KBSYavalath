@@ -49,6 +49,7 @@ public class PlayGround {
 			{ -1, -1, 0, 0, 0, 0, 0, 0, 0 },
 			{ -1, -1, -1, 0, 0, 0, 0, 0, 0 },
 			{ -1, -1, -1, -1, 0, 0, 0, 0, 0 } };
+	protected boolean buttonClicked;
 
 	public PlayGround(JFrame root) {
 		mRoot = root;
@@ -200,14 +201,16 @@ public class PlayGround {
 		return courton;
 	}
 
-
-
 	public int checkMove() {
 		clickedPosition = -1;
-		while(clickedPosition == -1){
-			
-		}
-		
+	    while(clickedPosition == -1){          
+            try {
+                Thread.sleep(100);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+           
+        }
 		return clickedPosition;
 	}
 	
