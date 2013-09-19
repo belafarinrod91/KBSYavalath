@@ -7,19 +7,22 @@ public class GuiFactory {
 	
 	
 	public GuiFactory(){
-		createRootFrame();
-		
-	}
-	
-	
-	public void createRootFrame(){
 		mRootFrame = new JFrame("Yavalath-Game !");
-		
 		mRootFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		mRootFrame.setSize(500,500);
+		mRootFrame.setSize(950,550);
 		mRootFrame.setLocation(50,50);
 		mRootFrame.setVisible(true);
+		
+		createPlayField();
+		
+		
 	}
+	
+	
+	public void createPlayField(){
+		PlayGround playground = new PlayGround(mRootFrame);
+	}
+	
+
 	
 }
