@@ -61,7 +61,10 @@ public class GameState{
 	}
 	
 	public GameState(int[] newPlayers, PlayGround plgnd){
-		board = cleanboard;
+		board = new int[cleanboard.length][];
+		for(int i = 0; i < cleanboard.length; i++) {
+			board[i] = Arrays.copyOf(cleanboard[i], cleanboard[i].length);
+		}
 		numberOfPlayers = 0;	
 		numberOfMoves = 0;
 		playingPlayer = 1;

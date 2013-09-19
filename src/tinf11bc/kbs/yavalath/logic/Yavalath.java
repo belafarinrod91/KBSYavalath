@@ -16,7 +16,7 @@ import tinf11bc.kbs.yavalath.util.GameState.State;
 public class Yavalath {
 	
 	private static boolean debug = false;
-	public static int numberOfSimulations = 100000;
+	public static int numberOfSimulations = 200000;
 	
 	public static State newGame(int[] newPlayers) throws YavalathException {
 
@@ -94,10 +94,10 @@ public class Yavalath {
 		//					-how many players? (2/3)
 		//					-player/AI 
 			
-		int[] players = {1,3,3};	// Player: 1
+		int[] players = {1,3,0};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
-		int numberOfGames = 10;	
+		int numberOfGames = 1;	
 
 		GameState.State[] games = new GameState.State[numberOfGames];
 		
