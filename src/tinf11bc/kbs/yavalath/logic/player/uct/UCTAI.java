@@ -118,7 +118,7 @@ public class UCTAI extends Player{
     }
 	
 	// child with highest number of visits is used (not: best winrate)
-    private Node getBestChild(Node root) {
+    private Node getBestChild(Node root){
         Node child = root.child;
         Node best_child = null;
         int  best_visits= -1;

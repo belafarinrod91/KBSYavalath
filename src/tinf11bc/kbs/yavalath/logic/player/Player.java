@@ -50,23 +50,29 @@ public class Player {
 	}
 	
 	protected int forcedMove(int[][]board) throws YavalathException{
-		int x = 0;
-		int y = 0;
-		int z = 0;
+		int playerNumber = 0;
 		for(int j = 0; j < 9; j++){
 			for(int i = 0; i < 6; i++){
 				if(board[j][i] > 0){
-					x = board[j][i];
-					if(board[j][i+1] == 0 && board[j][i+2] == x && board[j][i+3] == x)
-						return j*10+i+1;
-					if(board[j][i+1] == x && board[j][i+2] == 0 && board[j][i+3] == x)
-						return j*10+i+2;
+					playerNumber = board[j][i];
+					if(board[j][i+1] == 0 
+					&& board[j][i+2] == playerNumber 
+					&& board[j][i+3] == playerNumber)
+						return (j*10)+(i+1);
+					if(board[j][i+1] == playerNumber 
+					&& board[j][i+2] == 0 
+					&& board[j][i+3] == playerNumber)
+						return (j*10)+(i+2);
 				}
 				if(board[i][j] > 0){
-					y = board[i][j];
-					if(board[i+1][j] == 0 && board[i+2][j] == y && board[i+3][j] == y)
+					playerNumber = board[i][j];
+					if(board[i+1][j] == 0 
+					&& board[i+2][j] == playerNumber 
+					&& board[i+3][j] == playerNumber)
 						return (i+1)*10+j;
-					if(board[i+1][j] == y && board[i+2][j] == 0 && board[i+3][j] == y)
+					if(board[i+1][j] == playerNumber 
+					&& board[i+2][j] == 0 
+					&& board[i+3][j] == playerNumber)
 						return (i+2)*10+j;
 				}
 			}
@@ -78,10 +84,14 @@ public class Player {
 			try{
 				for(; t < 8 && r-2 >= 0; t++,r--){
 					if(r-3 >=0 && t+3 < 8 && board[t][r] > 0){
-						z = board[t][r];
-						if(board[t+1][r-1] == 0 && z == board[t+2][r-2] && z == board[t+3][r-3])
+						playerNumber = board[t][r];
+						if(board[t+1][r-1] == 0 &&
+			   playerNumber == board[t+2][r-2] &&
+			   playerNumber == board[t+3][r-3])
 							return (t+1)*10+(r-1);
-						if(board[t+2][r-2] == 0 && z == board[t+1][r-1] && z == board[t+3][r-3])
+						if(board[t+2][r-2] == 0 &&
+			   playerNumber == board[t+1][r-1] && 
+			   playerNumber == board[t+3][r-3])
 							return (t+2)*10+(r-2);
 					}
 				}

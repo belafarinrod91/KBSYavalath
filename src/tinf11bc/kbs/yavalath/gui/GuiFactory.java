@@ -2,6 +2,7 @@ package tinf11bc.kbs.yavalath.gui;
 
 import javax.swing.JFrame;
 
+
 public class GuiFactory {
 	public JFrame mRootFrame;
 	
@@ -13,14 +14,15 @@ public class GuiFactory {
 		mRootFrame.setLocation(50,50);
 		mRootFrame.setVisible(true);
 		
-		createPlayField();
+		
 		
 		
 	}
 	
 	
-	public void createPlayField(){
+	public PlayGround createPlayField(){
 		PlayGround playground = new PlayGround(mRootFrame);
+		return playground;
 	}
 	
 

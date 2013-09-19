@@ -1,7 +1,11 @@
 package tinf11bc.kbs.yavalath.logic;
 
+import tinf11bc.kbs.yavalath.gui.GuiFactory;
+import tinf11bc.kbs.yavalath.gui.PlayGround;
+
 import tinf11bc.kbs.yavalath.logic.YavalathException;
 import tinf11bc.kbs.yavalath.logic.player.RandomAI;
+
 import tinf11bc.kbs.yavalath.util.GameState;
 import tinf11bc.kbs.yavalath.util.GameState.State;
 
@@ -16,7 +20,12 @@ public class Yavalath {
 	
 	public static State newGame(int[] newPlayers) throws YavalathException {
 
-		GameState gameState = new GameState(newPlayers);
+//		Connector connector = new Connector();
+		GuiFactory gui = new GuiFactory();
+		PlayGround plgnd = gui.createPlayField();
+		
+		GameState gameState = new GameState(newPlayers,plgnd);
+		
 		
 		gameState = playGame(gameState);
 		
@@ -85,10 +94,10 @@ public class Yavalath {
 		//					-how many players? (2/3)
 		//					-player/AI 
 			
-		int[] players = {1,1,0};	// Player: 1
+		int[] players = {1,3,3};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
-		int numberOfGames = 1000;	
+		int numberOfGames = 10;	
 
 		GameState.State[] games = new GameState.State[numberOfGames];
 		

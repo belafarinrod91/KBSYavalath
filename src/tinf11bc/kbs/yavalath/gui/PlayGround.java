@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import tinf11bc.kbs.yavalath.util.GameState;
+
 public class PlayGround {
 	private JFrame mRoot;
 	private JLayeredPane mLayeredPane;
@@ -26,6 +28,7 @@ public class PlayGround {
 	private ImageIcon imgTokenBlue = null;
 	private ImageIcon imgTokenGreen = null;
 	
+	private int clickedPosition = -1;
 	
 	public enum TokenColor
 	{
@@ -56,7 +59,6 @@ public class PlayGround {
 		imgTokenRed = new ImageIcon("res/token_red.png");
 		imgTokenBlue = new ImageIcon("res/token_blue.png");
 		imgTokenGreen = new ImageIcon("res/token_green.png");
-		
 		
 		drawPlayGroundOnRootFrame();
 
@@ -107,8 +109,11 @@ public class PlayGround {
 
 		labelCourton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setToken(row, column);
-				
+
+				int r = row,c = column;
+				if(r >= 5)
+					c = c - r + 4;
+				clickedPosition = (r*10)+c;
 			}
 		});
 		mLayeredPane.add(labelCourton, new Integer(1));
@@ -116,20 +121,28 @@ public class PlayGround {
 		mCourtonList.add(courton);
 	}
 	
-	private void setToken(int row, int column){
+	public void setToken(int row, int column, int playingPlayer){
+
+		if(row >= 5)
+			column = column + row - 4;
+		
 		Courton courton = getCourtonByIntAndRow(row, column);
 		int xPos = courton.getCoordX();
 		int yPos = courton.getCoordY();
 		JLabel labelTokenColor = null ;
 		
 		
-
+		TokenColor color = TokenColor.RED;
 		
-		
-		
+		if(playingPlayer == 1)
+			color = TokenColor.RED;
+		if(playingPlayer == 2)
+			color = TokenColor.BLUE;
+		if(playingPlayer == 3)
+			color = TokenColor.GREEN;
 		//TODO : Get a signal from logic, which player has to set a token.
 
-		TokenColor color = TokenColor.RED;
+		
 		switch(color){ 
         case RED: 
         	labelTokenColor = new JLabel(imgTokenRed);
@@ -157,7 +170,7 @@ public class PlayGround {
 			mRoot.repaint();
 		}
 		else {
-			removeToken(row, column);
+//			removeToken(row, column);
 		
 		}
 		
@@ -185,6 +198,17 @@ public class PlayGround {
 			
 		}
 		return courton;
+	}
+
+
+
+	public int checkMove() {
+		clickedPosition = -1;
+		while(clickedPosition == -1){
+			
+		}
+		
+		return clickedPosition;
 	}
 	
 	

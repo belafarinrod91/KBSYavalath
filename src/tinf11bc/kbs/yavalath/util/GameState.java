@@ -2,6 +2,9 @@ package tinf11bc.kbs.yavalath.util;
 
 import java.util.Arrays;
 
+import javax.crypto.spec.PSource;
+
+import tinf11bc.kbs.yavalath.gui.PlayGround;
 import tinf11bc.kbs.yavalath.logic.Yavalath;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
 import tinf11bc.kbs.yavalath.logic.player.Player;
@@ -16,7 +19,8 @@ public class GameState{
 	private int numberOfMoves;		// <= 61
 	private int numberOfPlayers; 	// 2 OR 3
 	private int playingPlayer; 		// 1, 2, 3
-
+	private PlayGround playGround = null;
+	
 	public static enum State{PLAYING, PLAYER1WIN, PLAYER2WIN, PLAYER3WIN,
 						DRAW, PLAYER1OUT, PLAYER2OUT, PLAYER3OUT}
 	private State state;
@@ -56,11 +60,12 @@ public class GameState{
 		state = gameState.state;
 	}
 	
-	public GameState(int[] newPlayers){
+	public GameState(int[] newPlayers, PlayGround plgnd){
 		board = cleanboard;
 		numberOfPlayers = 0;	
 		numberOfMoves = 0;
 		playingPlayer = 1;
+		playGround = plgnd;
 		setState(State.PLAYING);
 		
 		for(int n = 0; n < 3; n++){
@@ -90,8 +95,15 @@ public class GameState{
 
 	public void playMove(int position) throws YavalathException {
 		if(position == -1) {
-			position = player[playingPlayer-1].makeMove(this);
+			if(player[playingPlayer-1] instanceof RandomAI || player[playingPlayer-1] instanceof UCTAI){
+				position = player[playingPlayer-1].makeMove(this);
+			}else{
+				position = playGround.checkMove();
+			}
 		}
+		if(playGround != null)
+			playGround.setToken(position/10, position%10, playingPlayer);
+		
 		if(board[position/10][position%10] == 0){
 			board[position/10][position%10] = playingPlayer;
 		}else{
