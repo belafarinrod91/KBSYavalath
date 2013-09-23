@@ -24,8 +24,8 @@ public class RandomAI extends Player {
 	@Override
 	public int makeMove(GameState gameState) throws YavalathException{
 		
-		int move = forcedMove(gameState.getBoard());
-		if(move != 0){
+		int move = forcedMove(gameState);
+		if(move != -1){
 			if(Yavalath.getDebug())
 				System.out.println("AI Forced Move: " + move);
 			return move;

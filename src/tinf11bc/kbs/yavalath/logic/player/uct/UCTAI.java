@@ -24,12 +24,12 @@ public class UCTAI extends Player{
     
     @Override
     public int makeMove(GameState gameState) throws YavalathException {
-    	int move = forcedMove(gameState.getBoard());
-    	if(move != 0){
-    		System.out.println("UCTAI Forced Move: " + move);
-			return move;
-    	}
-    	move = UCTSearch(numberOfSimulations, gameState);
+//    	int move = forcedMove(gameState);
+//    	if(move != -1){
+//    		System.out.println("UCTAI Forced Move: " + move);
+//			return move;
+//    	}
+    	int move = UCTSearch(numberOfSimulations, gameState);
     	System.out.println("UCTAI Move: " + move);
     	return move;
     }
@@ -68,11 +68,11 @@ public class UCTAI extends Player{
     private void createChildren(Node parent) throws YavalathException {
       int childPlayerID = tempGameState.getPlayingPlayer();
       Node last = parent;
-      int forced = forcedMove(tempGameState.getBoard());
-      if(forced != 0) {
-    	  last.child = new Node(childPlayerID, forced);
-      }
-      else{
+//      int forced = forcedMove(tempGameState.getBoard());
+//      if(forced != -1) {
+//    	  last.child = new Node(childPlayerID, forced);
+//      }
+//      else{
 	      for(int move : GameState.tiles) {
 	    	  if(tempGameState.getBoard()[move/10][move%10] == 0) {
 	    		  Node node = new Node(childPlayerID, move);
@@ -85,7 +85,7 @@ public class UCTAI extends Player{
 	              last = node;
 	    	  }
 	      }
-      }
+//      }
     }
     
  // return 0=lose 1=win for current player to move
