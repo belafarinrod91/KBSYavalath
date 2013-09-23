@@ -30,21 +30,23 @@ public class Player {
 	
 	public int makeMove(GameState gameState) throws YavalathException {
 		int move = forcedMove(gameState);
-//		if(move != -1)
+//		if(move != -1) {
+//			System.out.println("Forced Move: " + move);
 //			return move;
-		
-	    InputStreamReader isr = new InputStreamReader(System.in);
-	    BufferedReader br = new BufferedReader(isr);
-	    
-		String eingabe = null;
-		try {
-			if(Yavalath.getDebug())
-				System.out.println("Player "+playerNumber+" mache zug:");
-			eingabe = br.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		move = Integer.parseInt(eingabe);
+//		}
+					
+//	    InputStreamReader isr = new InputStreamReader(System.in);
+//	    BufferedReader br = new BufferedReader(isr);
+//	    
+//		String eingabe = null;
+//		try {
+//			if(Yavalath.getDebug())
+//				System.out.println("Player "+playerNumber+" mache zug:");
+//			eingabe = br.readLine();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		move = Integer.parseInt(eingabe);
 		  
 		return move;
 	}
@@ -101,8 +103,8 @@ public class Player {
 				r = 8;
 			}
 			try{
-				for(; t < 8 && r-2 >= 0; t++,r--){
-					if(r-3 >=0 && t+3 < 8 && (board[t][r] == playerNumber || board[t][r] == nextPlayer)){
+				for(; t+3 <= 8 && r-3 >= 0; t++,r--){
+					if(board[t][r] == playerNumber || board[t][r] == nextPlayer){
 						if(board[t+1][r-1] == 0 &&
 							board[t][r] == board[t+2][r-2] &&
 							board[t][r] == board[t+3][r-3]) {
