@@ -31,9 +31,44 @@ public class RandomAI extends Player {
 			return move;
 		}
 		
+		GameState tempGameState;
+		GameState.State state;
+		int cnt = 0;
 		do{
-			move = randomMove(gameState.getBoard());
-		} while(gameState.getBoard()[move/10][move%10] != 0);
+			tempGameState = new GameState(gameState);
+			
+			do {
+				move = randomMove(gameState.getBoard());
+			} while (gameState.getBoard()[move/10][move%10] != 0);
+			
+			tempGameState.playMove(move);
+			state = tempGameState.getState();
+			
+			if(cnt >= 10) {
+				break;
+			}
+			
+			switch(getPlayerNumber()) {
+			case 1:
+				if(state == GameState.State.PLAYER1OUT || state == GameState.State.PLAYER2WIN || state == GameState.State.PLAYER3WIN) {
+					cnt++;
+					move = -1; // try again
+				}
+				break;
+			case 2:
+				if(state == GameState.State.PLAYER2OUT || state == GameState.State.PLAYER1WIN || state == GameState.State.PLAYER3WIN) {
+					cnt++;
+					move = -1; // try again
+				}
+				break;
+			case 3:
+				if(state == GameState.State.PLAYER3OUT || state == GameState.State.PLAYER1WIN || state == GameState.State.PLAYER2WIN) {
+					cnt++;
+					move = -1; // try again
+				}
+				break;
+			}
+		} while(move == -1);
 		
 		if(Yavalath.getDebug())
 			System.out.println("AI Move: " + move);
