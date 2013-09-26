@@ -97,7 +97,9 @@ public class GameState{
 	
 
 	public void playMove(int position) throws YavalathException {
-		playGround.showPlayer(playingPlayer, state);
+		if(playGround != null) {
+			playGround.showPlayer(playingPlayer, state);
+		}
 		if(position == -1) {
 			if(player[playingPlayer-1] instanceof RandomAI || player[playingPlayer-1] instanceof UCTAI){
 				position = player[playingPlayer-1].makeMove(this);

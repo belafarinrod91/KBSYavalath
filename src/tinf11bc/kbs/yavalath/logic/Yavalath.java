@@ -19,7 +19,7 @@ public class Yavalath {
 	private static PlayGround plgnd;
 	private static GameState gameState;
 	
-	public static int numberOfSimulations = 100000;
+	public static int numberOfSimulations = 50000;
 
 
 	
@@ -101,7 +101,7 @@ public class Yavalath {
 		//					-how many players? (2/3)
 		//					-player/AI 
 		
-		int[] players = {1,3,0};	// Player: 1
+		int[] players = {2,3,0};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
 		
