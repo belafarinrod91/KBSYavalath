@@ -21,7 +21,7 @@ public class Yavalath {
 	
 	public static int numberOfSimulations = 100000;
 
-	
+
 	
 	public static State newGame(int[] newPlayers) throws YavalathException {
 
@@ -100,8 +100,8 @@ public class Yavalath {
 		//menu with choosing:
 		//					-how many players? (2/3)
 		//					-player/AI 
-			
-		int[] players = {1,2,0};	// Player: 1
+		
+		int[] players = {1,3,0};	// Player: 1
 									// RandomAI: 2
 									// UCTAI: 3
 		
