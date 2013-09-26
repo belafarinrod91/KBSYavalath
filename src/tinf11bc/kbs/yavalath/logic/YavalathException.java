@@ -20,6 +20,6 @@ public class YavalathException extends Exception {
     protected YavalathException(String message, Throwable cause,
                         boolean enableSuppression,
                         boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+        //super(message, cause, enableSuppression, writableStackTrace);
     }
 }

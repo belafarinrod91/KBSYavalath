@@ -14,9 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tinf11bc.kbs.yavalath.util.GameState;
+import tinf11bc.kbs.yavalath.util.GameState.State;
 
 public class PlayGround {
 	private JFrame mRoot;
@@ -27,6 +29,10 @@ public class PlayGround {
 	private ImageIcon imgTokenRed = null;
 	private ImageIcon imgTokenBlue = null;
 	private ImageIcon imgTokenGreen = null;
+	
+	JLabel mPlayerOnMove = new JLabel();
+
+	
 	
 	private int clickedPosition = -1;
 	
@@ -62,6 +68,10 @@ public class PlayGround {
 		imgTokenGreen = new ImageIcon("res/token_green.png");
 		
 		drawPlayGroundOnRootFrame();
+		
+		
+		mPlayerOnMove.setBounds(10, 80, 500, 100);
+		mLayeredPane.add(mPlayerOnMove, new Integer(3));
 
 	}
 	
@@ -74,7 +84,7 @@ public class PlayGround {
 		int imgWidth = imgCourton.getIconWidth();
 		
 		int posX = 200;
-		int posY = 20;
+		int posY = 120;
 		
 		for (int i = 0; i < mInitBoard.length; i++) {
 			posX = 200;
@@ -214,6 +224,94 @@ public class PlayGround {
 		return clickedPosition;
 	}
 	
+	
+	public void setGameInformation(String message){
+		
+		
+		JLabel gameInformation = new JLabel();
+		gameInformation.setText(message);
+		gameInformation.setBounds(10, -30, 500, 100);
+		mLayeredPane.add(gameInformation, new Integer(1));
+		
+	}
+	
+	
+	public void showSettings(int[] players){
+		
+		
+		
+		
+		String player1 = "-", player2 = "-", player3 ="-";
+		
+		switch(players[0]){
+			case 1:
+				player1 = "You";
+				break;
+			case 2:
+				player1 = "RandomAI";
+				break;
+			case 3:
+				player1 = "UCTAI";
+				break;
+			default:
+				player1 = "-";
+				break;
+		}
+		
+		switch(players[1]){
+		case 1:
+			player2 = "You";
+			break;
+		case 2:
+			player2 = "RandomAI";
+			break;
+		case 3:
+			player2 = "UCTAI";
+			break;
+		default:
+			player2 = "-";
+			break;
+		}
+		
+		switch(players[2]){
+		case 1:
+			player3 = "You";
+			break;
+		case 2:
+			player3 = "RandomAI";
+			break;
+		case 3:
+			player3 = "UCTAI";
+			break;
+		default:
+			player3 = "-";
+			break;
+		}
+		
+				
+		
+		
+		JLabel settingsInformation = new JLabel();
+		settingsInformation.setText(
+				"<html>"
+				+"<body>"
+				+"<hr>"
+				+"Player 1: "+player1+"<br>"
+				+"Player 2: "+player2+"<br>"
+				+"Player 3: "+player3+"<br>"
+				+"</body></html>");
+		settingsInformation.setBounds(10, 10, 500, 100);
+		mLayeredPane.add(settingsInformation, new Integer(1));
+	}
+	
+	public void showPlayer(int player, State state){
+		mPlayerOnMove.setText(
+				"<html>"
+				+"<body>"
+				+"<hr>"
+				+"Player 1: "+player+"<br>"
+				+"</body></html>");
+	}
 	
 	
 	
