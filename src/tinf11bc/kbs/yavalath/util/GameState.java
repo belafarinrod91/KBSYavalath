@@ -101,7 +101,9 @@ public class GameState{
 			if(player[playingPlayer-1] instanceof RandomAI || player[playingPlayer-1] instanceof UCTAI){
 				position = player[playingPlayer-1].makeMove(this);
 			}else{
-				position = playGround.checkMove();
+				do {
+					position = playGround.checkMove();
+				} while (board[position/10][position%10] != 0);
 			}
 		}
 		if(playGround != null)
