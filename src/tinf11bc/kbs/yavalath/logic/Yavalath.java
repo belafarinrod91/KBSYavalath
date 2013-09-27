@@ -1,13 +1,13 @@
 package tinf11bc.kbs.yavalath.logic;
 
-import tinf11bc.kbs.yavalath.gui.GuiFactory;
+import tinf11bc.kbs.yavalath.gui.MenueFactory;
 import tinf11bc.kbs.yavalath.gui.PlayGround;
-
+import tinf11bc.kbs.yavalath.gui.SettingsGui;
 import tinf11bc.kbs.yavalath.logic.YavalathException;
 import tinf11bc.kbs.yavalath.logic.player.RandomAI;
-
 import tinf11bc.kbs.yavalath.util.GameState;
 import tinf11bc.kbs.yavalath.util.GameState.State;
+import tinf11bc.kbs.yavalath.util.Settings;
 
 /**
  * @author Chris, Stephan
@@ -18,6 +18,7 @@ public class Yavalath {
 	private static boolean debug = false;
 	private static PlayGround plgnd;
 	private static GameState gameState;
+	private static Settings mSettings;
 	
 	public static int numberOfSimulations = 50000;
 
@@ -90,20 +91,20 @@ public class Yavalath {
 	 * @param args
 	 * @throws YavalathException 
 	 */
-	public static void main(String[] args) throws YavalathException {
-		GuiFactory gui = new GuiFactory();
-		plgnd = gui.createPlayField();
+	
+	
+	public static void startNewGame() throws YavalathException{
+		plgnd = new PlayGround();
 		debug = false;
 		int percent = 0;
-		long time = System.nanoTime();;
+		long time = System.nanoTime();
 
-		//menu with choosing:
-		//					-how many players? (2/3)
-		//					-player/AI 
+
+		int[] players = mSettings.getPlayerInformation();
+		System.out.println(players[0]);
+		System.out.println(players[1]);
+		System.out.println(players[2]);
 		
-		int[] players = {2,3,0};	// Player: 1
-									// RandomAI: 2
-									// UCTAI: 3
 		
 		plgnd.showSettings(players);
 		int numberOfGames = 1;	
@@ -153,6 +154,17 @@ public class Yavalath {
 		System.out.println((d*100)/numberOfGames+"%/"
 							+(p1*100)/numberOfGames+"%/"
 							+(p2*100)/numberOfGames+"%/"
-							+(p3*100)/numberOfGames+"%");
+							+(p3*100)/numberOfGames+"%"); 
+	}
+	
+	public static void showSettings(){
+		SettingsGui settingsGui = new SettingsGui(mSettings);
+	}
+	
+	
+	
+	public static void main(String[] args) throws YavalathException {
+		mSettings = new Settings();
+		MenueFactory menu = new MenueFactory();
 	}
 }

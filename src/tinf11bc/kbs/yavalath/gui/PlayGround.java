@@ -21,10 +21,9 @@ import tinf11bc.kbs.yavalath.util.GameState;
 import tinf11bc.kbs.yavalath.util.GameState.State;
 
 public class PlayGround {
-	private JFrame mRoot;
 	private JLayeredPane mLayeredPane;
 	
-	
+	private JFrame mRoot;
 	private ImageIcon imgCourton = null;
 	private ImageIcon imgTokenRed = null;
 	private ImageIcon imgTokenBlue = null;
@@ -41,7 +40,7 @@ public class PlayGround {
 	  RED, GREEN, BLUE
 	}
 	
-	
+
 	
 	private List<Courton> mCourtonList = new LinkedList<Courton>();
 	
@@ -57,9 +56,16 @@ public class PlayGround {
 			{ -1, -1, -1, -1, 0, 0, 0, 0, 0 } };
 	protected boolean buttonClicked;
 
-	public PlayGround(JFrame root) {
-		mRoot = root;
-		mLayeredPane = root.getLayeredPane();
+	public PlayGround() {
+		mRoot = new JFrame("Yavalath-Game !");
+		mRoot.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mRoot.setSize(950,650);
+		mRoot.setLocation(50,50);
+		mRoot.setVisible(true);
+		
+		
+
+		mLayeredPane = mRoot.getLayeredPane();
 		
 		imgCourton = new ImageIcon("res/courton.png");
 		
@@ -220,8 +226,8 @@ public class PlayGround {
                 e.printStackTrace();
             }
            
-        }
-		return clickedPosition;
+        } 
+		return clickedPosition; 
 	}
 	
 	
