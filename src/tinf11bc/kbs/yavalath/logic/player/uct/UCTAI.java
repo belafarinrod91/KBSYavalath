@@ -10,6 +10,7 @@ public class UCTAI extends Player{
     
 	private GameState gameState;
 	private GameState tempGameState;
+	private double winChance;
 	
     private Node root = null;
     private static final double UCTK = 0.44; // 0.44 = sqrt(1/5)
@@ -60,7 +61,8 @@ public class UCTAI extends Player{
             out = out.sibling;
         }
         Node bestChild = getBestChild(root);
-        System.out.println("Win Chance: " + (double) bestChild.wins / bestChild.visits);
+        winChance = (double) bestChild.wins / bestChild.visits;
+        System.out.println("Win Chance: " + winChance);
         return bestChild.move;
     }
     
@@ -186,4 +188,7 @@ public class UCTAI extends Player{
 
     }
     
+    public double getWinChance() {
+    	return winChance;
+    }
 }
