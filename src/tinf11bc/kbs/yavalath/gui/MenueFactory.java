@@ -38,14 +38,20 @@ public class MenueFactory {
 
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					mainMenuFrame.dispose();
-					Yavalath.startNewGame();
-					
-				} catch (YavalathException e1) {
-					e1.printStackTrace();
-				}
-				
+
+				Thread playGroundThread = new Thread() {
+					public void run() {
+						mainMenuFrame.dispose();
+						try {
+							Yavalath.startNewGame();
+						} catch (YavalathException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				};
+				playGroundThread.start();
+
 			}
 
 		};
@@ -58,7 +64,7 @@ public class MenueFactory {
 
 		};
 		settings.addActionListener(al2);
-		
+
 		ActionListener al3 = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -66,8 +72,6 @@ public class MenueFactory {
 
 		};
 		exit.addActionListener(al3);
-		
-		
 
 		mainMenuFrame.setVisible(true);
 	}
