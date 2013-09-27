@@ -248,6 +248,9 @@ public class PlayGround {
 		
 		
 		String player1 = "-", player2 = "-", player3 ="-";
+	
+		
+		
 		
 		switch(players[0]){
 			case 1:
@@ -294,6 +297,10 @@ public class PlayGround {
 			break;
 		}
 		
+		/*
+		 * <font color=\"red\"> ... </font>
+		 * 
+		 */
 				
 		
 		
@@ -302,20 +309,33 @@ public class PlayGround {
 				"<html>"
 				+"<body>"
 				+"<hr>"
-				+"Player 1: "+player1+"<br>"
-				+"Player 2: "+player2+"<br>"
-				+"Player 3: "+player3+"<br>"
+				+"Player 1: <font color=\"red\">"+player1+"</font><br>"
+				+"Player 2: <font color=\"blue\">"+player2+"</font><br>"
+				+"Player 3: <font color=\"green\">"+player3+"</font><br>"
 				+"</body></html>");
 		settingsInformation.setBounds(10, 10, 500, 100);
 		mLayeredPane.add(settingsInformation, new Integer(1));
 	}
 	
 	public void showPlayer(int player, State state){
+		String color = "";
+		switch(player){
+			case 1:
+				color ="red";
+				break;
+			case 2:
+				color = "blue";
+				break;
+			case 3:
+				color = "green";
+		}
+		
+		System.out.println("Player"+player);
 		mPlayerOnMove.setText(
 				"<html>"
 				+"<body>"
 				+"<hr>"
-				+"Player 1: "+player+"<br>"
+				+"Move : <font color=\""+color+"\">"+player+"</font><br>"
 				+"</body></html>");
 	}
 	

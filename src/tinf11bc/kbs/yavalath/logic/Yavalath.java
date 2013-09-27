@@ -20,7 +20,7 @@ public class Yavalath {
 	private static GameState gameState;
 	private static Settings mSettings;
 	
-	public static int numberOfSimulations = 50000;
+	public static int numberOfSimulations;
 
 
 	
@@ -94,6 +94,7 @@ public class Yavalath {
 	
 	
 	public static void startNewGame() throws YavalathException{
+		numberOfSimulations = mSettings.getDifficultyUTCAi();
 		plgnd = new PlayGround();
 		debug = false;
 		int percent = 0;
