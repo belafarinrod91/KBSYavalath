@@ -241,6 +241,36 @@ public class PlayGround {
 		
 	}
 	
+	public void setGameInformation(State state){
+		
+		String message = "";
+		
+		switch(state){
+		case PLAYER1WIN:
+			message = "Player 1";
+			break;
+		case PLAYER2WIN:
+			message = "Player 2";
+			break;
+		case PLAYER3WIN:
+			message = "Player 3";
+			break;
+		}
+		
+		
+		int confirm = JOptionPane.showOptionDialog(null,
+                message+" won ! \nDo you want to exit the game ?",
+                "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(1);
+        }
+        else {
+        	mRoot.dispose();
+        	MenueFactory menu = new MenueFactory();
+        }
+	}
+	
 	
 	public void showSettings(int[] players){
 		

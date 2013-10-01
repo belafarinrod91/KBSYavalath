@@ -273,6 +273,10 @@ public class GameState{
 				break;
 			}
 		}
+		
+		if(playGround != null){
+			playGround.setGameInformation(state);
+		}
 
 	}
 
