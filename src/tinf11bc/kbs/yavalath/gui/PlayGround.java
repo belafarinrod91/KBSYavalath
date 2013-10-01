@@ -29,6 +29,8 @@ public class PlayGround {
 	private ImageIcon imgTokenBlue = null;
 	private ImageIcon imgTokenGreen = null;
 	
+
+	
 	JLabel mPlayerOnMove = new JLabel();
 
 	
@@ -241,7 +243,9 @@ public class PlayGround {
 		
 	}
 	
-	public void setGameInformation(State state){
+	public void setWinAlert(State state, int numberOfPlayers){
+		
+		
 		
 		String message = "";
 		
@@ -256,19 +260,20 @@ public class PlayGround {
 			message = "Player 3";
 			break;
 		}
-		
-		
-		int confirm = JOptionPane.showOptionDialog(null,
+
+			int confirm = JOptionPane.showOptionDialog(null,
                 message+" won ! \nDo you want to exit the game ?",
                 "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, null, null);
-        if (confirm == JOptionPane.YES_OPTION) {
-            System.exit(1);
-        }
-        else {
-        	mRoot.dispose();
-        	MenueFactory menu = new MenueFactory();
-        }
+			if (confirm == JOptionPane.YES_OPTION) {
+				System.exit(1);
+			}
+			else {
+				mRoot.dispose();
+				MenueFactory menu = new MenueFactory();
+			}
+		
+
 	}
 	
 	

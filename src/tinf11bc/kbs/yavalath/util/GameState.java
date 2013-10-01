@@ -274,8 +274,9 @@ public class GameState{
 			}
 		}
 		
-		if(playGround != null){
-			playGround.setGameInformation(state);
+		if(playGround != null && 
+			( state.equals(State.PLAYER1WIN) || state.equals(State.PLAYER2WIN) || state.equals(State.PLAYER3WIN))){
+			playGround.setWinAlert(state, numberOfPlayers);
 		}
 
 	}
