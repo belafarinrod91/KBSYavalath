@@ -1,0 +1,105 @@
+\documentclass[german]{report}
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage{graphicx}
+\usepackage{here}
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{amssymb,amsmath}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{lmodern}
+
+  \RequirePackage{draftwatermark}
+  \SetWatermarkText{DRAFT}
+  %\SetWatermarkFontSize{2cm}
+
+%\usepackage{draftwatermark}
+%\RequirePackage{draftwatermark}
+%  \SetWatermarkText{DRAFT}
+
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{\color{red}\textbf{DRAFT}}
+\chead{- Wissens Basierte Systeme - }
+\rhead{\includegraphics*[width=2.0cm]{abbildungen/dhbwlogo.png}}
+
+\cfoot{Christoph Schabert, Stephan Alaniz, Jan Brodhacker (TINF11-AI\/BC) \\DHBW Mannheim}
+\lfoot{\color{red}\textbf{DRAFT}}
+\rfoot{\thepage}
+\fancyhfoffset{\marginparsep}
+\renewcommand{\footrulewidth}{1.0pt}
+\renewcommand{\headrulewidth}{1.0pt}
+\renewcommand{\headheight}{30pt}
+\pagenumbering{arabic}
+
+
+\begin{titlepage}
+
+\begin{flushright}
+    \includegraphics*[width=4.0cm]{abbildungen/dhbwlogo} \\ 
+\end{flushright}
+\begin{center}
+\vspace{1.5cm}
+\Huge{ \textsf{Wissensbasierte Systeme}} \\
+	Yavalath\\
+    \vspace{4cm}
+ \normalsize{
+    \begin{tabular}{ll}
+    	Name: & {Schabert Christoph  Alaniz Stephan  Brodhacker Jan} \\
+    	Kurs: & {TINF-AI11/BC}	\\
+    	 Dozent: &  HR. Dr. Dr. Dr. Dr. Vossen\\
+    	Bearbeitungszeitraum: & 09.09.2013 bis XX.XX.2014
+    \end{tabular}\\
+    }
+\end{center}
+
+\end{titlepage}
+
+\newpage
+\section*{Eidesstattliche Erkl�rung}\thispagestyle{empty}
+Hiermit versichere ich an Eides statt, dass ich die vorliegende Arbeit ohne fremde Hilfe angefertigt und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Alle Teile, die w�rtlich oder sinngem�� einer Ver�ffentlichung entstammen, sind als solche kenntlich gemacht. Die Arbeit wurde noch nicht ver�ffentlicht oder einer anderen Pr�fungsbeh�rde vorgelegt.\\
+\\
+Heidelberg, den \_\_.\_\_.2013 \\
+\\
+.............................. \\
+(Unterschrift)
+\\
+.............................. \\
+(Unterschrift)
+\\
+.............................. \\
+(Unterschrift)
+\newpage
+
+\setcounter{page}{1}
+
+
+
+\tableofcontents
+
+\listoffigures
+
+%\renewcommand{\lstlistlistingname}{Verzeichnis der Quellcodes}
+%\renewcommand{\lstlistingname}{Quellcode}
+\lstlistoflistings
+
+\bibliographystyle{plain}
+\bibliography{Quellen}
+
+\newpage
+
+\chapter{Einleitung}
+\label{sec:chapter1}
+\section{Test Einleitung}
+TestTEstTest
+\newpage
+TestTestTest\cite{TEST}
+
+% #TODO: Tech the Dokument
+
+
+
+\end{document}
