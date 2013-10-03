@@ -94,7 +94,15 @@ public class Yavalath {
 	
 	
 	public static void startNewGame() throws YavalathException{
-		numberOfSimulations = mSettings.getDifficultyUTCAi();
+		numberOfSimulations = mSettings.getDifficultyUTCAiOne();
+		
+		//Test !
+		System.out.println("One :"+mSettings.getDifficultyUTCAiOne()+" ,"+mSettings.ismIsActivatedOne());
+		System.out.println("Two :"+mSettings.getDifficultyUTCAiTwo()+" ,"+mSettings.ismIsActivatedTwo());
+		System.out.println("Three :"+mSettings.getDifficultyUTCAiThree()+" ,"+mSettings.ismIsActivatedThree());
+		// --- end Test !
+		
+		
 		plgnd = new PlayGround();
 		debug = false;
 		int percent = 0;
@@ -102,9 +110,6 @@ public class Yavalath {
 
 
 		int[] players = mSettings.getPlayerInformation();
-		System.out.println(players[0]);
-		System.out.println(players[1]);
-		System.out.println(players[2]);
 		
 		
 		plgnd.showSettings(players);
