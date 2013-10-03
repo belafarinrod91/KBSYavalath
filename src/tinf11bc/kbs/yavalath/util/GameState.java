@@ -101,8 +101,17 @@ public class GameState{
 			playGround.showPlayer(playingPlayer, state);
 		}
 		if(position == -1) {
-			if(player[playingPlayer-1] instanceof RandomAI || player[playingPlayer-1] instanceof UCTAI){
+			if(player[playingPlayer-1] instanceof RandomAI || player[playingPlayer-1] instanceof UCTAI){		
+				if(player[playingPlayer-1] instanceof UCTAI){
+					UCTAI uctai = (UCTAI) player[playingPlayer-1];
+					playGround.showWinChance(player[playingPlayer-1].getPlayerNumber(), uctai.getWinChance());
+				}
+				
+				
 				position = player[playingPlayer-1].makeMove(this);
+				
+				
+				
 			}else{
 				do {
 					position = playGround.checkMove();
@@ -277,6 +286,11 @@ public class GameState{
 		if(playGround != null && 
 			( state.equals(State.PLAYER1WIN) || state.equals(State.PLAYER2WIN) || state.equals(State.PLAYER3WIN))){
 			playGround.setWinAlert(state, numberOfPlayers);
+			
+			
+			
+			
+			
 		}
 
 	}

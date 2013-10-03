@@ -32,7 +32,7 @@ public class PlayGround {
 
 	
 	JLabel mPlayerOnMove = new JLabel();
-
+	JLabel mLabelWinChance = new JLabel();
 	
 	
 	private int clickedPosition = -1;
@@ -80,6 +80,10 @@ public class PlayGround {
 		
 		mPlayerOnMove.setBounds(10, 80, 500, 100);
 		mLayeredPane.add(mPlayerOnMove, new Integer(3));
+		
+		
+		mLabelWinChance.setBounds(10, 500, 500, 100);
+		mLayeredPane.add(mLabelWinChance, new Integer(1));
 
 	}
 	
@@ -364,8 +368,7 @@ public class PlayGround {
 			case 3:
 				color = "green";
 		}
-		
-		System.out.println("Player"+player);
+	
 		mPlayerOnMove.setText(
 				"<html>"
 				+"<body>"
@@ -374,6 +377,32 @@ public class PlayGround {
 				+"</body></html>");
 	}
 	
+	
+	public void showWinChance(int playerNumber, double winChance){
+		
+		winChance = (Math.round(winChance * 100.0) / 100.0)*100;
+		
+		String color = "";
+		switch(playerNumber){
+			case 1:
+				color ="red";
+				break;
+			case 2:
+				color = "blue";
+				break;
+			case 3:
+				color = "green";
+		}
+		
+		
+		mLabelWinChance.setText(
+				"<html>"
+				+"<body>"
+				+"<hr>"
+				+"Winchance of Player "+playerNumber+": <font color=\""+color+"\">"+winChance+"%</font><br>"
+				+"</body></html>");
+	
+	}
 	
 	
 	
