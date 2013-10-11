@@ -41,10 +41,11 @@ public class SettingsGui {
 	public SettingsGui(Settings settings) {
 		mSettings = settings;
 
-		String choices[] = { "Player", "RandomAI", "UTCAI", "None" };
+		String choices[] = { "Player", "RandomAI", "UTCAI"};
+		String choices2[] = { "Player", "RandomAI", "UTCAI", "None" };
 		mPlayerStylePlayer1 = new JComboBox(choices);
 		mPlayerStylePlayer2 = new JComboBox(choices);
-		mPlayerStylePlayer3 = new JComboBox(choices);
+		mPlayerStylePlayer3 = new JComboBox(choices2);
 
 		mDifficultyUtcAiOne = new JSlider(1, 3, 2);
 		mDifficultyUtcAiOne.setPaintTicks(true);

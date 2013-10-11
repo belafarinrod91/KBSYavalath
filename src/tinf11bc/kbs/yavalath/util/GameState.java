@@ -82,7 +82,7 @@ public class GameState{
 				numberOfPlayers++;
 				break;
 			case(3):
-				player[n] = new UCTAI(n+1, Yavalath.numberOfSimulations);
+				player[n] = new UCTAI(n+1, Yavalath.numberOfSimulations[n]);
 				numberOfPlayers++;
 				break;
 			default:
@@ -102,16 +102,12 @@ public class GameState{
 		}
 		if(position == -1) {
 			if(player[playingPlayer-1] instanceof RandomAI || player[playingPlayer-1] instanceof UCTAI){		
+				position = player[playingPlayer-1].makeMove(this);
+				
 				if(player[playingPlayer-1] instanceof UCTAI){
 					UCTAI uctai = (UCTAI) player[playingPlayer-1];
 					playGround.showWinChance(player[playingPlayer-1].getPlayerNumber(), uctai.getWinChance());
 				}
-				
-				
-				position = player[playingPlayer-1].makeMove(this);
-				
-				
-				
 			}else{
 				do {
 					position = playGround.checkMove();

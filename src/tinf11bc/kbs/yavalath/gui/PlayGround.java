@@ -380,7 +380,7 @@ public class PlayGround {
 	
 	public void showWinChance(int playerNumber, double winChance){
 		
-		winChance = (Math.round(winChance * 100.0) / 100.0)*100;
+		winChance = (Math.round(winChance * 10000.0) / 100.0);
 		
 		String color = "";
 		switch(playerNumber){

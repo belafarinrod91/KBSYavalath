@@ -31,7 +31,9 @@ public class UCTAI extends Player{
 //			return move;
 //    	}
     	int move = UCTSearch(numberOfSimulations, gameState);
-    	System.out.println("UCTAI Move: " + move);
+    	if(Yavalath.getDebug()) {
+    		System.out.println("UCTAI Move: " + move);
+    	}
     	return move;
     }
     
@@ -56,13 +58,17 @@ public class UCTAI extends Player{
         }
         
         Node out = root.child;
-        while(out != null) {
-            System.out.println(out.move + ", " + out.visits + ", " + out.wins + ", " + (double)out.wins/out.visits);
-            out = out.sibling;
-        }
+//        if(Yavalath.getDebug()) {
+//	        while(out != null) {
+//	            System.out.println(out.move + ", " + out.visits + ", " + out.wins + ", " + (double)out.wins/out.visits);
+//	            out = out.sibling;
+//	        }
+//        }
         Node bestChild = getBestChild(root);
         winChance = (double) bestChild.wins / bestChild.visits;
-        System.out.println("Win Chance: " + winChance);
+        if(Yavalath.getDebug()) {
+        	System.out.println("Win Chance: " + winChance);
+        }
         return bestChild.move;
     }
     

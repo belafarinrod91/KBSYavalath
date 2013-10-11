@@ -20,7 +20,7 @@ public class Yavalath {
 	private static GameState gameState;
 	private static Settings mSettings;
 	
-	public static int numberOfSimulations;
+	public static int[] numberOfSimulations = new int[3];
 
 
 	
@@ -56,7 +56,7 @@ public class Yavalath {
 							"\nNumber of Moves: " + gameState.getNumberOfMoves() + 
 							"\nPlayer's Turn: " + gameState.getPlayingPlayer());
 				
-				if(debug || !(gameState.getPlayer()[gameState.getPlayingPlayer()-1] instanceof RandomAI))
+				if(debug)//|| !(gameState.getPlayer()[gameState.getPlayingPlayer()-1] instanceof RandomAI))
 					drawBoard(gameState.getBoard());
 				gameState.playMove(-1);
 
@@ -94,73 +94,18 @@ public class Yavalath {
 	
 	
 	public static void startNewGame() throws YavalathException{
-		numberOfSimulations = mSettings.getDifficultyUTCAiOne();
-		
-		//Test !
-		System.out.println("One :"+mSettings.getDifficultyUTCAiOne()+" ,"+mSettings.ismIsActivatedOne());
-		System.out.println("Two :"+mSettings.getDifficultyUTCAiTwo()+" ,"+mSettings.ismIsActivatedTwo());
-		System.out.println("Three :"+mSettings.getDifficultyUTCAiThree()+" ,"+mSettings.ismIsActivatedThree());
-		// --- end Test !
-		
+		numberOfSimulations[0] = mSettings.getDifficultyUTCAiOne();
+		numberOfSimulations[1] = mSettings.getDifficultyUTCAiTwo();
+		numberOfSimulations[2] = mSettings.getDifficultyUTCAiThree();
 		
 		plgnd = new PlayGround();
 		debug = false;
-		int percent = 0;
-		long time = System.nanoTime();
-
 
 		int[] players = mSettings.getPlayerInformation();
 		
-		
 		plgnd.showSettings(players);
-		int numberOfGames = 1;	
-
-		GameState.State[] games = new GameState.State[numberOfGames];
 		
-		for(int t = 0;t < numberOfGames; t++){
-			games[t] = newGame(players);
-			if(percent != (t*100)/numberOfGames){
-				percent = (t*100)/numberOfGames;
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println();
-				System.out.println(percent+"%");
-			}
-			}
-		int d = 0, p1 = 0, p2 = 0, p3 = 0;
-		for(int c = 0; c < games.length; c++){
-			switch(games[c]){
-				case DRAW:
-					d++;
-					break;
-				case PLAYER1WIN:
-					p1++;
-					break;
-				case PLAYER2WIN:
-					p2++;
-					break;
-				case PLAYER3WIN:
-					p3++;
-					break;
-			default:
-				throw new YavalathException("unknown WinState!");
-			}
-		}
-		
-		time = System.nanoTime() -time ;
-		time /= 1000000000;
-		System.out.println("----- i = "+numberOfGames+" ------ "+time/60+":"+time%60+" Min--------");
-		System.out.println(d+"/"+p1+"/"+p2+"/"+p3);
-		System.out.println((d*100)/numberOfGames+"%/"
-							+(p1*100)/numberOfGames+"%/"
-							+(p2*100)/numberOfGames+"%/"
-							+(p3*100)/numberOfGames+"%"); 
+		newGame(players);
 	}
 	
 	public static void showSettings(){
