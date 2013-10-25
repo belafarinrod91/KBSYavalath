@@ -13,17 +13,12 @@
 
   \RequirePackage{draftwatermark}
   \SetWatermarkText{DRAFT}
-  %\SetWatermarkFontSize{2cm}
-
-%\usepackage{draftwatermark}
-%\RequirePackage{draftwatermark}
-%  \SetWatermarkText{DRAFT}
 
 \begin{document}
 
 \pagestyle{fancy}
 \lhead{\color{red}\textbf{DRAFT}}
-\chead{- Wissens Basierte Systeme - }
+\chead{- Knowledge Based Systems - }
 \rhead{\includegraphics*[width=2.0cm]{abbildungen/dhbwlogo.png}}
 
 \cfoot{Christoph Schabert, Stephan Alaniz, Jan Brodhacker (TINF11-AI\/BC) \\DHBW Mannheim}
@@ -43,15 +38,15 @@
 \end{flushright}
 \begin{center}
 \vspace{1.5cm}
-\Huge{ \textsf{Wissensbasierte Systeme}} \\
+\Huge{ \textsf{Knowledge Based Systems}} \\
 	Yavalath\\
     \vspace{4cm}
  \normalsize{
     \begin{tabular}{ll}
-    	Name: & {Schabert Christoph  Alaniz Stephan  Brodhacker Jan} \\
-    	Kurs: & {TINF-AI11/BC}	\\
-    	 Dozent: &  HR. Dr. Dr. Dr. Dr. Vossen\\
-    	Bearbeitungszeitraum: & 09.09.2013 bis XX.XX.2014
+    	Names: & {Schabert Christoph  Alaniz Stephan  Brodhacker Jan} \\
+    	Course: & {TINF-AI11/BC}	\\
+    	Lecturer: &  HR. Dr. Dr. Dr. Dr. Vossen\\
+    	working period: & 09.09.2013 bis XX.XX.2014
     \end{tabular}\\
     }
 \end{center}
@@ -59,21 +54,22 @@
 \end{titlepage}
 
 \newpage
-\section*{Eidesstattliche Erklï¿½rung}\thispagestyle{empty}
-Hiermit versichere ich an Eides statt, dass ich die vorliegende Arbeit ohne fremde Hilfe angefertigt und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Alle Teile, die wï¿½rtlich oder sinngemï¿½ï¿½ einer Verï¿½ffentlichung entstammen, sind als solche kenntlich gemacht. Die Arbeit wurde noch nicht verï¿½ffentlicht oder einer anderen Prï¿½fungsbehï¿½rde vorgelegt.\\
+\section*{Statutory declaration}\thispagestyle{empty}
+I herewith declare that I have completed the present thesis independently making use only of the specified literature and aids. Sentences or parts of sentences quoted literally are marked as quotations; identification of other references with regard to the statement and scope of the work is quoted. The thesis in this form or in any other form has not been submitted to an examination body and has not been published.\\
 \\
-Heidelberg, den \_\_.\_\_.2013 \\
+Stephan Alaniz:\\
+Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
+\hspace*{6.5cm} (signature)\\
 \\
-.............................. \\
-(Unterschrift)
+Christoph Schabert:\\
+Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
+\hspace*{6.5cm} (signature)\\
 \\
-.............................. \\
-(Unterschrift)
-\\
-.............................. \\
-(Unterschrift)
-\newpage
+Jan Brodhacker:\\
+Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
+\hspace*{6.5cm} (signature)\\
 
+\newpage
 \setcounter{page}{1}
 
 
@@ -82,8 +78,8 @@ Heidelberg, den \_\_.\_\_.2013 \\
 
 \listoffigures
 
-%\renewcommand{\lstlistlistingname}{Verzeichnis der Quellcodes}
-%\renewcommand{\lstlistingname}{Quellcode}
+\renewcommand{\lstlistlistingname}{Verzeichnis der Quellcodes}
+\renewcommand{\lstlistingname}{Quellcode}
 \lstlistoflistings
 
 \bibliographystyle{plain}
@@ -91,12 +87,153 @@ Heidelberg, den \_\_.\_\_.2013 \\
 
 \newpage
 
-\chapter{Einleitung}
+\chapter{Intruduction}
 \label{sec:chapter1}
-\section{Test Einleitung}
-TestTEstTest
-\newpage
-TestTestTest\cite{TEST}
+\section{Goal and Motivation}
+The Goal of this Project is to implement a game called Yavalath and develop two different Artificial intelligence who is able to play the game and win against nearly every human player.
+
+\section{Technical Notes}
+The implementation of the game and the ai-players with a fully functional grafical user interface is availible on GitHub und the the following url:
+\begin{quotation}
+    https://github.com/belafarinrod91/KBSYavalath (hep: 25.10.2013)
+\end{quotation}
+This project is under no License or otherwise protected, feel free to clone the Git repositry and compile it yourself.
+
+
+This publication was written in \LaTeX an compiled with MikeTex.
+
+\chapter{The Game - Yavalath}
+\label{sec:chapter2}
+In this Chapter the history of Yavalath, and the game is explained is explaind. % #TODO: tech more!!!
+\section{History}
+Yavalath is the most successgul game evolved by LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program that implements an algorithm for generating new games. This LUDI software system not only defines the scope and rules of the game, it also interpets the game and coordinates testplays to measures the game quality.
+LUDI was developed by Cameron Browne as part of his PhD in AI and game design, also was he awardet with the Dean's Award for Outstanding Thesis
+\cite{EvolutionGameDesign}
+
+2011 Yavalath was ranked onto place 99 from the BoardGameGeek community\footnote{\url{www.boardgamegeek.com}} out of 4300 abstract games ever invented. 
+Also it was rated onto place 8 out of 200 abstract games invented in 2007.
+
+Yavalath won 2012 the Humies Award for Human-Competitive Result Produced by Genetic and Evolutionarty Computation
+
+\section{Categorisation}
+Yavalath is a mixture of connect and patter building game. the BoardGameGeek community categorised Yavalath as a Abstract Game, because it was the first computer-generated game with that huge success.
+
+Also Yavalath inspired a new game categorie thats called:
+\begin{quote}
+	winning with a line of N and losing with a line of N-1
+\end{quote}
+
+The Name Yavalath was randomly created by a Markovian algorithm.
+
+\section{The Rules}
+The Rules for Yavalath are pretty simple what makes it easy to learn, but its still novel so that the game ist still intressting. One of the reasons that it was so successfull is that Yavalath achieves a good balance between simplysiti and novel.
+
+Yavalath is for two or three players and the average playingtime per game is 10 minutes\footnote{this was voted by the BoardGameGeek comunity, source:\url{http://boardgamegeek.com/boardgame/33767/yavalath}}.
+
+The board is a hexagon with 5 spaces on every side, that is initally empty.
+With that specifications there are 61 free cells in total, as to see in Illustration \ref{fig:yav_board}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_emptyBoard.png}
+\caption[The Yavalath game board, Source:\cite{yvalathHP}]{The Yavalath game board}
+\label{fig:yav_board}
+\end{figure}
+
+
+Every turn a players place a pieces of their colour onto the board. 
+
+This goes on untill:
+\begin{itemize}
+	\item on player have won
+	\item all but one players have lost
+	\item all cells are filled and it is a draw
+\end{itemize}
+
+As Soon as a Player formes a line of three pices in a row the player looses.
+
+A player can win with two different methods:
+\begin{enumerate}
+	\item one players manage to make a line of four or more pices of his color (In illustartion  \ref{fig:yav_4inarow} the white player won).
+	\item one player forece another player to form a line of three pices what is called a forced move. (In illustartion  \ref{fig:yav_forceMove} the black player is forced to move to prevent the white player from winning. in).
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_4inarow.png}
+\caption[Four in a row wining, Source:\cite{yvalathHP}]{Four in a row wining}
+\label{fig:yav_4inarow}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_forceMove.png}
+\caption[Forced move winning, Source:\cite{yvalathHP}]{Forced move winning}
+\label{fig:yav_forceMove}
+\end{figure}
+
+
+This leads to a so called Rule Tension, in this case four is a row is good but three in a row is bad. This means the Player cant just extend lines and must think about the pros and cons of every move he makes.\cite{yvalath}
+
+\section{Tactics and Strategy}
+Cameron Browne himsself defined some taktics and strategies and described them in his publication. He started to describes a number of chooices for the first move and a number of patterns that have a good chance of winning.
+
+
+The first move is crucial for the folowing tactics and for the chance to win.
+In Illustration \ref{fig:yav_winChance} is shown a Yavalath board with the win chance for the first move, the bigger the bouble the bigger the win chance. As its good visable that a centerd first move has the biggest win chance.\cite{yvalathHP}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_winChance.png}
+\caption[The win chance for the first Move, Source:\cite{yvalathHP}]{The win chance for the first Move}
+\label{fig:yav_winChance}
+\end{figure}
+
+
+An other good chooice for a first move is to start with a pattern. The Triangle starting pattern is an excelent example for a first move pattern (the Triangle starting pattern is shwon in illustration \ref{fig:yav_triangle}) on the left side). because it provides a huge number of chances to win by a forced move. Also its hard to stop a player that used the triangle pattern as a starting move. The only way to stop it is to forsee it pretty early and prevent the player from forming the triangle.
+On the right side of illustration \ref{fig:yav_triangle} a possible outcome of the triangle starting possition where the black player has losst by a forced move.\cite{yvalathHP}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_triangle.png}
+\caption[The triangle starting pattern, Source:\cite{yvalathHP}]{The triangle starting pattern}
+\label{fig:yav_triangle}
+\end{figure}
+
+In Yavalath a Triangle is always a good pattern, for example the small triangle (as seen in illustration \ref{fig:yav_smallTriangle}). The Reason that the small triangle is such a strong pattern is because it can foram a huge number of winning chances. 
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{Abbildungen/yav_smallTriangle.png}
+\caption[A small triangle pattern, Source:\cite{yvalathBGG}]{A small triangle pattern}
+\label{fig:yav_smallTriangle}
+\end{figure}
+
+To show that the small triangle is a good pattern two winning patterns are shown in illustration \ref{fig:yav_smallTriangleWin1} and in illustration \ref{fig:yav_smallTriangleWin2}. Both force the black player to loose by a force move. Also its possible to turn a pattern by 120° Degree, with that in mind there are at least six possible winning situations. If a opponent player try to form a triangle its recommendet to stop him as soon es possible.\cite{yvalathBGG}
+
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_smallTriangleWin1.png}
+\caption[A small triangle winning pattern, Source:\cite{yvalathBGG}]{A small triangle winning pattern}
+\label{fig:yav_smallTriangleWin1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/yav_smallTriangleWin2.png}
+\caption[A second small triangle winning pattern, Source:\cite{yvalathBGG}]{A second small triangle winning pattern}
+\label{fig:yav_smallTriangleWin2}
+\end{figure}
+
+\chapter{BOBO-AI}
+\label{sec:chapter3}
+% #TODO: tech more!!!
+\section{BOBO}
 
 % #TODO: Tech the Dokument
 
