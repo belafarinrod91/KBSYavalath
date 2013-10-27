@@ -11,6 +11,17 @@
 \usepackage{fancyhdr}
 \usepackage{lmodern}
 
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+
+
   \RequirePackage{draftwatermark}
   \SetWatermarkText{DRAFT}
 
@@ -29,6 +40,9 @@
 \renewcommand{\headrulewidth}{1.0pt}
 \renewcommand{\headheight}{30pt}
 \pagenumbering{arabic}
+
+
+
 
 
 \begin{titlepage}
@@ -90,43 +104,57 @@ Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
 \chapter{Intruduction}
 \label{sec:chapter1}
 \section{Goal and Motivation}
-The Goal of this Project is to implement a game called Yavalath and develop two different Artificial intelligence who is able to play the game and win against nearly every human player.
+The goal of this project is to implement a game called Yavalath. And to develop
+two different Artificial Intelligences, which are able to play the game and win
+against nearly every human player.
 
 \section{Technical Notes}
-The implementation of the game and the ai-players with a fully functional grafical user interface is availible on GitHub und the the following url:
+The implementation of the game and the ai-players with a fully functional
+graphical user interface is availible on GitHub und the the following url:
 \begin{quotation}
     https://github.com/belafarinrod91/KBSYavalath (hep: 25.10.2013)
 \end{quotation}
-This project is under no License or otherwise protected, feel free to clone the Git repositry and compile it yourself.
+This project is under no license or otherwise protected, feel free to clone the
+Git repositry and compile it yourself.
 
 
 This publication was written in \LaTeX an compiled with MikeTex.
 
 \chapter{The Game - Yavalath}
 \label{sec:chapter2}
-In this Chapter the history of Yavalath, and the game is explained is explaind. % #TODO: tech more!!!
+In this chapter the history of Yavalath, and the game is explained.
+% #TODO: tech more!!!
 \section{History}
-Yavalath is the most successgul game evolved by LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program that implements an algorithm for generating new games. This LUDI software system not only defines the scope and rules of the game, it also interpets the game and coordinates testplays to measures the game quality.
-LUDI was developed by Cameron Browne as part of his PhD in AI and game design, also was he awardet with the Dean's Award for Outstanding Thesis
-\cite{EvolutionGameDesign}
+Yavalath is the most successgul game evolved by LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program 
+that implements an algorithm for generating new games. This LUDI software system not only defines the scope and rules of the game, it also interpets 
+the game and coordinates testplays to measures the game quality.
+LUDI was developed by Cameron Browne as part of his PhD in AI and game design,
+also was he awarded with the Dean's Award for Outstanding Thesis
+\cite{EvolutionGameDesign}. \\
 
-2011 Yavalath was ranked onto place 99 from the BoardGameGeek community\footnote{\url{www.boardgamegeek.com}} out of 4300 abstract games ever invented. 
-Also it was rated onto place 8 out of 200 abstract games invented in 2007.
+In 2011 Yavalath was ranked onto place 99 from the BoardGameGeek
+community\footnote{\url{www.boardgamegeek.com}} out of 4300 abstract games ever invented.
+It was also rated onto place 8 out of 200 abstract games invented in 2007. \\
 
 Yavalath won 2012 the Humies Award for Human-Competitive Result Produced by Genetic and Evolutionarty Computation
 
 \section{Categorisation}
-Yavalath is a mixture of connect and patter building game. the BoardGameGeek community categorised Yavalath as a Abstract Game, because it was the first computer-generated game with that huge success.
+Yavalath is a mixture of connect and patter building game. The BoardGameGeek
+community categorised Yavalath as a abstract game because it was the first
+computer-generated game with such a huge success.
 
 Also Yavalath inspired a new game categorie thats called:
 \begin{quote}
-	winning with a line of N and losing with a line of N-1
+	winning with a line of N and losing with a line of N-1.
 \end{quote}
 
-The Name Yavalath was randomly created by a Markovian algorithm.
+The name Yavalath was randomly created by a Markovian algorithm.
 
 \section{The Rules}
-The Rules for Yavalath are pretty simple what makes it easy to learn, but its still novel so that the game ist still intressting. One of the reasons that it was so successfull is that Yavalath achieves a good balance between simplysiti and novel.
+The Rules for Yavalath are pretty simple, what makes it easy to learn. But its
+still novel so that the game is still intressting. 
+One of the reasons why the game became so successfull is that Yavalath achieves
+a good balance between simplysiti and a kind of innovation.
 
 Yavalath is for two or three players and the average playingtime per game is 10 minutes\footnote{this was voted by the BoardGameGeek comunity, source:\url{http://boardgamegeek.com/boardgame/33767/yavalath}}.
 
@@ -230,10 +258,40 @@ To show that the small triangle is a good pattern two winning patterns are shown
 \label{fig:yav_smallTriangleWin2}
 \end{figure}
 
-\chapter{BOBO-AI}
-\label{sec:chapter3}
-% #TODO: tech more!!!
-\section{BOBO}
+
+\chapter{Technical Implementation}
+\label{sec:technImplementation}
+The game was implemented in Java, a platform-independent programming language.
+It offers many extensions to develop such a complex game. Java is also fast
+enough to calculate all dependecies and to return the user a
+response on their interaction with the game in a suitable time. But therefore
+isn't a high-end computer needed. In this context no frameworks were used. The
+graphical user interface was realized with the assistance of the GUI-Library
+SWING for Java, which is based on the Abstract-Window-Toolkit (AWT).  
+
+
+
+
+\chapter{Artificial Intelligences}
+\label{sec:artificIntelligences}
+All in all this implementation of Yavalath shows two approaches of an artificial
+intelligence. On the one hand there is the so called UTCAI
+\footnote{UCT : http://senseis.xmp.net/?UCT}, which can has three different
+levels of difficulty. And the other hand there is the simple approach of a
+random AI. Both approaches are explained in a more detailed view in the next two
+sections. 
+
+
+\section{Random-AI}
+The Random-AI is one of the two implemented Artificial-Intelligences and is the
+more easier opponent for the player. Actually the Random-AI is definitely the
+easier technical-implementation of the both implemented AIs.
+
+\begin{lstlisting}[label=some-code,caption=Some Code]
+public void here() {
+	goes().the().code()
+}
+\end{lstlisting}
 
 % #TODO: Tech the Dokument
 
