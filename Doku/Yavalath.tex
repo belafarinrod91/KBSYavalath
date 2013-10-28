@@ -240,7 +240,7 @@ In Yavalath a Triangle is always a good pattern, for example the small triangle 
 \label{fig:yav_smallTriangle}
 \end{figure}
 
-To show that the small triangle is a good pattern two winning patterns are shown in illustration \ref{fig:yav_smallTriangleWin1} and in illustration \ref{fig:yav_smallTriangleWin2}. Both force the black player to loose by a force move. Also its possible to turn a pattern by 120° Degree, with that in mind there are at least six possible winning situations. If a opponent player try to form a triangle its recommendet to stop him as soon es possible.\cite{yvalathBGG}
+To show that the small triangle is a good pattern two winning patterns are shown in illustration \ref{fig:yav_smallTriangleWin1} and in illustration \ref{fig:yav_smallTriangleWin2}. Both force the black player to loose by a force move. Also its possible to turn a pattern by 120ï¿½ Degree, with that in mind there are at least six possible winning situations. If a opponent player try to form a triangle its recommendet to stop him as soon es possible.\cite{yvalathBGG}
 
 
 
@@ -294,6 +294,143 @@ public void here() {
 	goes().the().code()
 }
 \end{lstlisting}
+
+
+
+\section{UCT-AI}
+\label{sec:chapter4}
+The following chapter describes the fundamentals of the UCT (Upper Confidence
+Bounds applied to Trees) algorithm. It was implemented in order to provide the
+Yavalath game with an artificial intelligence (AI) to play against. The main
+task of a game playing AI is to choose its next move with the information about
+the state of the game. The motivation and reasons behind choosing the UCT
+algorithm are briefly pointed out. Afterwards it is explained how this
+algorithms works and how it is integrated into Yavalath.
+
+\subsection{Why UCT?}
+The UCT algorithm was developed for decision making problems especially in terms
+of game playing. It has its strengths in games where
+\begin{itemize}
+	\item the state of a game is hard to evaluatate and
+	\item the game has a high branching factor.
+\end{itemize}
+
+In Yavalath, these two attributes can be found. Firstly, Yavalath has no
+developed theory, mainly because it is relatively unknown, and therefore there
+does not exist an evaluation function which could rate the current state of the
+game. If it was possible to assign a score depending on how good a player's
+tokens are placed on the board, it would be possible to deploy algorithms (such
+as Alphaâ€“beta pruning and Minimax), which can leverage this information in order
+to find a good or even the best possible next move.
+
+Secondly, Yavalath also has a high branching factor. Looking only at the first
+10 moves (5 from each player when 2 are playing), there already are
+\(\frac{61!}{51!}=3,27*10^17\) different move combinations. Good game playing
+AIs cannot only look at the next move, but rather need to look ahead a couple of
+moves. Otherwise, they could not detect potential threats or opportunities which
+might lie ahead a few moves. In order to investigate all these branches, the AI
+needs to be capable of handling the huge number of combinational moves.
+
+The UCT algorithm is able to handle both these attributes of Yavalath and
+therefore is a reasonable choice for a AI algorithm. This is further justified
+by the fact that the creator of Yavalath himself implemented this algorithm as
+AI in his Yavalath application. %source
+
+\subsection{How the UCT algorithm works}
+
+The UCT algorithm is based on the Monte Carlo Tree Search (MCTS). The MCTS is a
+best-first search algorithm where the results from previous iterations guide the
+algorithm to the best path through the tree. It consists of 4 steps which are
+run in a loop. The 4 steps are: %source + pic
+\begin{itemize}
+	\item \textit{Selection:} Starting at root node R, successively select optimal child nodes until a leaf node L is reached.
+	\item \textit{Expansion:}  If L is a not a terminal node, which ends the game, then create one or more child nodes and select one C.
+	\item \textit{Simulation:}  Run a simulated playout (usually a random playout) from C until a result is achieved.
+	\item \textit{Backpropagation:}  Update the current move sequence from C to R with the simulation result.
+\end{itemize}
+
+In the regard of Yavalath, the root of the tree would represent the current
+state of the game. From there the first layer holds all possible next moves the
+AI can make. The goal of the AI is now to find the best promising move in that
+first layer. Going down one layer, the second layer would represent all possible
+counter moves of the following player. In each layer the algorithm tries to find
+the best move and expands successive moves to see how the game would evolve when
+picking a particular move in the first place. That said, the algorithm also
+takes into consideration what the best move for the AI's opponent is. For example,
+even though a move seems to be promising in the first layer, the opponent might
+be able to counter this move with a very strong response move and thus leading
+to a worse situation than initially thought. Therefore, it is important to
+further investigate potentially good moves by going down more and more layers,
+i.e. rounds of the game. The simulation phase is used to determine the
+performance of the moves. Usually, random playouts are used to quickly see how a
+game of chosen moves turns out in the end. It might seem that a random playout
+cannot be representative, but with more and more playouts the accuracy of the
+expected win chance increases due to the law of large numbers. %souce
+The result of a random playout is backpropagated to all involved moves till the
+root node.
+
+It is still unclear how the algorithm chooses a node, and path
+respectively, in the selection phase. This is probably the most important part
+of the algorithm because it determines the best-first search strategy. The
+algorithm needs to find a good balance between exploitation and exploration.
+Expoitation is defined as investigating deep variants of the best move sequences
+whereas exploration means trying out moves which have not been simulated many
+times. The former is important because the AI needs to be confident that the
+choice of a move is good even in the further playout and the latter has to be
+carried out so that the AI does not miss out on good moves which might just have
+unluckily performed bad in a few playouts.
+
+To balance out exploitation and exploration the UCB1 (Upper Confidence Bound 1)
+policy is used. % by author, source
+Before using UCB1 in order to decide which node to select from a set of nodes,
+every node has to be played out at least once. Afterwards the \(i\)th node is
+chosen which maximizes the equation \ref{eq:UCB1}.
+
+\begin{equation}
+\label{eq:UCB1}
+\bar{x}_{i} + C * \sqrt{\frac{\ln n}{n_{i}}}
+\end{equation}
+
+\(x_{i}\) is the performance measure from node \(i\). The performance measure
+must lie in the interval [0;1]. For games it usually is the win chance
+\(\frac{w_{i}}{n_{i}}\) where \(w_{i}\) is the number of wins from random
+playouts of node \(i\) and \(n_{i}\) is the number of times node \(i\) has
+already been played. \(n\) is the overall number of playouts and \(C\) is a
+constant which has to be adjusted empirically for a given problem. %source
+
+In the UCB1 policy, the first part of the equation \(x_{i}\) stands for the
+exploitation part. The higher the win chance of a move, the higher the value of
+the equation. The rest of the equation stands for the exploration part. Assuming
+a node is visited once and not any more for a couple of times, i.e. \(n_{i}\) is
+fixed, then only \(n\) increases which makes the overall second part of the
+equation grow. On the contrary, for a node which is often visited \(n_{i}\) is
+increased simultaneously. As a result, the second part of the equation decreases
+because the linear function in the denominator rises faster than the natural
+logarithm in the numerator. This means that nodes with a bad win chance and few
+plays will eventually be explored too. To what degree and how often they are
+explored determines the constant \(C\). The higher the value the more
+exploration is done and the lower the value the more exploitation is done.
+% sqrt(2) starting value?
+
+From the UCB1 policy it can be derived that each node needs to to hold two
+pieces of information: the number of wins and the number of visits.
+Both the MCTS and the UCB1 policy form the UCT algorithm. This explains where
+the name Upper Confidence Bounds applied to Trees comes from. The UCT algorithm
+could be run quite long on highly branching trees. Fortunately, it can be
+stopped at any time. Of course, the longer the algorithm runs the more
+statistically significant the result will be, but often a fixed number of
+iterations (depending on the problem) are sufficient to get a good result.
+The best move will finally be chosen by looking at the information of all nodes
+in the first layer. It is best to choose the node which was visited the most.
+Even though it is possible to choose the node with the highest win chance, this
+might result in a bad move. Through exploration a node can temporarily have a
+higher win chance, but as it is probably not exploited very much, it is unclear
+if it really is a good move. A high win chance will subsequently result in
+higher exploitation and a higher number of visits. Therefore, the number of
+visits should be used to make the decision on the best move.
+
+\subsection{UCT in Yavalath Implementation}
+
 
 % #TODO: Tech the Dokument
 
