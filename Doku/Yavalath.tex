@@ -15,10 +15,10 @@
 \usepackage{xcolor}
 \usepackage{listings}
 
-\usepackage{caption}
-\DeclareCaptionFont{white}{\color{white}}
-\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
-\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+%\usepackage{caption}
+%\DeclareCaptionFont{white}{\color{white}}
+%\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
 
 
 
@@ -60,7 +60,7 @@
     	Names: & {Schabert Christoph  Alaniz Stephan  Brodhacker Jan} \\
     	Course: & {TINF-AI11/BC}	\\
     	Lecturer: &  HR. Dr. Dr. Dr. Dr. Vossen\\
-    	working period: & 09.09.2013 bis XX.XX.2014
+    	working period: & 09.09.2013 to XX.XX.2014
     \end{tabular}\\
     }
 \end{center}
@@ -92,8 +92,8 @@ Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
 
 \listoffigures
 
-\renewcommand{\lstlistlistingname}{Verzeichnis der Quellcodes}
-\renewcommand{\lstlistingname}{Quellcode}
+\renewcommand{\lstlistlistingname}{Listing of Sourcode}
+\renewcommand{\lstlistingname}{Sourcode}
 \lstlistoflistings
 
 \bibliographystyle{plain}
@@ -289,12 +289,14 @@ The Random-AI is one of the two implemented Artificial-Intelligences and is the
 more easier opponent for the player. Actually the Random-AI is definitely the
 easier technical-implementation of the both implemented AIs.
 
-\begin{lstlisting}[label=some-code,caption=Some Code]
+\begin{lstlisting}
 public void here() {
 	goes().the().code()
 }
+\caption[Some Code (Index), Source:\cite{yvalathBGG}]{Some Code}
+\label{fig:some_code}
 \end{lstlisting}
-
+% #TODO: Think about if we want code!
 
 
 \section{UCT-AI}
@@ -309,7 +311,7 @@ algorithms works and how it is integrated into Yavalath.
 
 \subsection{Why UCT?}
 The UCT algorithm was developed for decision making problems especially in terms
-of game playing. It has its strengths in games where
+of game playing. It has its strengths in games where:
 \begin{itemize}
 	\item the state of a game is hard to evaluatate and
 	\item the game has a high branching factor.
@@ -320,7 +322,7 @@ developed theory, mainly because it is relatively unknown, and therefore there
 does not exist an evaluation function which could rate the current state of the
 game. If it was possible to assign a score depending on how good a player's
 tokens are placed on the board, it would be possible to deploy algorithms (such
-as Alpha–beta pruning and Minimax), which can leverage this information in order
+as Alpha-beta pruning and Minimax), which can leverage this information in order
 to find a good or even the best possible next move.
 
 Secondly, Yavalath also has a high branching factor. Looking only at the first
