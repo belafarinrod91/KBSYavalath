@@ -270,33 +270,58 @@ response on their interaction with the game in a suitable time. But therefore
 isn't a high-end computer needed. In this context no frameworks were used. The
 graphical user interface was realized with the assistance of the GUI-Library
 SWING for Java, which is based on the Abstract-Window-Toolkit (AWT).  
+\section{implemented Features}
+The following section describes the features, which were implemented. \\
+After the game was started, the main menu will be opened. The user can start a new game, make settings and exit the game in this menu. Within the settings menu the user is able to define how many player are part of the game (from one to three) and which sort of player each defined player is (human player, random AI or UCT AI). When a player is a UCT AI an additional option is available, namely, which level of difficulty the UCT AI has.
+\newpage
+
+\begin{figure}[h]
+\begin{center} 
+\makebox[0pt]{   
+\includegraphics[width=17cm]{Abbildungen/exampleOfPlayGround.png}}
+\caption[]{Playground of Yavalath implementation}
+\label{fig:playgroundOfYav}
+\end{center}
+\end{figure} 
+
+\noindent Figure \ref{fig:playgroundOfYav} shows an example of a typical playground of the Yavalath implementation. 
+The upper left corner shows some general game information. Which player has which color and what kind of type the different 
+players are. Beneath this information the field 'Move' shows, which players move it is, with the specific color. The field in the 
+lower left corner shows the calculated winchance of the UTC AI, presented in percent. If there are multiple UCT AI in the game, the 
+certain UCT AI can be indicated by the reference to the color.  \\
+The main part of the window is used for the real playground. When it is a human players turn, the player is able to click on the court, 
+where he wants to set his 
+token. 
+
+
+
+
 
 
 
 
 \chapter{Artificial Intelligences}
 \label{sec:artificIntelligences}
-All in all this implementation of Yavalath provides two approaches of an
-artificial intelligence. On the one hand there is the so called UTCAI
-\footnote{UCT : http://senseis.xmp.net/?UCT}, which can has three different
-levels of difficulty. And the other hand there is the simple approach of a
-random AI. Both approaches are explained in a more detailed view in the next two
+The following chapter describes the two approaches of Artificial Intelligences, which were implemented to this Game. The two Artificial Intelligences are able 
+to play against a human player and even to win against him. On the one hand there is the so called UTCAI, which can has three different
+levels of difficulty. And the other hand there is the simple approach of a random AI. Both approaches are explained in a more detailed view in the next two
 sections. 
 
 
-\section{Random-AI}
-The Random-AI is one of the two implemented Artificial-Intelligences and is the
-more easier opponent for the player. Actually the Random-AI is definitely the
-easier technical-implementation of the both implemented AIs.
 
-\begin{lstlisting}
-public void here() {
-	goes().the().code()
-}
-\caption[Some Code (Index), Source:\cite{yvalathBGG}]{Some Code}
-\label{fig:some_code}
-\end{lstlisting}
-% #TODO: Think about if we want code!
+\section{Random-AI}
+The random AI is one of the two implemented Artificial-Intelligences, as already mentioned in the description of this chapter. 
+Actually the random AI is defintely the more easier opponent for a human player and also for the other other kind of AI, the UCT AI. 
+Additionally to this fact, the random AI is also the more easier approach to implement. Rather the random AI can be described within to sentences : 
+Set your tokens randomly, but before you do that, check if you could  win with your next turn or if you must prevent, that one of your opponents could win. 
+In a more detailed view this means, the random AI sets its token completely randomly to the playground. This happens with the assistance of a special algorithm, 
+which receives the system time. Based on this system time the algorithm can determine a special courton on the playground. If this courton is not used by 
+another player, the random AI will set its token there. It doesn't matter if this turn was smart or if it could yield an advantage. But before the random AI 
+sets its token, it checks whether a opponent could win on the next turn. This happens based on a predefined rule set, as already mentioned in the chapters above. 
+Additionally to that the random AI checks also if it could excel an opponent on the next turn. And all good things are three, so the random AI checks in a third 
+step if it could win itself, when it sets the token on a certain courton. All in all the random AI is not very smart, because neither it can deal with specific 
+game events nor learning from faults, which were made by the random AI in a game before. It actually sets its token so long as the AI itself could win randomly. 
+And this probability is not very high. 
 
 
 \section{UCT-AI}
