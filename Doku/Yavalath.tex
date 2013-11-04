@@ -92,9 +92,10 @@ Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
 
 \listoffigures
 
-\renewcommand{\lstlistlistingname}{Listing of Sourcode}
-\renewcommand{\lstlistingname}{Sourcode}
-\lstlistoflistings
+
+%\renewcommand{\lstlistlistingname}{Listing of Sourcode}
+%\renewcommand{\lstlistingname}{Sourcode}
+%\lstlistoflistings
 
 \bibliographystyle{plain}
 \bibliography{Quellen}
@@ -259,45 +260,6 @@ To show that the small triangle is a good pattern two winning patterns are shown
 \end{figure}
 
 
-\chapter{Technical Implementation}
-\label{sec:technImplementation}
-The game was implemented in Java, a platform-independent programming language.
-It offers many extensions to develop such a complex game. The aspect that Java
-is a object oriented programming language provides many advantages to model
-useful classes, which can demonstrate the structure of such a game. Java is also
-fast enough to calculate all dependecies and to return the user a
-response on their interaction with the game in a suitable time. But therefore
-isn't a high-end computer needed. In this context no frameworks were used. The
-graphical user interface was realized with the assistance of the GUI-Library
-SWING for Java, which is based on the Abstract-Window-Toolkit (AWT).  
-\section{implemented Features}
-The following section describes the features, which were implemented. \\
-After the game was started, the main menu will be opened. The user can start a new game, make settings and exit the game in this menu. Within the settings menu the user is able to define how many player are part of the game (from one to three) and which sort of player each defined player is (human player, random AI or UCT AI). When a player is a UCT AI an additional option is available, namely, which level of difficulty the UCT AI has.
-\newpage
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.95\textwidth]{Abbildungen/exampleOfPlayGround.png}
-\caption[Playground of Yavalath implementation]{Playground of Yavalath implementation}
-\label{fig:playgroundOfYav}
-\end{figure} 
-
-\noindent Figure \ref{fig:playgroundOfYav} shows an example of a typical playground of the Yavalath implementation. 
-The upper left corner shows some general game information. Which player has which color and what kind of type the different 
-players are. Beneath this information the field 'Move' shows, which players move it is, with the specific color. The field in the 
-lower left corner shows the calculated winchance of the UTC AI, presented in percent. If there are multiple UCT AI in the game, the 
-certain UCT AI can be indicated by the reference to the color.  \\
-The main part of the window is used for the real playground. When it is a human players turn, the player is able to click on the court, 
-where he wants to set his 
-token. 
-
-
-
-
-
-
-
-
 \chapter{Artificial Intelligences}
 \label{sec:artificIntelligences}
 The following chapter describes the two approaches of Artificial Intelligences, which were implemented to this Game. The two Artificial Intelligences are able 
@@ -337,7 +299,7 @@ The UCT algorithm was developed for decision making problems especially in terms
 of game playing. It has its strengths in games where:
 \begin{itemize}
 	\item the state of a game is hard to evaluatate and
-	\item the game has a high branching factor.
+	\item the game has a high branching factor.\footnote{cf. \cite{wiki:mcts}}
 \end{itemize}
 
 In Yavalath, these two attributes can be found. Firstly, Yavalath has no
@@ -346,33 +308,40 @@ does not exist an evaluation function which could rate the current state of the
 game. If it was possible to assign a score depending on how good a player's
 tokens are placed on the board, it would be possible to deploy algorithms (such
 as Alpha-beta pruning and Minimax), which can leverage this information in order
-to find a good or even the best possible next move.
+to find a good or even the best possible next move.\\
 
 Secondly, Yavalath also has a high branching factor. Looking only at the first
 10 moves (5 from each player when 2 are playing), there already are
-\(\frac{61!}{51!}=3,27*10^17\) different move combinations. Good game playing
+\(\frac{61!}{51!}=3,27*10^{17}\) different move combinations. Good game playing
 AIs cannot only look at the next move, but rather need to look ahead a couple of
 moves. Otherwise, they could not detect potential threats or opportunities which
 might lie ahead a few moves. In order to investigate all these branches, the AI
-needs to be capable of handling the huge number of combinational moves.
+needs to be capable of handling the huge number of combinational moves.\\
 
 The UCT algorithm is able to handle both these attributes of Yavalath and
 therefore is a reasonable choice for a AI algorithm. This is further justified
 by the fact that the creator of Yavalath himself implemented this algorithm as
-AI in his Yavalath application. %source
+AI in his Yavalath application. \footnote{\cite{yvalath}}\\
 
 \subsection{How the UCT algorithm works}
 
 The UCT algorithm is based on the Monte Carlo Tree Search (MCTS). The MCTS is a
 best-first search algorithm where the results from previous iterations guide the
 algorithm to the best path through the tree. It consists of 4 steps which are
-run in a loop. The 4 steps are: %source + pic
+run in a loop. The 4 steps\footnote{cf. \cite{mcts}, cf. \cite{wiki:mcts}} are:
 \begin{itemize}
 	\item \textit{Selection:} Starting at root node R, successively select optimal child nodes until a leaf node L is reached.
 	\item \textit{Expansion:}  If L is a not a terminal node, which ends the game, then create one or more child nodes and select one C.
 	\item \textit{Simulation:}  Run a simulated playout (usually a random playout) from C until a result is achieved.
 	\item \textit{Backpropagation:}  Update the current move sequence from C to R with the simulation result.
 \end{itemize}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/MonteCarloTreeSearch.png}
+\caption[Monte Carlo Tree Search, Source:\cite{paper:mcts}]{Monte Carlo Tree Search}
+\label{fig:yav_winChance}
+\end{figure}
 
 In the regard of Yavalath, the root of the tree would represent the current
 state of the game. From there the first layer holds all possible next moves the
@@ -390,9 +359,9 @@ i.e. rounds of the game. The simulation phase is used to determine the
 performance of the moves. Usually, random playouts are used to quickly see how a
 game of chosen moves turns out in the end. It might seem that a random playout
 cannot be representative, but with more and more playouts the accuracy of the
-expected win chance increases due to the law of large numbers. %souce
+expected win chance increases due to the law of large numbers.
 The result of a random playout is backpropagated to all involved moves till the
-root node.
+root node.\\
 
 It is still unclear how the algorithm chooses a node, and path
 respectively, in the selection phase. This is probably the most important part
@@ -403,10 +372,10 @@ whereas exploration means trying out moves which have not been simulated many
 times. The former is important because the AI needs to be confident that the
 choice of a move is good even in the further playout and the latter has to be
 carried out so that the AI does not miss out on good moves which might just have
-unluckily performed bad in a few playouts.
+unluckily performed bad in a few playouts.\\
 
 To balance out exploitation and exploration the UCB1 (Upper Confidence Bound 1)
-policy is used. % by author, source
+policy is used which was first introduced by Peter Auer.\footnote{\cite{paper:ucb1}}
 Before using UCB1 in order to decide which node to select from a set of nodes,
 every node has to be played out at least once. Afterwards the \(i\)th node is
 chosen which maximizes the equation \ref{eq:UCB1}.
@@ -421,7 +390,7 @@ must lie in the interval [0;1]. For games it usually is the win chance
 \(\frac{w_{i}}{n_{i}}\) where \(w_{i}\) is the number of wins from random
 playouts of node \(i\) and \(n_{i}\) is the number of times node \(i\) has
 already been played. \(n\) is the overall number of playouts and \(C\) is a
-constant which has to be adjusted empirically for a given problem. %source
+constant which has to be adjusted empirically for a given problem. \footnote{cf. \cite{thesis:uct}}\\
 
 In the UCB1 policy, the first part of the equation \(x_{i}\) stands for the
 exploitation part. The higher the win chance of a move, the higher the value of
@@ -435,7 +404,9 @@ logarithm in the numerator. This means that nodes with a bad win chance and few
 plays will eventually be explored too. To what degree and how often they are
 explored determines the constant \(C\). The higher the value the more
 exploration is done and the lower the value the more exploitation is done.
-% sqrt(2) starting value?
+Auer suggested to set the constant \(C\) to
+\(\sqrt{2}\).\footnote{\cite{paper:ucb1}} Therefore, this can be used as a
+reasonable starting value.\\
 
 From the UCB1 policy it can be derived that each node needs to to hold two
 pieces of information: the number of wins and the number of visits.
@@ -454,7 +425,112 @@ if it really is a good move. A high win chance will subsequently result in
 higher exploitation and a higher number of visits. Therefore, the number of
 visits should be used to make the decision on the best move.
 
-\subsection{UCT in Yavalath Implementation}
+
+\chapter{Technical Implementation}
+\label{sec:technImplementation}
+The game was implemented in Java, a platform-independent programming language.
+It offers many extensions to develop such a complex game. The aspect that Java
+is a object oriented programming language provides many advantages to model
+useful classes, which can demonstrate the structure of such a game. Java is also
+fast enough to calculate all dependecies and to return the user a
+response on their interaction with the game in a suitable time. But therefore
+isn't a high-end computer needed. In this context no frameworks were used. The
+graphical user interface was realized with the assistance of the GUI-Library
+SWING for Java, which is based on the Abstract-Window-Toolkit (AWT).  
+\section{implemented Features}
+The following section describes the features, which were implemented. \\
+After the game was started, the main menu will be opened. The user can start a new game, make settings and exit the game in this menu. Within the settings menu the user is able to define how many player are part of the game (from one to three) and which sort of player each defined player is (human player, random AI or UCT AI). When a player is a UCT AI an additional option is available, namely, which level of difficulty the UCT AI has.
+\newpage
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{Abbildungen/exampleOfPlayGround.png}
+\caption[Playground of Yavalath implementation]{Playground of Yavalath implementation}
+\label{fig:playgroundOfYav}
+\end{figure} 
+
+\noindent Figure \ref{fig:playgroundOfYav} shows an example of a typical playground of the Yavalath implementation. 
+The upper left corner shows some general game information. Which player has which color and what kind of type the different 
+players are. Beneath this information the field 'Move' shows, which players move it is, with the specific color. The field in the 
+lower left corner shows the calculated winchance of the UTC AI, presented in percent. If there are multiple UCT AI in the game, the 
+certain UCT AI can be indicated by the reference to the color.  \\
+The main part of the window is used for the real playground. When it is a human players turn, the player is able to click on the court, 
+where he wants to set his 
+token. 
+
+\section{Implementation of the UCT-AI}
+The implementation of the UCT-AI is primarily based on the theoretical
+foundation of the Monte Carlo Tree Search and the UCB1 policy explained in the
+previous chapter. This section deals with implementational details such as how
+the algorithm was tweaked and how the implementation differs from the theory. 
+Sensei's Library features pseudo code for the UCT algorithm which was used as a
+basis. \footnote{\cite{sl}}\\
+
+The selection phase of the MCTS uses the UCB1 policy as described before. The
+main adjustment done in this part is the choice of the constant \(C\) in the
+UCB1 policy from equation \ref{eq:UCB1}. In Sensei's Library, it is suggested to
+use a value of \(\frac{1}{sqrt{5}}\).\footnote{\cite{sl}} As this is a smaller
+number than \(sqrt{2}\) suggested by Auer, it results in a more exploitational
+tree search. Therefore, good moves are investigated more than exploring the
+total width of the tree. It turns out that this works very well with Yavalath.\\
+
+The expansion phase is slightly modified. Firstly, when expanding the tree by a
+new layer, all children nodes of the currently expanded node are added to the
+tree. From the new nodes, a random node is selected. If the path to the newly
+added layer is chosen again, each of the nodes is visited at least once before a
+definite selection by the UCB1 policy is made. The Monte Carlo Tree Search
+suggests to expand the tree as soon as a leaf node is reached. This was modified
+by the fact that each node needs to be visited at least 10 times before it is
+expanded with its children. This means that the simulation phase would start
+right after the selection phase if a leaf node has less than 10 visits. The
+reason behind this is to reduce to size of the tree stored in memory and
+therefore make the algorithm less prone to run out of memory. The number 10 was
+again suggested by the Sensei's Library and works very well in this regard, too.\\
+
+The simulation phase is done with the help of the Random-AI described earlier.
+Depending on the number of players, the same number of Random-AI's finish the
+game. This phase is the main reason behind some AI logic implemented in the
+Random-AI. If the Random-AI would choose its moves completely randomized, it
+would also reduce the effectiveness and strength of the UCT-AI. The reason
+behind this is that games at the later stage tend to have lots of fields on the
+board where a player can lose by placing a third token in a row. The problem
+here is that a human player would most likely never do such a move if it is not
+forced. Therefore, many simulated games would result in not representative
+outcomes, even though it is way more interesting how the game turns out if these
+moves are avoided. The same holds for following suit of a forced move or taking
+a winning move which is also done by the Random-AI. Having this added logical
+improvements in the Random-AI, the simulations done in the UCT algorithm become
+much more valuable and representative so that the overall AI increases in
+strength.\\
+
+For the backpropagation phase, there is nothing to adjust or modify. It is only
+important to keep in mind that for each player the outcome of the simulation is
+different (expect for a draw). When having two players, the result of the
+simulation has to be alternated on each layer / node when doing the
+backpropagation. Accordingly, the result has to be matched with the player of
+the current node when dealing with three players.\\
+
+Finally, there are two different ways to execute the UCT algorithm. First, one
+can set a fixed time and let the algorithm do as many iterations of the 4 steps
+as possible. Second, one can set a fixed number of iterations and have the
+algorithm run a somewhat undefined time depending on the power of the CPU on
+which it runs. It was decided to implement the second option, because this
+enables to define different difficulties (i.e. strengths) of the UCT-AI.
+The more iterations there are, the more exploitation as well as exploration the
+UCT-AI could do and thus resulting in a better choice of move. Less iterations
+mean a weaker AI whereas more iterations make a string AI. Option one with fixed
+time does not guarantee the same nummber of iterations on different CPUs and
+therefore, the AI would not perform consistently on every PC. In addition, there
+should not be a huge difference in execution time, provided that the PC's CPU is
+not too outdated. \\
+
+Having experimented and played against the UCT-AI the following number of
+iteration were chosen for the corresponding difficulties:
+\begin{itemize}
+	\item \textit{Easy:} 10000 simulations
+	\item \textit{Medium:}  20000 simulations
+	\item \textit{Hard:}  50000 simulations
+\end{itemize}
 
 
 % #TODO: Tech the Dokument
