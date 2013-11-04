@@ -92,10 +92,9 @@ Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
 
 \listoffigures
 
-
-%\renewcommand{\lstlistlistingname}{Listing of Sourcode}
-%\renewcommand{\lstlistingname}{Sourcode}
-%\lstlistoflistings
+\renewcommand{\lstlistlistingname}{Listing of Sourcode}
+\renewcommand{\lstlistingname}{Sourcode}
+\lstlistoflistings
 
 \bibliographystyle{plain}
 \bibliography{Quellen}
@@ -312,7 +311,7 @@ to find a good or even the best possible next move.\\
 
 Secondly, Yavalath also has a high branching factor. Looking only at the first
 10 moves (5 from each player when 2 are playing), there already are
-\(\frac{61!}{51!}=3,27*10^{17}\) different move combinations. Good game playing
+\(\frac{61!}{51!}=3,27*10^17\) different move combinations. Good game playing
 AIs cannot only look at the next move, but rather need to look ahead a couple of
 moves. Otherwise, they could not detect potential threats or opportunities which
 might lie ahead a few moves. In order to investigate all these branches, the AI
