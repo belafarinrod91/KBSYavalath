@@ -275,12 +275,35 @@ Additionally to this fact, the random AI is also the more easier approach to imp
 Set your tokens randomly, but before you do that, check if you could  win with your next turn or if you must prevent, that one of your opponents could win. 
 In a more detailed view this means, the random AI sets its token completely randomly to the playground. This happens with the assistance of a special algorithm, 
 which receives the system time. Based on this system time the algorithm can determine a special courton on the playground. If this courton is not used by 
-another player, the random AI will set its token there. It doesn't matter if this turn was smart or if it could yield an advantage. But before the random AI 
-sets its token, it checks whether a opponent could win on the next turn. This happens based on a predefined rule set, as already mentioned in the chapters above. 
-Additionally to that the random AI checks also if it could excel an opponent on the next turn. And all good things are three, so the random AI checks in a third 
-step if it could win itself, when it sets the token on a certain courton. All in all the random AI is not very smart, because neither it can deal with specific 
+another player, the random AI will set its token there. It doesn't matter if this turn was smart or if it could yield an advantage. 
+
+
+But before the random AI 
+sets its token, it checks whether a opponent could win on the next turn. This happens based on a predefined rule set, as already mentioned in the chapters above. So figure \ref{fig:randomAI1} shows a situation, where the red player (random AI) prevents the win of player green, by setting the red token with the white dot.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Abbildungen/randomAI1.png}
+\caption[]{Random AI prevents red player from winning }
+\label{fig:randomAI1}
+\end{figure}
+Additionally to that the random AI checks also if it could excel an opponent on the next turn. Figure \ref{fig:randomAI2} shows how the red player could set a token (red token with white dot) to force player green to loose. For this situation the random AI had to set the other red tokens before.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Abbildungen/randomAI2.png}
+\caption[]{Random AI excels player green }
+\label{fig:randomAI2}
+\end{figure}
+And all good things are three, so the random AI checks in a third 
+step if it could win itself, when it sets the token on a certain courton. Figure \ref{fig:randomAI3} shows that the random AI would recognize the chance to win in this situation. The random AI must only set the red token with the white dot to win.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Abbildungen/randomAI3.png}
+\caption[]{Random AI recognizes chance to win }
+\label{fig:randomAI3}
+\end{figure}
+All in all the random AI is not very smart, because neither it can deal with specific 
 game events nor learning from faults, which were made by the random AI in a game before. It actually sets its token so long as the AI itself could win randomly. 
-And this probability is not very high. 
+And this probability is not very high. All in all the random AI is not only a random AI as described before, but it has implemented some trivial logic to recognize if the random AI could win or prevent a win of an other player.
 
 
 \section{UCT-AI}
