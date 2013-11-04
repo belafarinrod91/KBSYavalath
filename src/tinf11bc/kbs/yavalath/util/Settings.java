@@ -85,10 +85,10 @@ public class Settings {
 		
 		switch(mDifficultyUTCAiThree){
 			case 1:
-				result = 10000;
+				result = 1000;
 				break;
 			case 2:
-				result = 20000;
+				result = 5000;
 				break;
 			case 3:
 				result = 50000;

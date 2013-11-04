@@ -164,8 +164,7 @@ public class SettingsGui {
 		    		
 		    		//------
 		    		if(!isActivatedOne){
-		    			mSettings.setDifficultyUTCAiOne(getSettingForValue(mSettings
-		    					.getDifficultyUTCAiOne()), false);
+		    			mSettings.setDifficultyUTCAiOne(getSettingForValue(mSettings.getDifficultyUTCAiOne()), false);
 		    		}
 		    		else {
 		    			int difficulty = mDifficultyUtcAiOne.getValue();
@@ -173,8 +172,7 @@ public class SettingsGui {
 		    		}
 		    		//------
 		    		if(!isActivatedTwo){
-		    			mSettings.setDifficultyUTCAiTwo(getSettingForValue(mSettings
-		    					.getDifficultyUTCAiTwo()), false);
+		    			mSettings.setDifficultyUTCAiTwo(getSettingForValue(mSettings.getDifficultyUTCAiTwo()), false);
 		    		}
 		    		else {
 		    			int difficulty = mDifficultyUtcAiTwo.getValue();
@@ -182,8 +180,7 @@ public class SettingsGui {
 		    		}
 		    		//------
 		    		if(!isActivatedThree){
-		    			mSettings.setDifficultyUTCAiThree(getSettingForValue(mSettings
-		    					.getDifficultyUTCAiThree()), false);
+		    			mSettings.setDifficultyUTCAiThree(getSettingForValue(mSettings.getDifficultyUTCAiThree()), false);
 		    		}
 		    		else {
 		    			int difficulty = mDifficultyUtcAiThree.getValue();
@@ -225,6 +222,7 @@ public class SettingsGui {
 		if (returnIntForPlayerStyle(mPlayerStylePlayer2.getSelectedItem()) != 3) {
 			mDifficultyUtcAiTwo.setEnabled(false);
 			isActivatedTwo = false;
+			
 		} else {
 			mDifficultyUtcAiTwo.setEnabled(true);
 			isActivatedTwo = true;
@@ -233,6 +231,7 @@ public class SettingsGui {
 		if (returnIntForPlayerStyle(mPlayerStylePlayer3.getSelectedItem()) != 3) {
 			mDifficultyUtcAiThree.setEnabled(false);
 			isActivatedThree = false;
+			
 		} else {
 			mDifficultyUtcAiThree.setEnabled(true);
 			isActivatedThree = true;
