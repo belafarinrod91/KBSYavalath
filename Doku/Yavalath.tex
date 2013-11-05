@@ -1,5 +1,5 @@
-\documentclass[german]{report}
-\usepackage[ngerman]{babel}
+\documentclass[english]{report}
+\usepackage[english]{babel}
 \usepackage[ansinew]{inputenc}
 \usepackage{graphicx}
 \usepackage{here}
@@ -109,6 +109,9 @@ two different Artificial Intelligences, which are able to play the game and win
 against nearly every human player.
 
 \section{Technical Notes}
+All Sources to Illustration are listed in the Illustrationregister. All Illustration that have not a explicitly mentiont Source are self created by the authors.
+
+
 The implementation of the game and the ai-players with a fully functional
 graphical user interface is availible on GitHub und the the following url:
 \begin{quotation}
@@ -122,8 +125,8 @@ This publication was written in \LaTeX an compiled with MikeTex.
 
 \chapter{The Game - Yavalath}
 \label{sec:chapter2}
-In this chapter the history of Yavalath, and the game is explained.
-% #TODO: tech more!!!
+In this chapter the creation and history of Yavalath is explained. Also the game itself is explained.
+
 \section{History}
 Yavalath is the most successgul game evolved by LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program 
 that implements an algorithm for generating new games. This LUDI software system not only defines the scope and rules of the game, it also interpets 
@@ -164,7 +167,7 @@ With that specifications there are 61 free cells in total, as to see in Illustra
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_emptyBoard.png}
-\caption[The Yavalath game board, Source:\cite{yvalathHP}]{The Yavalath game board}
+\caption[The Yavalath game board, Source:\cite{yvalath}]{The Yavalath game board}
 \label{fig:yav_board}
 \end{figure}
 
@@ -189,7 +192,7 @@ A player can win with two different methods:
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_4inarow.png}
-\caption[Four in a row wining, Source:\cite{yvalathHP}]{Four in a row wining}
+\caption[Four in a row wining, Source:\cite{yvalath}]{Four in a row wining}
 \label{fig:yav_4inarow}
 \end{figure}
 
@@ -197,7 +200,8 @@ A player can win with two different methods:
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_forceMove.png}
-\caption[Forced move winning, Source:\cite{yvalathHP}]{Forced move winning}
+\caption[Forced move winning, Source:\cite{yvalath
+}]{Forced move winning}
 \label{fig:yav_forceMove}
 \end{figure}
 
@@ -209,24 +213,24 @@ Cameron Browne himsself defined some taktics and strategies and described them i
 
 
 The first move is crucial for the folowing tactics and for the chance to win.
-In Illustration \ref{fig:yav_winChance} is shown a Yavalath board with the win chance for the first move, the bigger the bouble the bigger the win chance. As its good visable that a centerd first move has the biggest win chance.\cite{yvalathHP}
+In Illustration \ref{fig:yav_winChance} is shown a Yavalath board with the win chance for the first move, the bigger the bouble the bigger the win chance. As its good visable that a centerd first move has the biggest win chance.\cite{yvalath}
 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_winChance.png}
-\caption[The win chance for the first Move, Source:\cite{yvalathHP}]{The win chance for the first Move}
+\caption[The win chance for the first Move, Source:\cite{yvalath}]{The win chance for the first Move}
 \label{fig:yav_winChance}
 \end{figure}
 
 
 An other good chooice for a first move is to start with a pattern. The Triangle starting pattern is an excelent example for a first move pattern (the Triangle starting pattern is shwon in illustration \ref{fig:yav_triangle}) on the left side). because it provides a huge number of chances to win by a forced move. Also its hard to stop a player that used the triangle pattern as a starting move. The only way to stop it is to forsee it pretty early and prevent the player from forming the triangle.
-On the right side of illustration \ref{fig:yav_triangle} a possible outcome of the triangle starting possition where the black player has losst by a forced move.\cite{yvalathHP}
+On the right side of illustration \ref{fig:yav_triangle} a possible outcome of the triangle starting possition where the black player has losst by a forced move.\cite{yvalath}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_triangle.png}
-\caption[The triangle starting pattern, Source:\cite{yvalathHP}]{The triangle starting pattern}
+\caption[The triangle starting pattern, Source:\cite{yvalath}]{The triangle starting pattern}
 \label{fig:yav_triangle}
 \end{figure}
 
@@ -270,25 +274,25 @@ another player, the random AI will set its token there. It doesn't matter if thi
 
 But before the random AI 
 sets its token, it checks whether a opponent could win on the next turn. This happens based on a predefined rule set, as already mentioned in the chapters above. So figure \ref{fig:randomAI1} shows a situation, where the red player (random AI) prevents the win of player green, by setting the red token with the white dot.
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI1.png}
-\caption[]{Random AI prevents red player from winning }
+\caption{Random AI prevents red player from winning }
 \label{fig:randomAI1}
 \end{figure}
 Additionally to that the random AI checks also if it could excel an opponent on the next turn. Figure \ref{fig:randomAI2} shows how the red player could set a token (red token with white dot) to force player green to loose. For this situation the random AI had to set the other red tokens before.
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI2.png}
-\caption[]{Random AI excels player green }
+\caption{Random AI excels player green }
 \label{fig:randomAI2}
 \end{figure}
 And all good things are three, so the random AI checks in a third 
 step if it could win itself, when it sets the token on a certain courton. Figure \ref{fig:randomAI3} shows that the random AI would recognize the chance to win in this situation. The random AI must only set the red token with the white dot to win.
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI3.png}
-\caption[]{Random AI recognizes chance to win }
+\caption{Random AI recognizes chance to win }
 \label{fig:randomAI3}
 \end{figure}
 All in all the random AI is not very smart, because neither it can deal with specific 
@@ -311,7 +315,7 @@ The UCT algorithm was developed for decision making problems especially in terms
 of game playing. It has its strengths in games where:
 \begin{itemize}
 	\item the state of a game is hard to evaluatate and
-	\item the game has a high branching factor.\footnote{cf. \cite{wiki:mcts}}
+	\item the game has a high branching factor.\cite{wiki:mcts}
 \end{itemize}
 
 In Yavalath, these two attributes can be found. Firstly, Yavalath has no
@@ -333,14 +337,15 @@ needs to be capable of handling the huge number of combinational moves.\\
 The UCT algorithm is able to handle both these attributes of Yavalath and
 therefore is a reasonable choice for a AI algorithm. This is further justified
 by the fact that the creator of Yavalath himself implemented this algorithm as
-AI in his Yavalath application. \footnote{\cite{yvalath}}\\
+AI in his Yavalath application.\cite{yvalath}
+
 
 \subsection{How the UCT algorithm works}
 
 The UCT algorithm is based on the Monte Carlo Tree Search (MCTS). The MCTS is a
 best-first search algorithm where the results from previous iterations guide the
 algorithm to the best path through the tree. It consists of 4 steps which are
-run in a loop. The 4 steps\footnote{cf. \cite{mcts}, cf. \cite{wiki:mcts}} are:
+run in a loop. The 4 steps\cite{mcts}\cite{wiki:mcts} are:
 \begin{itemize}
 	\item \textit{Selection:} Starting at root node R, successively select optimal child nodes until a leaf node L is reached.
 	\item \textit{Expansion:}  If L is a not a terminal node, which ends the game, then create one or more child nodes and select one C.
@@ -387,7 +392,7 @@ carried out so that the AI does not miss out on good moves which might just have
 unluckily performed bad in a few playouts.\\
 
 To balance out exploitation and exploration the UCB1 (Upper Confidence Bound 1)
-policy is used which was first introduced by Peter Auer.\footnote{\cite{paper:ucb1}}
+policy is used which was first introduced by Peter Auer.\cite{paper:ucb1}
 Before using UCB1 in order to decide which node to select from a set of nodes,
 every node has to be played out at least once. Afterwards the \(i\)th node is
 chosen which maximizes the equation \ref{eq:UCB1}.
@@ -402,7 +407,8 @@ must lie in the interval [0;1]. For games it usually is the win chance
 \(\frac{w_{i}}{n_{i}}\) where \(w_{i}\) is the number of wins from random
 playouts of node \(i\) and \(n_{i}\) is the number of times node \(i\) has
 already been played. \(n\) is the overall number of playouts and \(C\) is a
-constant which has to be adjusted empirically for a given problem. \footnote{cf. \cite{thesis:uct}}\\
+constant which has to be adjusted empirically for a given problem.\cite{thesis:uct}
+
 
 In the UCB1 policy, the first part of the equation \(x_{i}\) stands for the
 exploitation part. The higher the win chance of a move, the higher the value of
@@ -417,8 +423,9 @@ plays will eventually be explored too. To what degree and how often they are
 explored determines the constant \(C\). The higher the value the more
 exploration is done and the lower the value the more exploitation is done.
 Auer suggested to set the constant \(C\) to
-\(\sqrt{2}\).\footnote{\cite{paper:ucb1}} Therefore, this can be used as a
-reasonable starting value.\\
+\(\sqrt{2}\).\cite{paper:ucb1} Therefore, this can be used as a
+reasonable starting value.
+
 
 From the UCB1 policy it can be derived that each node needs to to hold two
 pieces of information: the number of wins and the number of visits.
@@ -476,12 +483,13 @@ foundation of the Monte Carlo Tree Search and the UCB1 policy explained in the
 previous chapter. This section deals with implementational details such as how
 the algorithm was tweaked and how the implementation differs from the theory. 
 Sensei's Library features pseudo code for the UCT algorithm which was used as a
-basis. \footnote{\cite{sl}}\\
+basis.\cite{sl}
+
 
 The selection phase of the MCTS uses the UCB1 policy as described before. The
 main adjustment done in this part is the choice of the constant \(C\) in the
 UCB1 policy from equation \ref{eq:UCB1}. In Sensei's Library, it is suggested to
-use a value of \(\frac{1}{sqrt{5}}\).\footnote{\cite{sl}} As this is a smaller
+use a value of \(\frac{1}{sqrt{5}}\).\cite{sl} As this is a smaller
 number than \(sqrt{2}\) suggested by Auer, it results in a more exploitational
 tree search. Therefore, good moves are investigated more than exploring the
 total width of the tree. It turns out that this works very well with Yavalath.\\
