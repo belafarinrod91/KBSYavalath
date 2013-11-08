@@ -1,0 +1,449 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <style type="text/css">
+	.myFooter {
+		position: absolute;
+		height: auto;
+		width: 1000px;
+		left: 58px;
+		top: 655px;
+		font-size: 0.7em;
+	}
+	
+	.quotation {
+		background-color:orange;
+		width:500px;
+		height:200px;
+		border:1px solid red;
+		padding:20px;
+	}
+	
+</style>
+  
+ </head>
+
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="img/logo_titlepage.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter></br><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Agenda</h2>
+    </hgroup>
+    <article>
+      <ul>
+      	<li>Introduction to Yavalath</li>
+      		<ul>
+      			<li>Technical Notes</li>
+      			<li>Rules</li>
+      		</ul>
+      	<li>Artifcial Intelligences</li>
+      		<ul>
+      			<li>Random AI</li>
+      			<li>UCT AI</li>
+      		</ul>
+      	<li>Lessons Learned</li>
+      </ul>
+       <div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker</div>
+     </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Introduction to Yavalath</h2>
+      <h3>Technical Notes</h3>
+     </br>
+    </hgroup>
+    <article>
+      <ul>
+      	<li>implemented in Java</li>
+      		<ul>
+      			<li>object orientated approach</li>
+      			<li>fast enough for our purposes</li>
+      			<li>gui build on SWING/AWT</li>
+      			<li> .... lines of code</li>
+      		</ul>
+      	
+      </ul>
+      <div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker</div>
+    </article>
+  </slide>
+  
+  <slide>
+  	<hargroup>
+  		<h2>Introduction to Yavalath</h2>
+  		<h3>Rules and Information</h3>
+  	</br>
+  	</hargroup>
+  	<article>
+  		<p>Yavalath is the most successgul game evolved by LUDI in 2007
+ 			and published in 2009 by Nestorgames (Spain). </br> </br>
+ 			LUDI was developed by Cameron Browne as part of 
+			his PhD in AI and game design
+ 		</p>
+ 		</br>
+ 		</br>
+  		
+  		<p><b>awarded with : </b></p>
+  	</br>
+  		<ul>
+  			<li>Dean's Award for Outstanding Thesis</li>
+  			<li>Yavalath won 2012 the Humies Award for 
+				Human-Competitive Result Produced by Genetic and Evolutionarty Computation</li>
+			<li>It was also rated onto place 8 out of 200 abstract games invented in 2007.</li>
+  		</ul>
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Christoph Schabert</div>
+  	</article>
+  </slide>
+  
+  <slide>
+  	<hargroup>
+  		<h2>Introduction to Yavalath</h2>
+  		<h3>Rules and Information : Ludi</h3>
+  		</br>
+  	</hargroup>
+  	<article>
+  		<p> LUDI is a game-generating computer program 
+			that implements Cameron Browne's
+ 			algorithm for generating new games. 
+ 		</p>
+ 		</br>
+ 		</br>
+ 		<p><b>This LUDI software system:</b></p>
+ 		<br>
+ 		<ul>
+ 			<li>defines the scope </li>
+ 			<li>defines the rules of the game</li>
+ 			<li>interpets the game and coordinates a testplays</li>
+ 			<li>measures the game quality</li>
+ 		</ul>
+ 		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Christoph Schabert</div>
+ 	</article>
+  </slide>
+  
+  <slide>
+  	<hargroup>
+  		<h2>Introduction to Yavalath</h2>
+  		<h3>Rules and Information : Ludi</h3>
+  	</hargroup>
+  	<article>
+  	<div  style="text-align: center;">
+      <img src="img/ludi_system.PNG" width="770px" alt="Description" title="Description">
+      <footer class="source">source: Cameron Browne, Evolutionary Game Design, Springer London 2011</footer>
+     </div>
+      <div class="myFooter">DHBW Mannheim | 13.11.2013 | Christoph Schabert</div>
+    </article>
+  </slide>
+  
+  
+  
+    <slide>
+  	<hargroup>
+  		<h2>Introduction to Yavalath</h2>
+  		<h3>Rules and Information</h3>
+  		</br>
+  	</hargroup>
+  	<article>
+  		<p> The name Yavalath was randomly created by a Markovian algorithm. </br>
+			Also Yavalath inspired a new game categorie thats called:
+ 		</p>
+ 		</br>
+ 		</br>
+			<pre >
+				winning with a line of N and losing with a line of N-1.
+			</pre>
+ 		</br>
+ 		<p>mixture of connect and patter building game</p>
+ 		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Christoph Schabert</div>
+ 	</article>
+  </slide>
+
+	
+  <slide>
+  	<hargroup>
+  		<h2>Introduction to Yavalath</h2>
+  		<h3>Basic Rules </h3>
+  		</br>
+  	</hargroup>
+  	<article>
+  		<ul>
+  			<li>2-3 players</li>
+  			<li>win with 4 and loose with 3 in a row</li>
+  			<li>turnbased until :</li>
+  			<ul>
+  				<li>one player have won</li>
+  				<li>all but one players have lost</li>
+  				<li>all cells are filled and it is a draw</li>
+  			</ul>
+  			
+  		</ul>
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Christoph Schabert</div>
+ 	</article>
+  </slide>  
+  
+  <slide>
+  	<hargroup>
+  		<h2> Artificial Intelligence</h2>
+  		<h3> Random AI</h3>
+  	</hargroup>
+  	<article>
+  		<ul>
+  			<li>one of two implemented AIs</li>
+  			<li>simple approach</li>
+  			<li>very easy opponent for human player</li>
+  			<li>small approach of logic</li>
+  			<li>can be described in a few sentences : </br></br> The random AI ... </li>
+  			<ul>
+  				<li> ... sets its token randomly</li>
+  				<li> ... checks if it could prevent the winning of an opponent</li>
+  				<li> ... checks if it could win </li>
+				<li> ... checks if it could excel an opponent</li>
+  			</ul>
+  		</ul>
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker</div>
+  	</article>
+  </slide>
+  
+  <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>Random AI : Implemented Logic</h3>
+  	</hargroup>
+  	<article>
+  		</br>
+  		<p>prevent a opponent to win</p>
+  		</br>
+  		<div  style="text-align: center;">
+  		 <img src="img/randomAI1.png" width="400px" alt="Description" title="Description">
+  		</div>
+  		 <div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker</div>
+  	</article>
+  </slide>
+  
+    <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>Random AI : Implemented Logic</h3>
+  	</hargroup>
+  	<article>
+  		</br>
+  		<p>excels player green</p>
+  		</br>
+  		<div style="text-align: center;">
+  		 <img src="img/randomAI2.png" width="400px" alt="Description" title="Description">
+  		</div>
+  		 <div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker</div>
+  	</article>
+  </slide>
+  
+   <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>Random AI : Implemented Logic</h3>
+  	</hargroup>
+  	<article >
+  		</br>
+  		<p>recognices chance to win</p>
+  		</br>
+  		<div style="text-align: center;">
+  		 <img src="img/randomAI3.png" width="400px" alt="Description" title="Description">
+  		</div>
+  		 <div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker</div>
+  	</article>
+  </slide>
+  
+   <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>UCT AI : Motivation</h3>
+		</br>
+  	</hargroup>
+  	<article >
+  		<ul>
+  			<li>UCT has its strengths in games where:</li>
+  			<ul>
+  				<li>the state of a game is hard to evaluate </li>
+  				<li>the game has a high branching factor</li>
+  			</ul>
+  		</br>
+  			<li>Yavalath's properties suit UCT, because</li>
+  			<ul>
+  				<li>it has no developed game theory</li>
+  				<li>there are 3,27 * 10^17 different move combinations only for the first 10 moves</li>
+  			</ul>
+  		</ul>
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Stephan Alaniz-Kupsch</div>
+  	</article>
+  </slide>
+  
+  <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>UCT AI</h3>
+		</br>
+  	</hargroup>
+  	<article >
+  		<ul>
+  			<li>Monte Carlo Tree Search</li>
+  		</ul>
+  		<div style= "text-align: center">
+  			<img src="img/MonteCarloTreeSearch.png" width="900px" alt="Description" title="Description">
+  			<footer class="source" style="margin-top: 400px;">source: http://charlieai.blogspot.de/2013/05/monte-carlo-tree-seach.html</footer>
+  		</div>
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Stephan Alaniz-Kupsch</div>		
+  	</article>
+  </slide>
+  
+  
+    <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>UCT AI</h3>
+		</br>
+  	</hargroup>
+  	<article >
+  		<ul>
+  			<li>Expoitation</li>
+  			<ul>
+  				<li>initialization: Play every node once</li>
+  				<li>loop: Play node that maximizes</li>
+  			</ul>
+  		</ul>
+  		<div style="margin-left: 180px; margin-top: 10px; margin-bottom: 40px;">
+  			$\bar{x}_i+C*\sqrt{\frac{ln_n}{n_i}}$
+  		</div>
+  		<ul>
+  			<li>UCB1 Policy:</li>
+  			<ul>
+  				<li>$X_i$ – mean reward of node i (here: win chance)</li>
+  				<li>$N_i$ – number of visits of node i</li>
+  				<li>$N$ – number of total iterations</li>
+  				<li>$C$ – adjustable constant</li>
+  				
+  			</ul>
+  		</ul>
+  		
+  		<IMG STYLE="position:absolute; top:15%; left:70%; width:250px; height:250px" src="img/TreeDepth.png">
+  		<IMG STYLE="position:absolute; top:55%; left:70%; width:250px; height:250px" src="img/TreeWidth.png">
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Stephan Alaniz-Kupsch</div>
+  	</article>
+  </slide>
+
+  <slide>
+  	<hargroup>
+  		<h2>Artificial Intelligence</h2>
+		<h3>UCT AI</h3>
+		</br>
+  	</hargroup>
+  	<article >
+  		<ul>
+  			<li>UCT in Yavalath </li>
+  			<ul>
+  				<li>easy to implement</li>
+  				<li>strong AI</li>
+  			</ul>
+  		</br>
+  			<li>Three levels of difficulty:</li>
+  			<ul>
+  				<li>easy:   10000 iterations</li>
+  				<li>medium: 20000 iterations</li>
+  				<li>hard:   50000 iterations</li>
+  			</ul>
+  		</ul>
+  		<div class="myFooter">DHBW Mannheim | 13.11.2013 | Stephan Alaniz-Kupsch</div>
+  	</article>
+  </slide>
+  
+  <slide>
+  	<hargroup>
+  		<h2>Lessons Learned</h2>
+  	</hargroup>
+  	<article>
+  </br>
+  	<ul>
+  		<li>improved ...</li>
+  		<ul>
+  			<li>Java Skills</li>
+  			<li>OO-programming-skills</li>
+  			<li>SWING/AWT-Skills</li>
+  		</ul>
+  		<li>implementation of AIs based on some pseudo code</li>
+  		<li>game-theory / game-design</li>
+ 	</ul>
+ 	<div class="myFooter">DHBW Mannheim | 13.11.2013 | Jan Brodhaecker </div>
+	</article>
+  </slide>
+  
+  
+  
+  
+ 
+  
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})(); 
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
