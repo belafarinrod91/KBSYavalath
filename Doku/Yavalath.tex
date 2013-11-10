@@ -22,8 +22,8 @@
 
 
 
-  \RequirePackage{draftwatermark}
-  \SetWatermarkText{DRAFT}
+%  \RequirePackage{draftwatermark}
+%  \SetWatermarkText{DRAFT}
 
 \begin{document}
 
@@ -59,8 +59,8 @@
     \begin{tabular}{ll}
     	Names: & {Schabert Christoph  Alaniz Stephan  Brodhacker Jan} \\
     	Course: & {TINF-AI11/BC}	\\
-    	Lecturer: &  HR. Dr. Dr. Dr. Dr. Vossen\\
-    	working period: & 09.09.2013 to XX.XX.2014
+    	Lecturer: &  {HR. Dr. Vossen}\\
+    	working period: & {09.09.2013 - 14.1.2014}
     \end{tabular}\\
     }
 \end{center}
@@ -164,7 +164,7 @@ Yavalath is for two or three players and the average playingtime per game is 10 
 The board is a hexagon with 5 spaces on every side, that is initally empty.
 With that specifications there are 61 free cells in total, as to see in Illustration \ref{fig:yav_board}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_emptyBoard.png}
 \caption[The Yavalath game board, Source:\cite{yvalath}]{The Yavalath game board}
@@ -189,19 +189,18 @@ A player can win with two different methods:
 	\item one player forece another player to form a line of three pices what is called a forced move. (In illustartion  \ref{fig:yav_forceMove} the black player is forced to move to prevent the white player from winning. in).
 \end{enumerate}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Abbildungen/yav_4inarow.png}
+\includegraphics[width=0.65\textwidth]{Abbildungen/yav_4inarow.png}
 \caption[Four in a row wining, Source:\cite{yvalath}]{Four in a row wining}
 \label{fig:yav_4inarow}
 \end{figure}
 
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Abbildungen/yav_forceMove.png}
-\caption[Forced move winning, Source:\cite{yvalath
-}]{Forced move winning}
+\includegraphics[width=0.65\textwidth]{Abbildungen/yav_forceMove.png}
+\caption[Forced move winning, Source:\cite{yvalath}]{Forced move winning}
 \label{fig:yav_forceMove}
 \end{figure}
 
@@ -216,9 +215,9 @@ The first move is crucial for the folowing tactics and for the chance to win.
 In Illustration \ref{fig:yav_winChance} is shown a Yavalath board with the win chance for the first move, the bigger the bouble the bigger the win chance. As its good visable that a centerd first move has the biggest win chance.\cite{yvalath}
 
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Abbildungen/yav_winChance.png}
+\includegraphics[width=0.5\textwidth]{Abbildungen/yav_winChance.png}
 \caption[The win chance for the first Move, Source:\cite{yvalath}]{The win chance for the first Move}
 \label{fig:yav_winChance}
 \end{figure}
@@ -227,9 +226,9 @@ In Illustration \ref{fig:yav_winChance} is shown a Yavalath board with the win c
 An other good chooice for a first move is to start with a pattern. The Triangle starting pattern is an excelent example for a first move pattern (the Triangle starting pattern is shwon in illustration \ref{fig:yav_triangle}) on the left side). because it provides a huge number of chances to win by a forced move. Also its hard to stop a player that used the triangle pattern as a starting move. The only way to stop it is to forsee it pretty early and prevent the player from forming the triangle.
 On the right side of illustration \ref{fig:yav_triangle} a possible outcome of the triangle starting possition where the black player has losst by a forced move.\cite{yvalath}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Abbildungen/yav_triangle.png}
+\includegraphics[width=0.45\textwidth]{Abbildungen/yav_triangle.png}
 \caption[The triangle starting pattern, Source:\cite{yvalath}]{The triangle starting pattern}
 \label{fig:yav_triangle}
 \end{figure}
@@ -237,16 +236,16 @@ On the right side of illustration \ref{fig:yav_triangle} a possible outcome of t
 In Yavalath a Triangle is always a good pattern, for example the small triangle (as seen in illustration \ref{fig:yav_smallTriangle}). The Reason that the small triangle is such a strong pattern is because it can foram a huge number of winning chances. 
 
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{Abbildungen/yav_smallTriangle.png}
+\includegraphics[width=0.35\textwidth]{Abbildungen/yav_smallTriangle.png}
 \caption[A small triangle pattern, Source:\cite{yvalathBGG}]{A small triangle pattern}
 \label{fig:yav_smallTriangle}
 \end{figure}
 
-To show that the small triangle is a good pattern two winning patterns are shown in illustration \ref{fig:yav_smallTriangleWin1}. This forces the black player to loose by a force move. Also its possible to turn a pattern by 120 Degree, with that in mind there are at least three possible winning situations with this simple pattern. If a opponent player try to form a triangle its recommendet to stop him as soon es possible.\cite{yvalathBGG}
+To show that the small triangle is a good pattern, a winning patterns are shown in illustration \ref{fig:yav_smallTriangleWin1}. This forces the black player to loose by a force move. Also its possible to turn a pattern by 120 Degree, with that in mind there are at least three possible winning situations with this simple pattern. If a opponent player try to form a triangle its recommendet to stop him as soon es possible.\cite{yvalathBGG}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/yav_smallTriangleWin1.png}
 \caption[A small triangle winning pattern, Source:\cite{yvalathBGG}]{A small triangle winning pattern}
@@ -357,7 +356,7 @@ run in a loop. The 4 steps\cite{mcts}\cite{wiki:mcts} are:
 \centering
 \includegraphics[width=0.95\textwidth]{Abbildungen/MonteCarloTreeSearch.png}
 \caption[Monte Carlo Tree Search, Source:\cite{paper:mcts}]{Monte Carlo Tree Search}
-\label{fig:yav_winChance}
+\label{fig:mcts}
 \end{figure}
 
 In the regard of Yavalath, the root of the tree would represent the current
