@@ -67,6 +67,9 @@
 
 \end{titlepage}
 
+\newpage 
+\section*{Abstract}\thispagestyle{empty}
+This paper was created during the lecture 'Knowledge Based Systems' on the Baden-Wuerttemberg Cooperative State University in the winter semester 2013. It describes the basic facts and rules about the game board Yavalath, which features and above all which artificiall intelligences were implemented, namely a UCT AI and a kind of a random AI. The theoretical background was explained as well. 
 \newpage
 \section*{Statutory declaration}\thispagestyle{empty}
 I herewith declare that I have completed the present thesis independently making use only of the specified literature and aids. Sentences or parts of sentences quoted literally are marked as quotations; identification of other references with regard to the statement and scope of the work is quoted. The thesis in this form or in any other form has not been submitted to an examination body and has not been published.\\
@@ -265,7 +268,7 @@ sections.
 The random AI is one of the two implemented Artificial-Intelligences, as already mentioned in the description of this chapter. 
 Actually the random AI is defintely the more easier opponent for a human player and also for the other other kind of AI, the UCT AI. 
 Additionally to this fact, the random AI is also the more easier approach to implement. Rather the random AI can be described within to sentences : 
-Set your tokens randomly, but before you do that, check if you could  win with your next turn or if you must prevent, that one of your opponents could win. 
+The random AI set its token randomly, but before it does this, it checks if it could win with settin a token to a special field or if it must prevent an opponent from winning.
 In a more detailed view this means, the random AI sets its token completely randomly to the playground. This happens with the assistance of a special algorithm, 
 which receives the system time. Based on this system time the algorithm can determine a special courton on the playground. If this courton is not used by 
 another player, the random AI will set its token there. It doesn't matter if this turn was smart or if it could yield an advantage. 
@@ -279,11 +282,11 @@ sets its token, it checks whether a opponent could win on the next turn. This ha
 \caption{Random AI prevents red player from winning }
 \label{fig:randomAI1}
 \end{figure}
-Additionally to that the random AI checks also if it could excel an opponent on the next turn. Figure \ref{fig:randomAI2} shows how the red player could set a token (red token with white dot) to force player green to loose. For this situation the random AI had to set the other red tokens before.
+Additionally to that the random AI checks also if it would loose with setting the token on the specified position. Figure \ref{fig:randomAI2} shows such a situation. If the algorithm would return a field next to one of the two red tokens, the random AI would not set this token, because then it would loose the game. So the random AI would set its token somewhere else.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI2.png}
-\caption{Random AI excels player green }
+\caption{Random AI sets token other position}
 \label{fig:randomAI2}
 \end{figure}
 And all good things are three, so the random AI checks in a third 
