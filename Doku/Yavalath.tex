@@ -28,12 +28,12 @@
 \begin{document}
 
 \pagestyle{fancy}
-\lhead{\color{red}\textbf{DRAFT}}
+\lhead{}%\color{red}\textbf{DRAFT}}
 \chead{- Knowledge Based Systems - }
 \rhead{\includegraphics*[width=2.0cm]{abbildungen/dhbwlogo.png}}
 
 \cfoot{Christoph Schabert, Stephan Alaniz, Jan Brodhacker (TINF11-AI\/BC) \\DHBW Mannheim}
-\lfoot{\color{red}\textbf{DRAFT}}
+\lfoot{}%\color{red}\textbf{DRAFT}}
 \rfoot{\thepage}
 \fancyhfoffset{\marginparsep}
 \renewcommand{\footrulewidth}{1.0pt}
@@ -57,9 +57,9 @@
     \vspace{4cm}
  \normalsize{
     \begin{tabular}{ll}
-    	Names: & {Schabert Christoph  Alaniz Stephan  Brodhacker Jan} \\
+    	Names: & {Schabert Christoph,  Alaniz Stephan,  Brodhacker Jan} \\
     	Course: & {TINF-AI11/BC}	\\
-    	Lecturer: &  {HR. Dr. Vossen}\\
+    	Lecturer: &  {Hr. Dr. Vossen}\\
     	working period: & {09.09.2013 - 14.1.2014}
     \end{tabular}\\
     }
@@ -101,52 +101,52 @@ Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
 
 \newpage
 
-\chapter{Intruduction}
+\chapter{Introduction}
 \label{sec:chapter1}
 \section{Goal and Motivation}
-The goal of this project is to implement a game called Yavalath. And to develop
-two different Artificial Intelligences, which are able to play the game and win
+The goal of this project is to implement a game called Yavalath and to develop
+two different artificial intelligences, which are able to play the game and win
 against nearly every human player.
 
 \section{Technical Notes}
-All Sources to Illustration are listed in the Illustrationregister. All Illustration that have not a explicitly mentiont Source are self created by the authors.
+All sources to illustration are listed in the illustrationregister. All illustrations that don't have an explicitly mentioned source are self-created by the authors.
 
 
-The implementation of the game and the ai-players with a fully functional
-graphical user interface is availible on GitHub und the the following url:
+The implementation of the game and the AI-players with a fully functional
+graphical user interface is availible on GitHub under the following url:
 \begin{quotation}
     https://github.com/belafarinrod91/KBSYavalath (hep: 25.10.2013)
 \end{quotation}
 This project is under no license or otherwise protected, feel free to clone the
-Git repositry and compile it yourself.
+Git repository and compile it yourself.
 
 
-This publication was written in \LaTeX an compiled with MikeTex.
+This publication was written in \LaTeX \ and compiled with MikeTex.
 
 \chapter{The Game - Yavalath}
 \label{sec:chapter2}
-In this chapter the creation and history of Yavalath is explained. Also the game itself is explained.
+This chapter will explain the creation and history of Yavalath and the game itself.
 
 \section{History}
-Yavalath is the most successgul game evolved by LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program 
+Yavalath is the most successful game evolved from LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program 
 that implements an algorithm for generating new games. This LUDI software system not only defines the scope and rules of the game, it also interpets 
-the game and coordinates testplays to measures the game quality.
-LUDI was developed by Cameron Browne as part of his PhD in AI and game design,
-also was he awarded with the Dean's Award for Outstanding Thesis
+the game and coordinates testplays to measure the game quality.
+LUDI was developed by Cameron Browne as part of his PhD in AI and game design.
+He was also awarded with the Dean's Award for Outstanding Thesis
 \cite{EvolutionGameDesign}. \\
 
-In 2011 Yavalath was ranked onto place 99 from the BoardGameGeek
-community\footnote{\url{www.boardgamegeek.com}} out of 4300 abstract games ever invented.
-It was also rated onto place 8 out of 200 abstract games invented in 2007. \\
+In 2011 Yavalath was ranked place 99 by the BoardGameGeek
+community\footnote{\url{www.boardgamegeek.com}} of 4300 abstract games ever invented.
+It was also ranked place 8 of 200 abstract games invented in 2007. \\
 
 Yavalath won 2012 the Humies Award for Human-Competitive Result Produced by Genetic and Evolutionarty Computation
 
 \section{Categorisation}
-Yavalath is a mixture of connect and patter building game. The BoardGameGeek
-community categorised Yavalath as a abstract game because it was the first
+Yavalath is a blend of connect- and patter-building games. The BoardGameGeek
+community categorised Yavalath as an abstract game because it was the first
 computer-generated game with such a huge success.
 
-Also Yavalath inspired a new game categorie thats called:
+Yavalath also inspired a new game category that's called:
 \begin{quote}
 	winning with a line of N and losing with a line of N-1.
 \end{quote}
@@ -154,15 +154,15 @@ Also Yavalath inspired a new game categorie thats called:
 The name Yavalath was randomly created by a Markovian algorithm.
 
 \section{The Rules}
-The Rules for Yavalath are pretty simple, what makes it easy to learn. But its
+The rules for Yavalath are pretty simple what makes it easy to learn. But its
 still novel so that the game is still intressting. 
-One of the reasons why the game became so successfull is that Yavalath achieves
-a good balance between simplysiti and a kind of innovation.
+One of the reasons why the game became so successful is that Yavalath achieves
+a good balance between simplicity and innovation.
 
 Yavalath is for two or three players and the average playingtime per game is 10 minutes\footnote{this was voted by the BoardGameGeek comunity, source:\url{http://boardgamegeek.com/boardgame/33767/yavalath}}.
 
-The board is a hexagon with 5 spaces on every side, that is initally empty.
-With that specifications there are 61 free cells in total, as to see in Illustration \ref{fig:yav_board}.
+The board is a hexagon with 5 spaces on each side, that is initally empty.
+With these specifications there are 61 free cells in total as shown in the illustration \ref{fig:yav_board}.
 
 \begin{figure}[H]
 \centering
@@ -172,27 +172,27 @@ With that specifications there are 61 free cells in total, as to see in Illustra
 \end{figure}
 
 
-Every turn a players place a pieces of their colour onto the board. 
+Every turn a player places a piece of their colour onto the board. 
 
-This goes on untill:
+This goes on until:
 \begin{itemize}
-	\item on player have won
-	\item all but one players have lost
+	\item one player has won
+	\item all but one player have lost
 	\item all cells are filled and it is a draw
 \end{itemize}
 
-As Soon as a Player formes a line of three pices in a row the player looses.
+As soon as a player forms a line of three pieces in a row the player loses.
 
-A player can win with two different methods:
+A player can win by two different methods:
 \begin{enumerate}
-	\item one players manage to make a line of four or more pices of his color (In illustartion  \ref{fig:yav_4inarow} the white player won).
-	\item one player forece another player to form a line of three pices what is called a forced move. (In illustartion  \ref{fig:yav_forceMove} the black player is forced to move to prevent the white player from winning. in).
+	\item one player manages to make a line of four or more pieces of his color (In illustration  \ref{fig:yav_4inarow} the white player won)
+	\item one player forces another player to form a line of three pieces, which is called a forced move (In illustration  \ref{fig:yav_forceMove} the black player is forced to move to prevent the white player from winning)
 \end{enumerate}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{Abbildungen/yav_4inarow.png}
-\caption[Four in a row wining, Source:\cite{yvalath}]{Four in a row wining}
+\caption[Four in a row winning, Source:\cite{yvalath}]{Four in a row wining}
 \label{fig:yav_4inarow}
 \end{figure}
 
@@ -205,26 +205,26 @@ A player can win with two different methods:
 \end{figure}
 
 
-This leads to a so called Rule Tension, in this case four is a row is good but three in a row is bad. This means the Player cant just extend lines and must think about the pros and cons of every move he makes.\cite{yvalath}
+This leads to a so called Rule Tension, in this case four in a row is good but three in a row is bad. This means the player can't just extend lines and must think about the pros and cons of every move he makes.\cite{yvalath}
 
 \section{Tactics and Strategy}
-Cameron Browne himsself defined some taktics and strategies and described them in his publication. He started to describes a number of chooices for the first move and a number of patterns that have a good chance of winning.
+Cameron Browne himself defined some tactics and strategies and described them in his publication. He started to describe a number of choices for the first move and a number of patterns that have a good chance of winning.
 
 
-The first move is crucial for the folowing tactics and for the chance to win.
-In Illustration \ref{fig:yav_winChance} is shown a Yavalath board with the win chance for the first move, the bigger the bouble the bigger the win chance. As its good visable that a centerd first move has the biggest win chance.\cite{yvalath}
+The first move is crucial for the following tactics and for the chance to win.
+Illustration \ref{fig:yav_winChance} shows a Yavalath board with the win chances for the first move, a bigger bubble means a bigger win chance. It visualizes that a centered first move provides the biggest chances of winning.\cite{yvalath}
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/yav_winChance.png}
-\caption[The win chance for the first Move, Source:\cite{yvalath}]{The win chance for the first Move}
+\caption[The chances of winning for the first Move, Source:\cite{yvalath}]{The win chance for the first Move}
 \label{fig:yav_winChance}
 \end{figure}
 
 
-An other good chooice for a first move is to start with a pattern. The Triangle starting pattern is an excelent example for a first move pattern (the Triangle starting pattern is shwon in illustration \ref{fig:yav_triangle}) on the left side). because it provides a huge number of chances to win by a forced move. Also its hard to stop a player that used the triangle pattern as a starting move. The only way to stop it is to forsee it pretty early and prevent the player from forming the triangle.
-On the right side of illustration \ref{fig:yav_triangle} a possible outcome of the triangle starting possition where the black player has losst by a forced move.\cite{yvalath}
+Another good choice for a first move is to start with a pattern. The triangle starting pattern is an excellent example for a first move pattern (the triangle starting pattern is shown in illustration \ref{fig:yav_triangle} on the left side) because it provides a huge number of chances to win by a forced move. Additionally, it's hard to stop a player that used the triangle pattern as a starting move. The only way to stop it is to forsee it pretty early and prevent the player from forming the triangle.
+The right side of illustration \ref{fig:yav_triangle} shows a possible outcome of the triangle starting position where the black player has lost by a forced move.\cite{yvalath}
 
 \begin{figure}[H]
 \centering
@@ -233,7 +233,7 @@ On the right side of illustration \ref{fig:yav_triangle} a possible outcome of t
 \label{fig:yav_triangle}
 \end{figure}
 
-In Yavalath a Triangle is always a good pattern, for example the small triangle (as seen in illustration \ref{fig:yav_smallTriangle}). The Reason that the small triangle is such a strong pattern is because it can foram a huge number of winning chances. 
+In Yavalath a triangle is always a good pattern like the small triangle (as seen in illustration \ref{fig:yav_smallTriangle}). The Reason that the small triangle is such a strong pattern is because it can form a huge number of winning chances. 
 
 
 \begin{figure}[H]
@@ -243,7 +243,7 @@ In Yavalath a Triangle is always a good pattern, for example the small triangle 
 \label{fig:yav_smallTriangle}
 \end{figure}
 
-To show that the small triangle is a good pattern, a winning patterns are shown in illustration \ref{fig:yav_smallTriangleWin1}. This forces the black player to loose by a force move. Also its possible to turn a pattern by 120 Degree, with that in mind there are at least three possible winning situations with this simple pattern. If a opponent player try to form a triangle its recommendet to stop him as soon es possible.\cite{yvalathBGG}
+To show that the small triangle is a good pattern a winning pattern is shown in illustration \ref{fig:yav_smallTriangleWin1}. This forces the black player to lose by a force move. It's also possible to turn a pattern by 120 degrees. With that in mind there are at least three possible winning situations with this simple pattern. If an opponent player tries to form a triangle it is recommended to stop him as soon as possible.\cite{yvalathBGG}
 
 \begin{figure}[H]
 \centering
