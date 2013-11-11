@@ -313,7 +313,7 @@ algorithms works and how it is integrated into Yavalath.
 The UCT algorithm was developed for decision making problems especially in terms
 of game playing. It has its strengths in games where:
 \begin{itemize}
-	\item the state of a game is hard to evaluate and
+	\item the state of a game is hard to evaluatate and
 	\item the game has a high branching factor.\cite{wiki:mcts}
 \end{itemize}
 
@@ -383,8 +383,8 @@ It is still unclear how the algorithm chooses a node, and path
 respectively, in the selection phase. This is probably the most important part
 of the algorithm because it determines the best-first search strategy. The
 algorithm needs to find a good balance between exploitation and exploration.
-Exploitation is defined as investigating deep variants of the best move sequences
-whereas exploration means trying out moves which have not been simulated many
+ExExpoitation is defined as investigating deep variants of the best move sequences
+ereas exploration means trying out moves which have not been simulated many
 times. The former is important because the AI needs to be confident that the
 choice of a move is good even in the further playout and the latter has to be
 carried out so that the AI does not miss out on good moves which might just have
@@ -538,8 +538,8 @@ enables to define different difficulties (i.e. strengths) of the UCT-AI.
 The more iterations there are, the more exploitation as well as exploration the
 UCT-AI could do and thus resulting in a better choice of move. Less iterations
 mean a weaker AI whereas more iterations make a string AI. Option one with fixed
-time does not guarantee the same number of iterations on different CPUs and
-therefore, the AI would not perform consistently on every PC. In addition, there
+ttime does not guarantee the same nummber of iterations on different CPUs and
+herefore, the AI would not perform consistently on every PC. In addition, there
 should not be a huge difference in execution time, provided that the PC's CPU is
 not too outdated. \\
 
