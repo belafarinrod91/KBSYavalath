@@ -1,5 +1,4 @@
-\documentclass[english]{report}
-\usepackage[english]{babel}
+\documentclass[english]{report} \usepackage[english]{babel}
 \usepackage[ansinew]{inputenc}
 \usepackage{graphicx}
 \usepackage{here}
@@ -15,15 +14,13 @@
 \usepackage{xcolor}
 \usepackage{listings}
 
-%\usepackage{caption}
-%\DeclareCaptionFont{white}{\color{white}}
-%\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
-%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+% \usepackage{caption} \DeclareCaptionFont{white}{\color{white}}
+% \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+% \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
 
 
 
-%  \RequirePackage{draftwatermark}
-%  \SetWatermarkText{DRAFT}
+% \RequirePackage{draftwatermark} \SetWatermarkText{DRAFT}
 
 \begin{document}
 
@@ -32,7 +29,7 @@
 \chead{- Knowledge Based Systems - }
 \rhead{\includegraphics*[width=2.0cm]{abbildungen/dhbwlogo.png}}
 
-\cfoot{Christoph Schabert, Stephan Alaniz, Jan Brodhacker (TINF11-AI\/BC) \\DHBW Mannheim}
+\cfoot{Christoph Schabert, Stephan Alaniz Kupsch, Jan Brodhacker (TINF11-AI\/BC) \\DHBW Mannheim}
 \lfoot{}%\color{red}\textbf{DRAFT}}
 \rfoot{\thepage}
 \fancyhfoffset{\marginparsep}
@@ -57,7 +54,7 @@
     \vspace{4cm}
  \normalsize{
     \begin{tabular}{ll}
-    	Names: & {Schabert Christoph,  Alaniz Stephan,  Brodhacker Jan} \\
+    	Names: & {Schabert Christoph,  Alaniz Kupsch Stephan,  Brodhacker Jan} \\
     	Course: & {TINF-AI11/BC}	\\
     	Lecturer: &  {Hr. Dr. Vossen}\\
     	working period: & {09.09.2013 - 14.1.2014}
@@ -69,27 +66,33 @@
 
 \newpage 
 \section*{Abstract}\thispagestyle{empty}
-This paper was created during the lecture 'Knowledge Based Systems' on the
+This paper was created during the lecture 'Knowledge Based Systems' at the
 Baden-Wuerttemberg Cooperative State University in the winter semester 2013. It
-describes the basic facts and rules about the game board Yavalath, which
-features and, above all, which artificiall intelligences were implemented, namely
-a UCT AI and a kind of a random AI. The theoretical background was explained as
-well.
+describes the basic facts and rules about the board game Yavalath, which was
+created by an artificial intelligence (AI) called LUDI. Yavalath was implemented
+during this project with the addition of AIs, namely a UCT AI and a kind of a
+random AI. Both the theoretical background as well as the implementational
+approach are described in this paper.
 
 \newpage
 \section*{Statutory declaration}\thispagestyle{empty}
-I herewith declare that I have completed the present thesis independently making use only of the specified literature and aids. Sentences or parts of sentences quoted literally are marked as quotations; identification of other references with regard to the statement and scope of the work is quoted. The thesis in this form or in any other form has not been submitted to an examination body and has not been published.\\
+I herewith declare that I have completed the present thesis independently making
+use only of the specified literature and aids. Sentences or parts of sentences
+quoted literally are marked as quotations; identification of other references
+with regard to the statement and scope of the work is quoted. The thesis in this
+form or in any other form has not been submitted to an examination body and has
+not been published.\\
 \\
-Stephan Alaniz:\\
-Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
+Stephan Alaniz Kupsch:\\
+Mannheim, the 13.11.2013 \hspace{2.5cm} .............................. \\
 \hspace*{6.5cm} (signature)\\
 \\
 Christoph Schabert:\\
-Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
+Mannheim, the 13.11.2013 \hspace{2.5cm} .............................. \\
 \hspace*{6.5cm} (signature)\\
 \\
 Jan Brodhacker:\\
-Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
+Mannheim, the 13.11.2013 \hspace{2.5cm} .............................. \\
 \hspace*{6.5cm} (signature)\\
 
 \newpage
@@ -115,10 +118,12 @@ Heidelberg, the \_\_.\_\_.2013 \hspace{2.5cm} .............................. \\
 \section{Goal and Motivation}
 The goal of this project is to implement a game called Yavalath and to develop
 two different artificial intelligences, which are able to play the game and win
-against nearly every human player.
+against even good human players.
 
 \section{Technical Notes}
-All sources to illustration are listed in the illustrationregister. All illustrations that don't have an explicitly mentioned source are self-created by the authors.
+All sources of illustrations are listed in the illustration register. All
+illustrations that do not have an explicitly mentioned source are self-created by
+the authors.
 
 
 The implementation of the game and the AI-players with a fully functional
@@ -134,12 +139,14 @@ This publication was written in \LaTeX \ and compiled with MikeTex.
 
 \chapter{The Game - Yavalath}
 \label{sec:chapter2}
-This chapter will explain the creation and history of Yavalath and the game itself.
+This chapter will explain the creation and history of Yavalath.
 
 \section{History}
-Yavalath is the most successful game evolved from LUDI in 2007 and published in 2009 by Nestorgames (Spain). LUDI is a game-generating computer program 
-that implements an algorithm for generating new games. This LUDI software system not only defines the scope and rules of the game, it also interpets 
-the game and coordinates testplays to measure the game quality.
+Yavalath is the most successful game evolved from LUDI in 2007 and published in
+2009 by Nestorgames (Spain). LUDI is a game-generating computer program that
+implements an algorithm for generating new games. This LUDI software system not
+only defines the scope and rules of the game, it also interprets the game and
+coordinates testplays to measure the game's quality.
 LUDI was developed by Cameron Browne as part of his PhD in AI and game design.
 He was also awarded with the Dean's Award for Outstanding Thesis
 \cite{EvolutionGameDesign}. \\
@@ -148,14 +155,15 @@ In 2011 Yavalath was ranked place 99 by the BoardGameGeek
 community\footnote{\url{www.boardgamegeek.com}} of 4300 abstract games ever invented.
 It was also ranked place 8 of 200 abstract games invented in 2007. \\
 
-Yavalath won 2012 the Humies Award for Human-Competitive Result Produced by Genetic and Evolutionarty Computation
+Yavalath won 2012 the Humies Award for Human-Competitive Result Produced by
+Genetic and Evolutionary Computation.
 
 \section{Categorisation}
 Yavalath is a blend of connect- and patter-building games. The BoardGameGeek
 community categorised Yavalath as an abstract game because it was the first
 computer-generated game with such a huge success.
 
-Yavalath also inspired a new game category that's called:
+Yavalath also inspired a new game category that is called:
 \begin{quote}
 	winning with a line of N and losing with a line of N-1.
 \end{quote}
@@ -163,14 +171,16 @@ Yavalath also inspired a new game category that's called:
 The name Yavalath was randomly created by a Markovian algorithm.
 
 \section{The Rules}
-The rules for Yavalath are pretty simple what makes it easy to learn. But its
-still novel so that the game is still intressting. 
+The rules for Yavalath are pretty simple what makes it easy to learn. But it is
+still novel enough to be interesting. 
 One of the reasons why the game became so successful is that Yavalath achieves
 a good balance between simplicity and innovation.
 
-Yavalath is for two or three players and the average playingtime per game is 10 minutes\footnote{this was voted by the BoardGameGeek comunity, source:\url{http://boardgamegeek.com/boardgame/33767/yavalath}}.
+Yavalath is for two or three players and has an average playing time of 10
+minutes per game\footnote{this was voted by the BoardGameGeek comunity,
+source:\url{http://boardgamegeek.com/boardgame/33767/yavalath}}.
 
-The board is a hexagon with 5 spaces on each side, that is initally empty.
+The board is a hexagon with 5 spaces on each side, that is initially empty.
 With these specifications there are 61 free cells in total as shown in the illustration \ref{fig:yav_board}.
 
 \begin{figure}[H]
@@ -181,9 +191,9 @@ With these specifications there are 61 free cells in total as shown in the illus
 \end{figure}
 
 
-Every turn a player places a piece of their colour onto the board. 
+Every turn a player places a piece of their color onto the board. 
 
-This goes on until:
+This continues until:
 \begin{itemize}
 	\item one player has won
 	\item all but one player have lost
@@ -214,14 +224,21 @@ A player can win by two different methods:
 \end{figure}
 
 
-This leads to a so called Rule Tension, in this case four in a row is good but three in a row is bad. This means the player can't just extend lines and must think about the pros and cons of every move he makes.\cite{yvalath}
+This leads to a so called Rule Tension, in this case four in a row is good but
+three in a row is bad. This means the player cannot just extend lines and must
+think about the pros and cons of every move.\cite{yvalath}
 
 \section{Tactics and Strategy}
-Cameron Browne himself defined some tactics and strategies and described them in his publication. He started to describe a number of choices for the first move and a number of patterns that have a good chance of winning.
+Cameron Browne himself defined some tactics and strategies and described them in
+his publication. He started to describe a number of choices for the first move
+and a number of patterns that have a good chance of winning.
 
 
 The first move is crucial for the following tactics and for the chance to win.
-Illustration \ref{fig:yav_winChance} shows a Yavalath board with the win chances for the first move, a bigger bubble means a bigger win chance. It visualizes that a centered first move provides the biggest chances of winning.\cite{yvalath}
+Illustration \ref{fig:yav_winChance} shows a Yavalath board with the win chances
+for the first move, a bigger bubble means a bigger win chance. It visualizes
+that a centered first move provides the biggest chances of
+winning.\cite{yvalath}
 
 
 \begin{figure}[H]
@@ -232,8 +249,16 @@ Illustration \ref{fig:yav_winChance} shows a Yavalath board with the win chances
 \end{figure}
 
 
-Another good choice for a first move is to start with a pattern. The triangle starting pattern is an excellent example for a first move pattern (the triangle starting pattern is shown in illustration \ref{fig:yav_triangle} on the left side) because it provides a huge number of chances to win by a forced move. Additionally, it's hard to stop a player that used the triangle pattern as a starting move. The only way to stop it is to forsee it pretty early and prevent the player from forming the triangle.
-The right side of illustration \ref{fig:yav_triangle} shows a possible outcome of the triangle starting position where the black player has lost by a forced move.\cite{yvalath}
+Another good choice for a first move is to start with a pattern. The triangle
+starting pattern is an excellent example for a first move pattern (the triangle
+starting pattern is shown in illustration \ref{fig:yav_triangle} on the left
+side) because it provides a huge number of chances to win by a forced move.
+Additionally, it is hard to stop a player that used the triangle pattern as a
+starting move. The only way to stop it is to foresee it pretty early and prevent
+the player from forming the triangle.
+The right side of illustration \ref{fig:yav_triangle} shows a possible outcome
+of the triangle starting position where the black player has lost by a forced
+move.\cite{yvalath}
 
 \begin{figure}[H]
 \centering
@@ -242,7 +267,10 @@ The right side of illustration \ref{fig:yav_triangle} shows a possible outcome o
 \label{fig:yav_triangle}
 \end{figure}
 
-In Yavalath a triangle is always a good pattern like the small triangle (as seen in illustration \ref{fig:yav_smallTriangle}). The Reason that the small triangle is such a strong pattern is because it can form a huge number of winning chances. 
+In Yavalath a triangle is always a good pattern like the small triangle (as seen
+in illustration \ref{fig:yav_smallTriangle}). The Reason that the small triangle
+is such a strong pattern is because it can form a huge number of winning
+chances.
 
 
 \begin{figure}[H]
@@ -252,7 +280,12 @@ In Yavalath a triangle is always a good pattern like the small triangle (as seen
 \label{fig:yav_smallTriangle}
 \end{figure}
 
-To show that the small triangle is a good pattern a winning pattern is shown in illustration \ref{fig:yav_smallTriangleWin1}. This forces the black player to lose by a force move. It's also possible to turn a pattern by 120 degrees. With that in mind there are at least three possible winning situations with this simple pattern. If an opponent player tries to form a triangle it is recommended to stop him as soon as possible.\cite{yvalathBGG}
+To show that the small triangle is a good pattern, a winning pattern is shown in
+illustration \ref{fig:yav_smallTriangleWin1}. This forces the black player to
+lose by a forced move. It is also possible to turn a pattern by 120 degrees. With
+that in mind there are at least three possible winning situations with this
+simple pattern. If an opponent player tries to form a triangle it is recommended
+to stop him as soon as possible.\cite{yvalathBGG}
 
 \begin{figure}[H]
 \centering
@@ -263,60 +296,85 @@ To show that the small triangle is a good pattern a winning pattern is shown in 
 
 \chapter{Artificial Intelligences}
 \label{sec:artificIntelligences}
-The following chapter describes the two approaches of Artificial Intelligences, which were implemented to this Game. The two Artificial Intelligences are able 
-to play against a human player and even to win against him. On the one hand there is the so called UTCAI, which can has three different
-levels of difficulty. And the other hand there is the simple approach of a random AI. Both approaches are explained in a more detailed view in the next two
-sections. 
+The following chapter describes the two approaches of artificial intelligences,
+which were implemented for this game. The two artificial intelligences are able
+to play and win against a human player. On the one hand there is the so called
+UTC AI, which has three different levels of difficulty. On the other hand
+there is the simple approach of a random AI. Both approaches are explained in a
+more detailed view in the next two sections.
 
 
 
 \section{Random-AI}
-The random AI is one of the two implemented Artificial-Intelligences, as already mentioned in the description of this chapter. 
-Actually the random AI is defintely the more easier opponent for a human player and also for the other other kind of AI, the UCT AI. 
-Additionally to this fact, the random AI is also the more easier approach to implement. Rather the random AI can be described within to sentences : 
-The random AI set its token randomly, but before it does this, it checks if it could win with settin a token to a special field or if it must prevent an opponent from winning.
-In a more detailed view this means, the random AI sets its token completely randomly to the playground. This happens with the assistance of a special algorithm, 
-which receives the system time. Based on this system time the algorithm can determine a special courton on the playground. If this courton is not used by 
-another player, the random AI will set its token there. It doesn't matter if this turn was smart or if it could yield an advantage. 
+The random AI is one of the two implemented artificial intelligences, as already
+mentioned in the description of this chapter.
+The random AI is definitely the easier opponent for a human player
+than the other kind of AI, the UCT AI.
+Additionally to this fact, the random AI also has an easier approach to
+implement. Rather the random AI can be described within two sentences:
+The random AI sets its token randomly, but before it does this, it checks if it
+could win with setting a token to a specific field, if it must prevent an
+opponent from winning or if it would lose with setting it on a specific field.
+After this regard, the random AI sets its token completely
+randomly to the playground. This happens with the assistance of a special
+algorithm, which receives the system time. Based on this system time the
+algorithm can determine a special courton on the playground. If this courton is
+not used by another player, the random AI will set its token there. It doesn't
+matter if this turn was smart or if it could yield an advantage.
 
 
 But before the random AI 
-sets its token, it checks whether a opponent could win on the next turn. This happens based on a predefined rule set, as already mentioned in the chapters above. So figure \ref{fig:randomAI1} shows a situation, where the red player (random AI) prevents the win of player green, by setting the red token with the white dot.
+sets its token, it checks whether a opponent could win on the next turn. This
+happens based on a predefined rule set, as already mentioned in the chapters
+above. So figure \ref{fig:randomAI1} shows a situation, where the red player
+(random AI) prevents the win of player green, by setting the red token with the
+white dot.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI1.png}
 \caption{Random AI prevents red player from winning }
 \label{fig:randomAI1}
 \end{figure}
-Additionally to that the random AI checks also if it would loose with setting the token on the specified position. Figure \ref{fig:randomAI2} shows such a situation. If the algorithm would return a field next to one of the two red tokens, the random AI would not set this token, because then it would loose the game. So the random AI would set its token somewhere else.
+Additionally to that, the random AI checks also if it would lose with setting
+the token on the specified position. Figure \ref{fig:randomAI2} shows such a
+situation. If the algorithm would return a field next to one of the two red
+tokens, the random AI would not set this token, because then it would lose the
+game. So the random AI would set its token somewhere else.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI2.png}
 \caption{Random AI sets token other position}
 \label{fig:randomAI2}
 \end{figure}
-And all good things are three, so the random AI checks in a third 
-step if it could win itself, when it sets the token on a certain courton. Figure \ref{fig:randomAI3} shows that the random AI would recognize the chance to win in this situation. The random AI must only set the red token with the white dot to win.
+And all good things are three, so the random AI checks in a third step if it
+could win itself, when it sets the token on a certain courton. Figure
+\ref{fig:randomAI3} shows that the random AI would recognize the chance to win
+in this situation. The random AI must only set the red token with the white dot
+to win.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Abbildungen/randomAI3.png}
 \caption{Random AI recognizes chance to win }
 \label{fig:randomAI3}
 \end{figure}
-All in all the random AI is not very smart, because neither it can deal with specific 
-game events nor learning from faults, which were made by the random AI in a game before. It actually sets its token so long as the AI itself could win randomly. 
-And this probability is not very high. All in all the random AI is not only a random AI as described before, but it has implemented some trivial logic to recognize if the random AI could win or prevent a win of an other player.
+All in all the random AI is not very smart, because neither can it deal with
+specific game events nor can it learn from faults, which were made by the random AI
+in a game before. It actually sets its token randomly as long as the AI itself
+has not lost yet.
+The probability of winning is not very high. All in all the random AI is not only a
+random AI as described before, but it has implemented some logic to
+recognize if the random AI could win or prevent a win of an other player.
 
 
 \section{UCT-AI}
 \label{sec:chapter4}
 The following chapter describes the fundamentals of the UCT (Upper Confidence
 Bounds applied to Trees) algorithm. It was implemented in order to provide the
-Yavalath game with an artificial intelligence (AI) to play against. The main
+Yavalath game with a strong artificial intelligence (AI) to play against. The main
 task of a game playing AI is to choose its next move with the information about
 the state of the game. The motivation and reasons behind choosing the UCT
 algorithm are briefly pointed out. Afterwards it is explained how this
-algorithms works and how it is integrated into Yavalath.
+algorithms works and how it works in regard to Yavalath.
 
 \subsection{Why UCT?}
 The UCT algorithm was developed for decision making problems especially in terms
@@ -327,7 +385,7 @@ of game playing. It has its strengths in games where:
 \end{itemize}
 
 In Yavalath, these two attributes can be found. Firstly, Yavalath has no
-developed theory, mainly because it is relatively unknown, and therefore there
+developed theory, mainly because it is relatively unknown. Therefore, there
 does not exist an evaluation function which could rate the current state of the
 game. If it was possible to assign a score depending on how good a player's
 tokens are placed on the board, it would be possible to deploy algorithms (such
@@ -336,7 +394,7 @@ to find a good or even the best possible next move.\\
 
 Secondly, Yavalath also has a high branching factor. Looking only at the first
 10 moves (5 from each player when 2 are playing), there already are
-\(\frac{61!}{51!}=3,27*10^17\) different move combinations. Good game playing
+\(\frac{61!}{51!}=3,27*10^{17}\) different move combinations. Good game playing
 AIs cannot only look at the next move, but rather need to look ahead a couple of
 moves. Otherwise, they could not detect potential threats or opportunities which
 might lie ahead a few moves. In order to investigate all these branches, the AI
@@ -392,8 +450,8 @@ It is still unclear how the algorithm chooses a node, and path
 respectively, in the selection phase. This is probably the most important part
 of the algorithm because it determines the best-first search strategy. The
 algorithm needs to find a good balance between exploitation and exploration.
-ExExpoitation is defined as investigating deep variants of the best move sequences
-ereas exploration means trying out moves which have not been simulated many
+Expoitation is defined as investigating deep variants of the best move sequences
+whereas exploration means trying out moves which have not been simulated many
 times. The former is important because the AI needs to be confident that the
 choice of a move is good even in the further playout and the latter has to be
 carried out so that the AI does not miss out on good moves which might just have
@@ -410,7 +468,7 @@ chosen which maximizes the equation \ref{eq:UCB1}.
 \bar{x}_{i} + C * \sqrt{\frac{\ln n}{n_{i}}}
 \end{equation}
 
-\(x_{i}\) is the performance measure from node \(i\). The performance measure
+\(\bar{x}_{i}\) is the performance measure from node \(i\). The performance measure
 must lie in the interval [0;1]. For games it usually is the win chance
 \(\frac{w_{i}}{n_{i}}\) where \(w_{i}\) is the number of wins from random
 playouts of node \(i\) and \(n_{i}\) is the number of times node \(i\) has
@@ -418,7 +476,7 @@ already been played. \(n\) is the overall number of playouts and \(C\) is a
 constant which has to be adjusted empirically for a given problem.\cite{thesis:uct}
 
 
-In the UCB1 policy, the first part of the equation \(x_{i}\) stands for the
+In the UCB1 policy, the first part of the equation \(\bar{x}_{i}\) stands for the
 exploitation part. The higher the win chance of a move, the higher the value of
 the equation. The rest of the equation stands for the exploration part. Assuming
 a node is visited once and not any more for a couple of times, i.e. \(n_{i}\) is
@@ -459,14 +517,19 @@ The game was implemented in Java, a platform-independent programming language.
 It offers many extensions to develop such a complex game. The aspect that Java
 is a object oriented programming language provides many advantages to model
 useful classes, which can demonstrate the structure of such a game. Java is also
-fast enough to calculate all dependecies and to return the user a
-response on their interaction with the game in a suitable time. But therefore
-isn't a high-end computer needed. In this context no frameworks were used. The
-graphical user interface was realized with the assistance of the GUI-Library
-SWING for Java, which is based on the Abstract-Window-Toolkit (AWT).  
+fast enough to calculate all dependencies and return a
+response to the user's interactions with the game in a suitable time. In this
+context no frameworks were used. The graphical user interface was realized with
+the assistance of the GUI-Library SWING for Java, which is based on the
+Abstract-Window-Toolkit (AWT).
 \section{implemented Features}
 The following section describes the features, which were implemented. \\
-After the game was started, the main menu will be opened. The user can start a new game, make settings and exit the game in this menu. Within the settings menu the user is able to define how many player are part of the game (from one to three) and which sort of player each defined player is (human player, random AI or UCT AI). When a player is a UCT AI an additional option is available, namely, which level of difficulty the UCT AI has.
+After the game is started, the main menu will be opened. The user can start a
+new game, choose settings and exit the game in this menu. Within the settings menu
+the user is able to define how many player are part of the game (from two to
+three) and which sort of player each defined player is (human player, random AI
+or UCT AI). When a player is a UCT AI an additional option is available, namely,
+which level of difficulty the UCT AI has.
 \newpage
 
 \begin{figure}[ht]
@@ -476,12 +539,16 @@ After the game was started, the main menu will be opened. The user can start a n
 \label{fig:playgroundOfYav}
 \end{figure} 
 
-\noindent Figure \ref{fig:playgroundOfYav} shows an example of a typical playground of the Yavalath implementation. 
-The upper left corner shows some general game information. Which player has which color and what kind of type the different 
-players are. Beneath this information the field 'Move' shows, which players move it is, with the specific color. The field in the 
-lower left corner shows the calculated winchance of the UTC AI, presented in percent. If there are multiple UCT AI in the game, the 
+\noindent Figure \ref{fig:playgroundOfYav} shows an example of a typical
+playground of the Yavalath implementation.
+The upper left corner shows some general game information. Which player has
+which color and what kind of type the different players are. Beneath this
+information the field 'Move' shows, which player's move it is, with the specific
+color. The field in the lower left corner shows the calculated win chance of the
+UTC AI, presented in percent. If there are multiple UCT AI in the game, the
 certain UCT AI can be indicated by the reference to the color.  \\
-The main part of the window is used for the real playground. When it is a human players turn, the player is able to click on the court, 
+The main part of the window is used for the real playground. When it is a human
+player's turn, the player is able to click on the court,
 where he wants to set his 
 token. 
 
