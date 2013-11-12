@@ -602,8 +602,9 @@ For the backpropagation phase, there is nothing to adjust or modify. It is only
 important to keep in mind that for each player the outcome of the simulation is
 different (expect for a draw). When having two players, the result of the
 simulation has to be alternated on each layer / node when doing the
-backpropagation. Accordingly, the result has to be matched with the player of
-the current node when dealing with three players.\\
+backpropagation. For example, a win for a certain player is a lose for the other
+player. Accordingly, the result has to be matched with the player of the current
+node when dealing with three players.\\
 
 Finally, there are two different ways to execute the UCT algorithm. First, one
 can set a fixed time and let the algorithm do as many iterations of the 4 steps
