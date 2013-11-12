@@ -69,7 +69,13 @@
 
 \newpage 
 \section*{Abstract}\thispagestyle{empty}
-This paper was created during the lecture 'Knowledge Based Systems' on the Baden-Wuerttemberg Cooperative State University in the winter semester 2013. It describes the basic facts and rules about the game board Yavalath, which features and above all which artificiall intelligences were implemented, namely a UCT AI and a kind of a random AI. The theoretical background was explained as well. 
+This paper was created during the lecture 'Knowledge Based Systems' on the
+Baden-Wuerttemberg Cooperative State University in the winter semester 2013. It
+describes the basic facts and rules about the game board Yavalath, which
+features and, above all, which artificiall intelligences were implemented, namely
+a UCT AI and a kind of a random AI. The theoretical background was explained as
+well.
+
 \newpage
 \section*{Statutory declaration}\thispagestyle{empty}
 I herewith declare that I have completed the present thesis independently making use only of the specified literature and aids. Sentences or parts of sentences quoted literally are marked as quotations; identification of other references with regard to the statement and scope of the work is quoted. The thesis in this form or in any other form has not been submitted to an examination body and has not been published.\\
@@ -540,7 +546,7 @@ which it runs. It was decided to implement the second option, because this
 enables to define different difficulties (i.e. strengths) of the UCT-AI.
 The more iterations there are, the more exploitation as well as exploration the
 UCT-AI could do and thus resulting in a better choice of move. Less iterations
-mean a weaker AI whereas more iterations make a string AI. Option one with fixed
+mean a weaker AI whereas more iterations make a strong AI. Option one with fixed
 ttime does not guarantee the same nummber of iterations on different CPUs and
 herefore, the AI would not perform consistently on every PC. In addition, there
 should not be a huge difference in execution time, provided that the PC's CPU is
@@ -554,6 +560,19 @@ iteration were chosen for the corresponding difficulties:
 	\item \textit{Hard:}  50000 simulations
 \end{itemize}
 
+
+\chapter{Conclusion}
+Yavalath is a enjoyable game considering that it was created by a machine. LUDI
+itself is a very interesting approach in the field of artificial intelligence.
+Yavalath has a very varying gameplay despite the fact that the rule set is very
+simple. Additionally, move combinations and patterns add in strategic part to
+Yavalath. Although the implemented Random AI will not challange a human player,
+who knows these winning patterns, the UCT AI definitely does. The UCT AI turns
+out to be a very good opponent even when good move combinations are known by the
+human player. The AI knows how to counter these strategies and often penalizes
+the smallest mistake with a instant lose for the player. Of course, the
+different difficulties of the UCT AI make room for inexperienced player. Still,
+the strongest UCT AI will challange even good Yavalath players.
 
 % #TODO: Tech the Dokument
 
