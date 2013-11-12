@@ -564,8 +564,8 @@ basis.\cite{sl}
 The selection phase of the MCTS uses the UCB1 policy as described before. The
 main adjustment done in this part is the choice of the constant \(C\) in the
 UCB1 policy from equation \ref{eq:UCB1}. In Sensei's Library, it is suggested to
-use a value of \(\frac{1}{sqrt{5}}\).\cite{sl} As this is a smaller
-number than \(sqrt{2}\) suggested by Auer, it results in a more exploitational
+use a value of \(\frac{1}{\sqrt{5}}\).\cite{sl} As this is a smaller
+number than \(\sqrt{2}\) suggested by Auer, it results in a more exploitational
 tree search. Therefore, good moves are investigated more than exploring the
 total width of the tree. It turns out that this works very well with Yavalath.\\
 
