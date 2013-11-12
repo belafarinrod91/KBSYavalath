@@ -22,7 +22,7 @@ var SLIDE_CONFIG = {
 
   // Author information
   presenters: [{
-    name: 'Stephan Alaniz-Kupsch | Christoph Schabert | Jan Brodhaecker',
+    name: 'Stephan Alaniz Kupsch | Christoph Schabert | Jan Brodhaecker',
     company: '',
     gplus: '',
     twitter: '',
